@@ -9,7 +9,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-gradient-to-b from-gray-900 to-black text-gray-300 py-16 px-6 mt-10 border-t border-gray-800 font-sans">
+    <footer className="bg-gradient-to-b from-gray-900 to-black text-gray-300 py-16 px-6  border-t border-gray-800 font-sans">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
         
         {/* Left Section: Portfolio Info */}

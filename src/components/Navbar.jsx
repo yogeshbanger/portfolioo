@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { FaGithub } from "react-icons/fa";
+
 import { 
   RiInstagramLine, 
   RiLinkedinBoxFill, 
-  RiYoutubeFill, 
+ 
   RiMenu3Line, 
   RiCloseLine,
   RiSendPlaneFill
@@ -36,9 +38,9 @@ export default function Navbar() {
       bg: "hover:border-[#e4405f]/50 hover:bg-[#e4405f]/10"
     },
     { 
-      icon: <RiYoutubeFill size={20} />, 
-      href: "https://youtube.com/@yogeshbanger11?si=Ymo4QiGiuZ0YF1Ug", 
-      color: "group-hover:text-[#ff0000]",
+      icon: <FaGithub size={20} />, 
+      href: "https://github.com/bangerjaat111-stack", 
+      color: "group-hover:text-[#0077b5]",
       bg: "hover:border-[#ff0000]/50 hover:bg-[#ff0000]/10"
     },
   ];
