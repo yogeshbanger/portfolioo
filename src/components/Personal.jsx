@@ -1,205 +1,262 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { User, Mail, Phone, MapPin, MessageSquare, Send, Users, CheckCircle2, Loader2 } from 'lucide-react';
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import {
+  FaArrowRight,
+  FaEnvelope,
+  FaGithub,
+  FaInstagram,
+  FaLocationDot,
+  FaPaperPlane,
+} from "react-icons/fa6";
+import { FaLinkedinIn } from "react-icons/fa";
+import { SiX } from "react-icons/si";
 
-const PersonalDetails = () => {
-  const [focused, setFocused] = useState("");
-  const [formData, setFormData] = useState({
-    name: '', father: '', email: '', phone: '', address: '', message: ''
-  });
-  const [status, setStatus] = useState('idle'); // 'idle' | 'submitting' | 'success'
+const contactCards = [
+  {
+    icon: FaEnvelope,
+    label: "Email",
+    value: "yogeshbanger111@gmail.com",
+    href: "mailto:yogeshbanger111@gmail.com",
+  },
+  {
+    icon: FaLocationDot,
+    label: "Location",
+    value: "Kaithal, Haryana, India",
+    href: "",
+  },
+  {
+    icon: FaGithub,
+    label: "GitHub",
+    value: "bangerjaat111-stack",
+    href: "https://github.com/bangerjaat111-stack",
+  },
+];
 
-  const inputFields = [
-    { id: "name", label: "Your Name", icon: <User size={18} />, type: "text", placeholder: "enter your name" },
-    { id: "father", label: "Father's Name", icon: <Users size={18} />, type: "text", placeholder: "enter your father name" },
-    { id: "email", label: "Email Address", icon: <Mail size={18} />, type: "email", placeholder: "enter a email id" },
-    { id: "phone", label: "Phone Number", icon: <Phone size={18} />, type: "tel", placeholder: "+91 00000-00000" },
-    { id: "address", label: "Address", icon: <MapPin size={18} />, type: "text", placeholder: "Kaithal, Haryana" },
-  ];
+const socials = [
+  {
+    name: "GitHub",
+    icon: FaGithub,
+    href: "https://github.com/bangerjaat111-stack",
+  },
+  {
+    name: "Instagram",
+    icon: FaInstagram,
+    href: "https://www.instagram.com/yogesh_banger_111/",
+  },
+  {
+    name: "LinkedIn",
+    icon: FaLinkedinIn,
+    href: "https://in.linkedin.com/in/yogesh-banger-9a9695366?trk=people-guest_people_search-card",
+  },
+  {
+    name: "X / Twitter",
+    icon: SiX,
+    href: "https://www.instagram.com/yogesh_banger_111/",
+  },
+];
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.id]: e.target.value });
-  };
+function usePageSEO() {
+  useEffect(() => {
+    const title = "Contact Yogesh Banger | MERN Stack Developer";
+    const description =
+      "Contact Yogesh Banger for internships, freelance web development, React projects, MERN applications and collaborations.";
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setStatus('submitting');
+    document.title = title;
 
-    // ==========================================
-    // EMAIL INTEGRATION POINT
-    // ==========================================
-    // This is where you would send the data to your Node.js/Nodemailer backend.
-    // Example:
-    // axios.post('/api/send-welcome-email', { email: formData.email, name: formData.name })
-    //   .then(() => setStatus('success'))
-    
-    // Simulating a network request for the UI demonstration:
-    setTimeout(() => {
-      setStatus('success');
-      // Reset form after 3 seconds
-      setTimeout(() => {
-        setStatus('idle');
-        setFormData({ name: '', father: '', email: '', phone: '', address: '', message: '' });
-      }, 4000);
-    }, 2000);
+    const setMeta = (selector, attributes) => {
+      let element = document.head.querySelector(selector);
+      if (!element) {
+        element = document.createElement("meta");
+        document.head.appendChild(element);
+      }
+      Object.entries(attributes).forEach(([key, value]) => element.setAttribute(key, value));
+    };
+
+    setMeta('meta[name="description"]', { name: "description", content: description });
+    setMeta('meta[name="robots"]', { name: "robots", content: "index, follow" });
+    setMeta('meta[property="og:title"]', { property: "og:title", content: title });
+    setMeta('meta[property="og:description"]', {
+      property: "og:description",
+      content: description,
+    });
+
+    let canonical = document.head.querySelector('link[rel="canonical"]');
+    if (!canonical) {
+      canonical = document.createElement("link");
+      canonical.rel = "canonical";
+      document.head.appendChild(canonical);
+    }
+    canonical.href = `${window.location.origin}/contact`;
+  }, []);
+}
+
+export default function Contact() {
+  usePageSEO();
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setSubmitted(true);
   };
 
   return (
-    <section className="min-h-screen bg-[#0a0a0a] py-20 px-6 flex items-center justify-center font-sans overflow-hidden relative">
-      
-      {/* Background Ambient Glows */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-fuchsia-500/10 rounded-full blur-[120px] pointer-events-none" />
+    <main className="min-h-screen bg-slate-950 px-5 pb-24 pt-28 text-white sm:px-8 lg:px-12">
+      <div className="mx-auto max-w-7xl">
+        <motion.header
+          initial={{ opacity: 0, y: 25 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="max-w-4xl"
+        >
+          <p className="text-sm font-bold uppercase tracking-[0.3em] text-cyan-300">
+            Contact me
+          </p>
+          <h1 className="mt-4 text-4xl font-black leading-tight sm:text-6xl">
+            Let us create something
+            <span className="block bg-gradient-to-r from-cyan-300 to-violet-400 bg-clip-text text-transparent">
+              useful and memorable
+            </span>
+          </h1>
+          <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-400">
+            I am open to internships, freelance opportunities, collaborations and
+            conversations about React, MERN stack development, WordPress and SEO.
+          </p>
+        </motion.header>
 
-      <motion.div 
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        className="w-full max-w-2xl relative z-10"
-      >
-        {/* Main Glassmorphism Card */}
-        <div className="bg-[#0f0f0f]/80 backdrop-blur-2xl p-8 md:p-12 rounded-[2.5rem] border border-gray-800 shadow-[0_0_50px_rgba(0,0,0,0.5)] relative overflow-hidden group/form">
-          
-          {/* Subtle Hover Glow on Card Edge */}
-          <div className="absolute -inset-1 rounded-[2.5rem] bg-gradient-to-br from-cyan-500/20 to-fuchsia-600/20 opacity-0 group-hover/form:opacity-100 transition-opacity duration-700 blur-xl -z-10" />
-
-          {/* Header Section */}
-          <div className="text-center mb-12 relative z-10">
-            <h2 className="text-4xl md:text-5xl font-black tracking-tight mb-3">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">PERSONAL </span>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-fuchsia-500 drop-shadow-[0_0_15px_rgba(217,70,239,0.5)]">
-                DETAILS
-              </span>
-            </h2>
-            <p className="text-gray-400 font-medium tracking-widest uppercase text-xs">
-              Secure Transmission Protocol
-            </p>
-          </div>
-
-          <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {inputFields.map((field, index) => (
-                <div key={field.id} className="relative">
-                  <label className="text-[10px] font-bold text-gray-500 uppercase tracking-widest ml-2 mb-2 block">
-                    {field.label}
-                  </label>
-                  <div className={`
-                    flex items-center bg-[#151515] border rounded-2xl px-4 py-3.5 transition-all duration-300
-                    ${focused === field.id 
-                      ? index % 2 === 0 
-                        ? "border-cyan-500/50 shadow-[0_0_15px_rgba(6,182,212,0.15)]" 
-                        : "border-fuchsia-500/50 shadow-[0_0_15px_rgba(217,70,239,0.15)]"
-                      : "border-gray-800 hover:border-gray-700"}
-                  `}>
-                    <span className={`
-                      transition-colors mr-3
-                      ${focused === field.id 
-                        ? index % 2 === 0 ? "text-cyan-400" : "text-fuchsia-400" 
-                        : "text-gray-600"}
-                    `}>
-                      {field.icon}
-                    </span>
-                    <input
-                      id={field.id}
-                      type={field.type}
-                      value={formData[field.id]}
-                      onChange={handleChange}
-                      placeholder={field.placeholder}
-                      onFocus={() => setFocused(field.id)}
-                      onBlur={() => setFocused("")}
-                      required
-                      disabled={status !== 'idle'}
-                      className="bg-transparent w-full outline-none text-white font-medium placeholder:text-gray-700 disabled:opacity-50"
-                    />
+        <div className="mt-14 grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
+          <motion.aside
+            initial={{ opacity: 0, x: -25 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.55, delay: 0.1 }}
+            className="space-y-5"
+          >
+            {contactCards.map(({ icon: Icon, label, value, href }) => {
+              const content = (
+                <div className="group flex items-center gap-4 rounded-3xl border border-white/10 bg-slate-900/60 p-5 transition hover:-translate-y-1 hover:border-cyan-300/25">
+                  <div className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-cyan-400/10 text-xl text-cyan-300">
+                    <Icon />
                   </div>
+                  <div className="min-w-0">
+                    <p className="text-sm font-semibold text-slate-500">{label}</p>
+                    <p className="mt-1 truncate font-bold text-slate-200">{value}</p>
+                  </div>
+                  {href && (
+                    <FaArrowRight className="ml-auto shrink-0 text-slate-600 transition group-hover:translate-x-1 group-hover:text-cyan-300" />
+                  )}
                 </div>
-              ))}
-            </div>
+              );
 
-            {/* Message Area */}
-            <div className="relative">
-              <label className="text-[10px] font-bold text-gray-500 uppercase tracking-widest ml-2 mb-2 block">
-                Message
-              </label>
-              <div className={`
-                flex items-start bg-[#151515] border rounded-2xl px-4 py-3.5 transition-all duration-300
-                ${focused === "message" ? "border-cyan-500/50 shadow-[0_0_15px_rgba(6,182,212,0.15)]" : "border-gray-800 hover:border-gray-700"}
-              `}>
-                <span className={`${focused === "message" ? "text-cyan-400" : "text-gray-600"} transition-colors mr-3 mt-1`}>
-                  <MessageSquare size={18} />
-                </span>
-                <textarea
-                  id="message"
-                  rows="4"
-                  value={formData.message}
-                  onChange={handleChange}
-                  placeholder="Write your message here..."
-                  onFocus={() => setFocused("message")}
-                  onBlur={() => setFocused("")}
-                  required
-                  disabled={status !== 'idle'}
-                  className="bg-transparent w-full outline-none text-white font-medium placeholder:text-gray-700 resize-none disabled:opacity-50"
-                />
+              return href ? (
+                <a key={label} href={href} target={href.startsWith("http") ? "_blank" : undefined} rel="noreferrer">
+                  {content}
+                </a>
+              ) : (
+                <div key={label}>{content}</div>
+              );
+            })}
+
+            <div className="rounded-3xl border border-white/10 bg-gradient-to-br from-violet-500/10 to-cyan-500/10 p-6">
+              <p className="text-sm font-bold uppercase tracking-[0.24em] text-violet-300">
+                Find me online
+              </p>
+              <div className="mt-5 flex gap-3">
+                {socials.map(({ name, icon: Icon, href }) => (
+                  <a
+                    key={name}
+                    href={href}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={name}
+                    className="grid h-12 w-12 place-items-center rounded-2xl border border-white/10 bg-slate-950/40 text-xl text-slate-300 transition hover:-translate-y-1 hover:border-violet-300/30 hover:text-violet-300"
+                  >
+                    <Icon />
+                  </a>
+                ))}
               </div>
             </div>
+          </motion.aside>
 
-            {/* Submit Button & Status Indicator */}
-            <div className="pt-4 relative h-16">
-              <AnimatePresence mode="wait">
-                {status === 'idle' && (
-                  <motion.button
-                    key="submit-btn"
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    type="submit"
-                    className="absolute inset-0 w-full bg-gradient-to-r from-cyan-600 to-fuchsia-600 hover:from-cyan-500 hover:to-fuchsia-500 text-white font-black uppercase tracking-[0.2em] rounded-2xl shadow-[0_0_20px_rgba(217,70,239,0.3)] flex items-center justify-center gap-3 transition-all group overflow-hidden"
-                  >
-                    <span className="relative z-10 flex items-center gap-2">
-                      Initialize Contact
-                      <Send size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                    </span>
-                    {/* Button Glare Effect */}
-                    <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/20 to-transparent translate-y-full group-hover:-translate-y-full transition-transform duration-[800ms] ease-in-out z-0" />
-                  </motion.button>
-                )}
-
-                {status === 'submitting' && (
-                  <motion.div
-                    key="loading-btn"
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.9 }}
-                    className="absolute inset-0 w-full bg-[#1a1a1a] border border-gray-700 text-cyan-400 font-bold uppercase tracking-widest rounded-2xl flex items-center justify-center gap-3 cursor-not-allowed"
-                  >
-                    <Loader2 size={20} className="animate-spin" />
-                    Transmitting...
-                  </motion.div>
-                )}
-
-                {status === 'success' && (
-                  <motion.div
-                    key="success-btn"
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.9 }}
-                    className="absolute inset-0 w-full bg-cyan-500/10 border border-cyan-500/50 text-cyan-400 font-bold uppercase tracking-widest rounded-2xl flex items-center justify-center gap-3 shadow-[0_0_20px_rgba(6,182,212,0.2)]"
-                  >
-                    <CheckCircle2 size={22} className="text-cyan-400 drop-shadow-[0_0_8px_rgba(6,182,212,0.8)]" />
-                    Transmission Successful
-                  </motion.div>
-                )}
-              </AnimatePresence>
+          <motion.section
+            initial={{ opacity: 0, x: 25 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.55, delay: 0.15 }}
+            className="rounded-[2rem] border border-white/10 bg-slate-900/70 p-6 sm:p-8"
+          >
+            <div className="mb-8">
+              <h2 className="text-2xl font-black sm:text-3xl">Send a message</h2>
+              <p className="mt-3 leading-7 text-slate-400">
+                Share a few details about your opportunity or project and I will respond as
+                soon as possible.
+              </p>
             </div>
 
-          </form>
-        </div>
-      </motion.div>
-    </section>
-  );
-};
+            <form onSubmit={handleSubmit} className="space-y-5">
+              <div className="grid gap-5 sm:grid-cols-2">
+                <label className="block">
+                  <span className="mb-2 block text-sm font-bold text-slate-300">Your name</span>
+                  <input
+                    required
+                    type="text"
+                    name="name"
+                    placeholder="Enter your name"
+                    className="w-full rounded-2xl border border-white/10 bg-slate-950/70 px-4 py-4 text-white outline-none transition placeholder:text-slate-600 focus:border-cyan-300/50 focus:ring-4 focus:ring-cyan-400/5"
+                  />
+                </label>
+                <label className="block">
+                  <span className="mb-2 block text-sm font-bold text-slate-300">Email address</span>
+                  <input
+                    required
+                    type="email"
+                    name="email"
+                    placeholder="you@example.com"
+                    className="w-full rounded-2xl border border-white/10 bg-slate-950/70 px-4 py-4 text-white outline-none transition placeholder:text-slate-600 focus:border-cyan-300/50 focus:ring-4 focus:ring-cyan-400/5"
+                  />
+                </label>
+              </div>
 
-export default PersonalDetails;
+              <label className="block">
+                <span className="mb-2 block text-sm font-bold text-slate-300">Subject</span>
+                <input
+                  required
+                  type="text"
+                  name="subject"
+                  placeholder="Internship, freelance project or collaboration"
+                  className="w-full rounded-2xl border border-white/10 bg-slate-950/70 px-4 py-4 text-white outline-none transition placeholder:text-slate-600 focus:border-cyan-300/50 focus:ring-4 focus:ring-cyan-400/5"
+                />
+              </label>
+
+              <label className="block">
+                <span className="mb-2 block text-sm font-bold text-slate-300">Message</span>
+                <textarea
+                  required
+                  name="message"
+                  rows="6"
+                  placeholder="Tell me about your idea..."
+                  className="w-full resize-none rounded-2xl border border-white/10 bg-slate-950/70 px-4 py-4 text-white outline-none transition placeholder:text-slate-600 focus:border-cyan-300/50 focus:ring-4 focus:ring-cyan-400/5"
+                />
+              </label>
+
+              <button
+                type="submit"
+                className="inline-flex w-full items-center justify-center gap-3 rounded-2xl bg-gradient-to-r from-cyan-400 to-blue-500 px-6 py-4 font-black text-slate-950 shadow-lg shadow-cyan-500/15 transition hover:-translate-y-1 sm:w-auto"
+              >
+                Send message <FaPaperPlane />
+              </button>
+
+              {submitted && (
+                <motion.p
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="rounded-2xl border border-amber-300/20 bg-amber-300/5 px-4 py-3 text-sm font-semibold text-amber-200"
+                >
+                  The page design is working. Connect this form to your backend, Formspree
+                  or EmailJS to send real messages.
+                </motion.p>
+              )}
+            </form>
+          </motion.section>
+        </div>
+      </div>
+    </main>
+  );
+}

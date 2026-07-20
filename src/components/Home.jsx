@@ -1,194 +1,290 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { 
-  RiCodeSSlashFill, 
-  RiWindowLine, 
-  RiShieldFlashLine, 
-  RiBookOpenFill, 
+import React, { memo } from "react";
+import { motion, useReducedMotion } from "framer-motion";
+import {
+  RiArrowRightUpLine,
+  RiBookOpenFill,
+  RiCodeSSlashFill,
   RiPhoneFill,
-  RiRocket2Fill 
-} from 'react-icons/ri';
+  RiRocket2Fill,
+  RiShieldFlashLine,
+  RiWindowLine,
+} from "react-icons/ri";
 
-const Hero = () => {
-  const expertise = [
-    { icon: <RiCodeSSlashFill size={20}/>, name: "Full Stack", color: "from-cyan-400 to-blue-500" },
-    { icon: <RiWindowLine size={20}/>, name: "Web Design", color: "from-blue-400 to-indigo-500" },
-    { icon: <RiShieldFlashLine size={20}/>, name: "Cyber Security", color: "from-indigo-400 to-purple-500" },
-    { icon: <RiBookOpenFill size={20}/>, name: "BCA Student", color: "from-purple-400 to-pink-500" },
-  ];
+const EXPERTISE = [
+  {
+    name: "Full Stack",
+    description: "MERN development",
+    icon: RiCodeSSlashFill,
+    gradient: "from-cyan-400 to-blue-500",
+  },
+  {
+    name: "Web Design",
+    description: "Modern responsive UI",
+    icon: RiWindowLine,
+    gradient: "from-blue-400 to-indigo-500",
+  },
+  {
+    name: "Cyber Security",
+    description: "Secure web practices",
+    icon: RiShieldFlashLine,
+    gradient: "from-indigo-400 to-purple-500",
+  },
+  {
+    name: "BCA Student",
+    description: "Continuous learner",
+    icon: RiBookOpenFill,
+    gradient: "from-purple-400 to-pink-500",
+  },
+];
 
-  // 1. Main container animation variants
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: { staggerChildren: 0.15, delayChildren: 0.2 }
-    }
-  };
+const CONTAINER_VARIANTS = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      delayChildren: 0.15,
+      staggerChildren: 0.1,
+    },
+  },
+};
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 300, damping: 24 } }
-  };
+const ITEM_VARIANTS = {
+  hidden: { opacity: 0, y: 24 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      type: "spring",
+      stiffness: 220,
+      damping: 24,
+      mass: 0.8,
+    },
+  },
+};
 
-  // 2. NEW: Dedicated text animation variants for the cinematic blur reveal
-  const textContainer = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: { staggerChildren: 0.15, delayChildren: 0.6 }
-    }
-  };
+const IMAGE_VARIANTS = {
+  hidden: { opacity: 0, scale: 0.9, rotateY: -12 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    rotateY: 0,
+    transition: {
+      type: "spring",
+      stiffness: 120,
+      damping: 18,
+      duration: 0.8,
+    },
+  },
+};
 
-  const textWord = {
-    hidden: { opacity: 0, y: 20, filter: 'blur(10px)' },
-    show: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 0.8, ease: "easeOut" } }
-  };
+const Hero = ({
+  profileImage = "/images/yogesh-profile.webp",
+  phoneNumber = "+919992540404",
+  contactHref = "#contact",
+}) => {
+  const shouldReduceMotion = useReducedMotion();
+
+  const backgroundAnimation = shouldReduceMotion
+    ? undefined
+    : {
+        scale: [1, 1.12, 1],
+        x: [0, 28, 0],
+        opacity: [0.2, 0.34, 0.2],
+      };
 
   return (
-    <section className="relative min-h-screen bg-slate-950 text-slate-300 flex items-center justify-center px-6 pt-28 pb-12 overflow-hidden font-sans">
-      
-      {/* 3D BACKGROUND ATMOSPHERE */}
-      <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
-        <motion.div 
-          animate={{ scale: [1, 1.2, 1], opacity: [0.2, 0.4, 0.2], x: [0, 50, 0] }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-[10%] left-[5%] w-[500px] h-[500px] bg-cyan-600/30 blur-[150px] rounded-full" 
-        />
-        <motion.div 
-          animate={{ scale: [1, 1.5, 1], opacity: [0.2, 0.5, 0.2], y: [0, -50, 0] }}
+    <section
+      id="home"
+      aria-labelledby="hero-title"
+      className="relative isolate flex min-h-screen items-center overflow-hidden bg-slate-950 px-4 pb-16 pt-28 text-slate-300 sm:px-6 lg:px-8"
+    >
+      {/* Lightweight decorative background */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 -z-20 overflow-hidden"
+      >
+        <motion.div
+          animate={backgroundAnimation}
           transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute bottom-[0%] right-[5%] w-[600px] h-[600px] bg-purple-600/30 blur-[150px] rounded-full" 
+          className="absolute -left-28 top-16 h-72 w-72 rounded-full bg-cyan-500/20 blur-[90px] sm:h-[460px] sm:w-[460px] sm:blur-[130px]"
         />
-        
-        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
+
+        <motion.div
+          animate={
+            shouldReduceMotion
+              ? undefined
+              : {
+                  scale: [1, 1.18, 1],
+                  y: [0, -30, 0],
+                  opacity: [0.18, 0.3, 0.18],
+                }
+          }
+          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute -bottom-32 right-[-8rem] h-80 w-80 rounded-full bg-purple-600/20 blur-[100px] sm:h-[520px] sm:w-[520px] sm:blur-[140px]"
+        />
+
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(148,163,184,0.035)_1px,transparent_1px),linear-gradient(90deg,rgba(148,163,184,0.035)_1px,transparent_1px)] bg-[size:42px_42px] [mask-image:linear-gradient(to_bottom,black,transparent_88%)]" />
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-400/70 to-transparent" />
       </div>
 
-      <div className="max-w-7xl w-full grid lg:grid-cols-2 gap-16 items-center z-10">
-        
-        {/* LEFT SIDE: 3D Holographic Profile Frame */}
-        <div className="flex justify-center order-2 lg:order-1" style={{ perspective: 2000 }}>
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.8, rotateY: -20 }}
-            animate={{ opacity: 1, scale: 1, rotateY: 0 }}
-            transition={{ duration: 1, type: "spring" }}
-            whileHover={{ rotateX: 10, rotateY: -10, scale: 1.02 }}
-            className="relative w-80 h-80 sm:w-[450px] sm:h-[450px] group transform-style-3d cursor-grab active:cursor-grabbing"
+      <div className="mx-auto grid w-full max-w-7xl items-center gap-14 lg:grid-cols-[0.95fr_1.05fr] lg:gap-20">
+        {/* Profile visual */}
+        <div className="order-2 flex justify-center lg:order-1">
+          <motion.div
+            variants={IMAGE_VARIANTS}
+            initial={shouldReduceMotion ? false : "hidden"}
+            animate="visible"
+            whileHover={
+              shouldReduceMotion
+                ? undefined
+                : { rotateX: 4, rotateY: -4, scale: 1.015 }
+            }
+            style={{ perspective: 1400, transformStyle: "preserve-3d" }}
+            className="group relative aspect-square w-full max-w-[340px] will-change-transform sm:max-w-[430px]"
           >
-            <div className="absolute -inset-4 bg-gradient-to-tr from-cyan-500 to-purple-600 rounded-full opacity-50 blur-2xl group-hover:opacity-100 transition-opacity duration-700 animate-spin-slow" />
-            <div className="relative z-10 w-full h-full bg-slate-900/50 backdrop-blur-xl border border-slate-700/50 rounded-full p-3 shadow-[0_0_40px_rgba(6,182,212,0.2)] flex items-center justify-center transform translate-z-10 group-hover:border-cyan-500/50 transition-colors duration-500">
-              <div className="w-full h-full bg-slate-950 rounded-full overflow-hidden border-4 border-slate-800 relative shadow-inner">
-                <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/20 to-purple-500/20 z-10 group-hover:opacity-0 transition-opacity duration-500"></div>
-                <img 
-                  src="" 
-                  alt="Yogesh Banger"
-                  className="w-full h-145 object-cover grayscale group-hover:grayscale-0 transition-all duration-300 ease-out scale-110 group-hover:scale-100"
-                />
+            <div className="absolute -inset-5 rounded-full bg-gradient-to-tr from-cyan-500/70 via-blue-500/50 to-purple-600/70 opacity-40 blur-2xl transition-opacity duration-500 group-hover:opacity-70" />
+
+            <div className="absolute inset-[-1px] rounded-full bg-gradient-to-tr from-cyan-400 via-blue-500 to-purple-600 p-px shadow-[0_0_60px_rgba(34,211,238,0.18)]">
+              <div className="relative h-full w-full rounded-full border border-white/10 bg-slate-900/80 p-3 backdrop-blur-xl">
+                <div className="relative h-full w-full overflow-hidden rounded-full bg-slate-900 ring-1 ring-white/10">
+                  <img
+                    src={profileImage}
+                    alt="Yogesh Banger, MERN stack developer"
+                    width="430"
+                    height="430"
+                    loading="eager"
+                    decoding="async"
+                    fetchPriority="high"
+                    className="h-full w-full object-cover object-center grayscale transition duration-700 ease-out group-hover:scale-[1.035] group-hover:grayscale-0"
+                  />
+
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-cyan-400/10" />
+                  <div className="absolute inset-x-8 bottom-7 flex items-center justify-between rounded-2xl border border-white/10 bg-slate-950/65 px-4 py-3 backdrop-blur-md">
+                    <div>
+                      <p className="text-[10px] font-bold uppercase tracking-[0.24em] text-cyan-300">
+                        Available for work
+                      </p>
+                      <p className="mt-1 text-sm font-semibold text-white">
+                        MERN Stack Developer
+                      </p>
+                    </div>
+                    <span className="relative flex h-3 w-3">
+                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60 motion-reduce:animate-none" />
+                      <span className="relative inline-flex h-3 w-3 rounded-full bg-emerald-400" />
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
           </motion.div>
         </div>
 
-        {/* RIGHT SIDE: Content & Interactive Grid */}
-        <motion.div 
-          variants={containerVariants}
-          initial="hidden"
-          animate="show"
-          className="flex flex-col gap-8 order-1 lg:order-2"
+        {/* Main content */}
+        <motion.div
+          variants={CONTAINER_VARIANTS}
+          initial={shouldReduceMotion ? false : "hidden"}
+          animate="visible"
+          className="order-1 flex flex-col gap-7 lg:order-2"
         >
-          {/* Header & Contact */}
-          <div className="flex justify-between items-start">
-            <motion.div variants={itemVariants}>
-              <h1 className="text-6xl sm:text-7xl lg:text-8xl font-black text-white tracking-tighter leading-[0.9]">
-                YOGESH<br/>
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 drop-shadow-[0_0_20px_rgba(6,182,212,0.3)]">
-                  BANGER
-                </span>
-              </h1>
-            </motion.div>
-            
-            <motion.div variants={itemVariants} className="hidden sm:flex flex-col items-end gap-2 text-right mt-4">
-              <span className="text-[10px] font-black uppercase tracking-[0.2em] text-cyan-500/70">Secure Line</span>
-              <a href="tel:+919992540404" className="group flex items-center gap-2 text-white font-bold hover:text-cyan-400 transition-colors bg-slate-800/50 px-4 py-2 rounded-full border border-slate-700/50">
-                <RiPhoneFill className="text-cyan-400 group-hover:rotate-12 transition-transform"/>
-                Call Me
-              </a>
-            </motion.div>
-          </div>
-
-          {/* ========================================= */}
-          {/* UPGRADED: Cinematic About Me Text           */}
-          {/* ========================================= */}
-          <motion.div 
-            variants={itemVariants} 
-            className="max-w-xl"
+          <motion.div
+            variants={ITEM_VARIANTS}
+            className="inline-flex w-fit items-center gap-2 rounded-full border border-cyan-400/20 bg-cyan-400/[0.06] px-4 py-2 text-xs font-bold uppercase tracking-[0.2em] text-cyan-300"
           >
-            <motion.div 
-              variants={textContainer}
-              initial="hidden"
-              animate="show"
-              className="text-slate-400 text-lg md:text-xl font-medium leading-relaxed flex flex-wrap gap-x-2 gap-y-1"
-            >
-              <motion.span variants={textWord}>Hi, I am a</motion.span>
-              
-              <motion.span variants={textWord} className="relative inline-block group cursor-default">
-                <span className="absolute -inset-1 bg-cyan-500/20 blur-lg rounded-lg group-hover:bg-cyan-500/40 transition-all duration-500"></span>
-                <span className="relative text-white font-bold tracking-wide drop-shadow-[0_0_10px_rgba(255,255,255,0.3)] group-hover:text-cyan-300 transition-colors">Web Developer</span>
-              </motion.span>
-              
-              <motion.span variants={textWord}>and a BCA student at</motion.span>
-              
-              <motion.span variants={textWord} className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500 font-black tracking-widest uppercase drop-shadow-[0_0_8px_rgba(168,85,247,0.4)]">
-                RKSD COLLEGE.
-              </motion.span>
-
-              <motion.div variants={textWord} className="w-full mt-2">
-                Extremely passionate about creating dynamic web experiences and the world of
-                <span className="relative inline-block group ml-2 cursor-default">
-                  <span className="absolute -inset-1 bg-purple-500/20 blur-lg rounded-lg group-hover:bg-purple-500/50 transition-all duration-500"></span>
-                  <span className="relative text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500 font-black drop-shadow-[0_0_15px_rgba(168,85,247,0.6)] group-hover:from-cyan-400 group-hover:to-purple-500 transition-colors duration-500">cyber security</span>.
-                </span>
-              </motion.div>
-            </motion.div>
+            <span className="h-1.5 w-1.5 rounded-full bg-cyan-300 shadow-[0_0_12px_rgba(103,232,249,0.9)]" />
+            Building useful digital experiences
           </motion.div>
 
-          {/* 3D Expertise Grid */}
-          <motion.div variants={itemVariants} className="grid grid-cols-2 gap-4 perspective-1000">
-            {expertise.map((item, i) => (
-              <motion.div 
-                key={i}
-                whileHover={{ y: -5, scale: 1.02, rotateX: 5, rotateY: -5, boxShadow: "0 20px 40px -10px rgba(6, 182, 212, 0.15)" }}
-                className="group flex items-center gap-4 bg-slate-900/50 backdrop-blur-sm border border-slate-800 p-4 rounded-2xl transition-all cursor-pointer hover:border-cyan-500/50 overflow-hidden relative"
+          <motion.div variants={ITEM_VARIANTS}>
+            <p className="mb-3 text-sm font-bold uppercase tracking-[0.28em] text-slate-500">
+              Hello, I am
+            </p>
+            <h1
+              id="hero-title"
+              className="text-5xl font-black leading-[0.9] tracking-[-0.055em] text-white sm:text-7xl xl:text-[6.5rem]"
+            >
+              YOGESH
+              <span className="block bg-gradient-to-r from-cyan-300 via-blue-400 to-purple-500 bg-clip-text text-transparent">
+                BANGER
+              </span>
+            </h1>
+          </motion.div>
+
+          <motion.p
+            variants={ITEM_VARIANTS}
+            className="max-w-2xl text-base font-medium leading-8 text-slate-400 sm:text-lg"
+          >
+            I am a <strong className="font-semibold text-white">MERN stack developer</strong>{" "}
+            and BCA student at{" "}
+            <strong className="font-semibold text-cyan-300">RKSD College</strong>. I create fast,
+            responsive web experiences and continuously explore{" "}
+            <strong className="font-semibold text-purple-300">cyber security</strong> to build safer
+            products.
+          </motion.p>
+
+          <motion.div
+            variants={ITEM_VARIANTS}
+            className="grid gap-3 sm:grid-cols-2"
+          >
+            {EXPERTISE.map(({ name, description, icon: Icon, gradient }) => (
+              <motion.article
+                key={name}
+                whileHover={shouldReduceMotion ? undefined : { y: -4 }}
+                transition={{ type: "spring", stiffness: 300, damping: 22 }}
+                className="group relative overflow-hidden rounded-2xl border border-white/[0.07] bg-slate-900/55 p-4 backdrop-blur-md transition-colors duration-300 hover:border-cyan-400/30 hover:bg-slate-900/80"
               >
-                <div className={`absolute inset-0 bg-gradient-to-r ${item.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
-                <div className="relative p-3 bg-slate-800 text-slate-300 rounded-xl group-hover:bg-cyan-500/20 group-hover:text-cyan-400 transition-colors shadow-inner">
-                  {item.icon}
+                <div
+                  aria-hidden="true"
+                  className={`absolute inset-0 bg-gradient-to-r ${gradient} opacity-0 transition-opacity duration-300 group-hover:opacity-[0.07]`}
+                />
+                <div className="relative flex items-center gap-4">
+                  <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl border border-white/[0.06] bg-slate-800/80 text-cyan-300 transition duration-300 group-hover:scale-105 group-hover:border-cyan-400/20 group-hover:bg-cyan-400/10">
+                    <Icon size={21} aria-hidden="true" />
+                  </div>
+                  <div>
+                    <h2 className="text-sm font-extrabold uppercase tracking-wide text-white">
+                      {name}
+                    </h2>
+                    <p className="mt-1 text-xs text-slate-500">{description}</p>
+                  </div>
                 </div>
-                <span className="relative text-sm font-black text-white uppercase tracking-tight group-hover:text-cyan-300 transition-colors">
-                  {item.name}
-                </span>
-              </motion.div>
+              </motion.article>
             ))}
           </motion.div>
 
-          {/* Action Buttons */}
-          <motion.div variants={itemVariants} className="flex flex-wrap items-center gap-6 pt-4">
-            <motion.button 
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="relative overflow-hidden bg-slate-900 text-white px-10 py-5 rounded-2xl font-black text-xs uppercase tracking-[0.2em] flex items-center gap-3 shadow-[0_0_20px_rgba(168,85,247,0.3)] group border border-purple-500/50"
+          <motion.div
+            variants={ITEM_VARIANTS}
+            className="flex flex-col gap-3 pt-1 sm:flex-row sm:items-center"
+          >
+            <motion.a
+              href={contactHref}
+              whileHover={shouldReduceMotion ? undefined : { y: -2, scale: 1.015 }}
+              whileTap={shouldReduceMotion ? undefined : { scale: 0.98 }}
+              className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-600 px-6 py-3 text-sm font-extrabold text-white shadow-[0_14px_40px_-18px_rgba(59,130,246,0.9)] transition-shadow hover:shadow-[0_18px_50px_-18px_rgba(168,85,247,0.9)] focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-purple-600 opacity-80 group-hover:opacity-100 transition-opacity duration-300" />
-              <span className="relative z-10 flex items-center gap-2">
-                Team Up <RiRocket2Fill size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" />
-              </span>
-            </motion.button>
-          </motion.div>
+              Let&apos;s work together
+              <RiRocket2Fill
+                aria-hidden="true"
+                className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+              />
+            </motion.a>
 
+            <a
+              href={`tel:${phoneNumber}`}
+              className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/[0.03] px-6 py-3 text-sm font-bold text-slate-200 transition hover:border-cyan-400/30 hover:bg-cyan-400/[0.06] hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+              aria-label="Call Yogesh Banger"
+            >
+              <RiPhoneFill aria-hidden="true" className="text-cyan-300" />
+              Call me
+              <RiArrowRightUpLine
+                aria-hidden="true"
+                className="text-slate-500 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+              />
+            </a>
+          </motion.div>
         </motion.div>
       </div>
     </section>
   );
 };
 
-export default Hero;
+export default memo(Hero);
