@@ -256,7 +256,7 @@ const Hero = ({
             className="flex flex-col gap-3 pt-1 sm:flex-row sm:items-center"
           >
             <motion.a
-              href={contactHref}
+              href={'https://mail.google.com/mail/?view=cm&fs=1&to=yogeshbanger111@gmail.com&su=Portfolio%20Contact'}
               whileHover={shouldReduceMotion ? undefined : { y: -2, scale: 1.015 }}
               whileTap={shouldReduceMotion ? undefined : { scale: 0.98 }}
               className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-600 px-6 py-3 text-sm font-extrabold text-white shadow-[0_14px_40px_-18px_rgba(59,130,246,0.9)] transition-shadow hover:shadow-[0_18px_50px_-18px_rgba(168,85,247,0.9)] focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"

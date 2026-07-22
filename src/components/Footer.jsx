@@ -32,7 +32,7 @@ export default function Footer() {
             Get In Touch
           </h3>
           <div className="flex flex-col gap-4">
-            <a href="mailto:yogeshbanger111@gmail.com" className="flex items-center gap-4 group cursor-pointer w-fit">
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=yogeshbanger111@gmail.com&su=Portfolio%20Contact" className="flex items-center gap-4 group cursor-pointer w-fit">
               <div className="p-2.5 bg-gray-800 rounded-lg group-hover:bg-blue-600 transition-colors duration-300">
                 <FaEnvelope className="text-blue-400 group-hover:text-white transition-colors duration-300 text-lg" />
               </div>
