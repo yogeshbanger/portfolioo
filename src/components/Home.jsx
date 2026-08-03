@@ -106,7 +106,7 @@ const Hero = ({
         <motion.div
           animate={backgroundAnimation}
           transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute -left-28 top-16 h-72 w-72 rounded-full bg-cyan-500/20 blur-[90px] sm:h-[460px] sm:w-[460px] sm:blur-[130px]"
+          className="absolute -left-28 top-16 h-72 w-72 rounded-full bg-cyan-500/20 blur-[90px] sm:h-115 sm:w-115 sm:blur-[130px]"
         />
 
         <motion.div
@@ -120,11 +120,11 @@ const Hero = ({
                 }
           }
           transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute -bottom-32 right-[-8rem] h-80 w-80 rounded-full bg-purple-600/20 blur-[100px] sm:h-[520px] sm:w-[520px] sm:blur-[140px]"
+          className="absolute -bottom-32 right-8rem h-80 w-80 rounded-full bg-purple-600/20 blur-[100px] sm:h-520px sm:w-520px sm:blur-[140px]"
         />
 
         <div className="absolute inset-0 bg-[linear-gradient(rgba(148,163,184,0.035)_1px,transparent_1px),linear-gradient(90deg,rgba(148,163,184,0.035)_1px,transparent_1px)] bg-[size:42px_42px] [mask-image:linear-gradient(to_bottom,black,transparent_88%)]" />
-        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-400/70 to-transparent" />
+        <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-cyan-400/70 to-transparent" />
       </div>
 
       <div className="mx-auto grid w-full max-w-7xl items-center gap-14 lg:grid-cols-[0.95fr_1.05fr] lg:gap-20">
@@ -140,11 +140,11 @@ const Hero = ({
                 : { rotateX: 4, rotateY: -4, scale: 1.015 }
             }
             style={{ perspective: 1400, transformStyle: "preserve-3d" }}
-            className="group relative aspect-square w-full max-w-[340px] will-change-transform sm:max-w-[430px]"
+            className="group relative aspect-square w-full max-w-85 will-change-transform sm:max-w-107"
           >
-            <div className="absolute -inset-5 rounded-full bg-gradient-to-tr from-cyan-500/70 via-blue-500/50 to-purple-600/70 opacity-40 blur-2xl transition-opacity duration-500 group-hover:opacity-70" />
+            <div className="absolute -inset-5 rounded-full bg-linear-to-tr from-cyan-500/70 via-blue-500/50 to-purple-600/70 opacity-40 blur-2xl transition-opacity duration-500 group-hover:opacity-70" />
 
-            <div className="absolute inset-[-1px] rounded-full bg-gradient-to-tr from-cyan-400 via-blue-500 to-purple-600 p-px shadow-[0_0_60px_rgba(34,211,238,0.18)]">
+            <div className="absolute inset-1px rounded-full bg-linear-to-tr from-cyan-400 via-blue-500 to-purple-600 p-px shadow-[0_0_60px_rgba(34,211,238,0.18)]">
               <div className="relative h-full w-full rounded-full border border-white/10 bg-slate-900/80 p-3 backdrop-blur-xl">
                 <div className="relative h-full w-full overflow-hidden rounded-full bg-slate-900 ring-1 ring-white/10">
                   <img
@@ -158,7 +158,7 @@ const Hero = ({
                     className="h-full w-full object-cover object-center grayscale transition duration-700 ease-out group-hover:scale-[1.035] group-hover:grayscale-0"
                   />
 
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-cyan-400/10" />
+                  <div className="absolute inset-0 bg-linear-to-t from-slate-950/60 via-transparent to-cyan-400/10" />
                   <div className="absolute inset-x-8 bottom-7 flex items-center justify-between rounded-2xl border border-white/10 bg-slate-950/65 px-4 py-3 backdrop-blur-md">
                     <div>
                       <p className="text-[10px] font-bold uppercase tracking-[0.24em] text-cyan-300">
