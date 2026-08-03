@@ -103,6 +103,90 @@ const Hero = ({
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 -z-20 overflow-hidden"
       >
+        <Helmet>
+          <title>Yogesh Banger | Full Stack MERN Developer Portfolio</title>
+          <meta name="google-site-verification" content="b_w75oGvnRYWx0-SUmybiSkyb2c4iTGSYL57nw6-0Bs" />
+          <meta
+            name="description"
+            content="Yogesh Banger is a Full Stack MERN Developer skilled in React.js, Node.js, Express.js, MongoDB, JavaScript, Tailwind CSS, SEO and modern web development."
+          />
+
+          <meta
+            name="keywords"
+            content="Yogesh Banger, MERN Developer, React Developer, Node.js Developer, MongoDB, Express.js, JavaScript, Full Stack Developer, Portfolio, SEO"
+          />
+
+          <meta name="author" content="Yogesh Banger" />
+
+          <meta name="robots" content="index,follow" />
+
+          {/* Open Graph */}
+          <meta
+            property="og:title"
+            content="Yogesh Banger | Full Stack MERN Developer"
+          />
+
+          <meta
+            property="og:description"
+            content="Portfolio of Yogesh Banger showcasing MERN Stack projects, React development, SEO and modern web applications."
+          />
+
+          <meta
+            property="og:image"
+            content="https://yogeshbanger.vercel.app/images/yogesh-profile.webp"
+          />
+
+          <meta
+            property="og:url"
+            content="https://yogeshbanger.vercel.app/"
+          />
+
+          <meta property="og:type" content="website" />
+
+          {/* Twitter */}
+          <meta
+            name="twitter:card"
+            content="summary_large_image"
+          />
+
+          <meta
+            name="twitter:title"
+            content="Yogesh Banger | MERN Stack Developer"
+          />
+
+          <meta
+            name="twitter:description"
+            content="Full Stack MERN Developer Portfolio of Yogesh Banger."
+          />
+          <script type="application/ld+json">
+            {`
+            {
+              "@context":"https://schema.org",
+              "@type":"Person",
+              "name":"Yogesh Banger",
+              "url":"https://yogeshbanger.vercel.app/",
+              "image":"https://yogeshbanger.vercel.app/images/yogesh-profile.webp",
+              "jobTitle":"Full Stack MERN Developer",
+              "sameAs":[
+                "https://github.com/YOUR_GITHUB",
+                "https://linkedin.com/in/YOUR_LINKEDIN",
+                "https://instagram.com/YOUR_INSTAGRAM"
+              ]
+            }
+            `}
+          </script>
+
+          <meta
+            name="twitter:image"
+            content="https://yogeshbanger.vercel.app/images/yogesh-profile.webp"
+          />
+
+          {/* Canonical URL */}
+          <link
+            rel="canonical"
+            href="https://yogeshbanger.vercel.app/"
+          />
+        </Helmet>
         <motion.div
           animate={backgroundAnimation}
           transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
@@ -129,7 +213,7 @@ const Hero = ({
 
       <div className="mx-auto grid w-full max-w-7xl items-center gap-14 lg:grid-cols-[0.95fr_1.05fr] lg:gap-20">
         {/* Profile visual */}
-       <div className="order-2 flex justify-center lg:order-1 lg:-mt-57">
+        <div className="order-2 flex justify-center lg:order-1 lg:-mt-57">
           <motion.div
             variants={IMAGE_VARIANTS}
             initial={shouldReduceMotion ? false : "hidden"}

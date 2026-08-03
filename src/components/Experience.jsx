@@ -24,7 +24,7 @@ export default function Experience() {
       <Helmet>
         {/* Basic SEO */}
         <title>Work Experience | Yogesh Banger | MERN Stack Developer</title>
-        
+        <meta name="google-site-verification" content="b_w75oGvnRYWx0-SUmybiSkyb2c4iTGSYL57nw6-0Bs" />
         <meta
           name="description"
           content="Explore the professional experience of Yogesh Banger as a Computer Instructor and IT Trainer at Hartron Skill Center. Skilled in MERN Stack, React.js, Node.js, MongoDB, WordPress and SEO."
