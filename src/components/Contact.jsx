@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { motion } from "framer-motion";
+import { Helmet } from "react-helmet-async";
 import {
   FaBookOpen,
   FaCode,
@@ -53,47 +54,103 @@ const values = [
   },
 ];
 
-function usePageSEO() {
-  useEffect(() => {
-    const title = "About Yogesh Banger | BCA Student and MERN Developer";
-    const description =
-      "Learn about Yogesh Banger, a BCA student focused on MERN stack development, responsive UI design, SEO and digital marketing.";
-
-    document.title = title;
-
-    const setMeta = (selector, attributes) => {
-      let element = document.head.querySelector(selector);
-      if (!element) {
-        element = document.createElement("meta");
-        document.head.appendChild(element);
-      }
-      Object.entries(attributes).forEach(([key, value]) => element.setAttribute(key, value));
-    };
-
-    setMeta('meta[name="description"]', { name: "description", content: description });
-    setMeta('meta[name="robots"]', { name: "robots", content: "index, follow" });
-    setMeta('meta[property="og:title"]', { property: "og:title", content: title });
-    setMeta('meta[property="og:description"]', {
-      property: "og:description",
-      content: description,
-    });
-    setMeta('meta[property="og:type"]', { property: "og:type", content: "profile" });
-
-    let canonical = document.head.querySelector('link[rel="canonical"]');
-    if (!canonical) {
-      canonical = document.createElement("link");
-      canonical.rel = "canonical";
-      document.head.appendChild(canonical);
-    }
-    canonical.href = `${window.location.origin}/about`;
-  }, []);
-}
 
 export default function About() {
-  usePageSEO();
+
 
   return (
     <main className="min-h-screen bg-slate-950 px-5 pb-24 pt-28 text-white sm:px-8 lg:px-12">
+      <Helmet>
+        {/* Basic SEO */}
+        <title>About Yogesh Banger | MERN Stack Developer</title>
+
+        <meta
+          name="description"
+          content="Learn about Yogesh Banger, a MERN Stack Developer and BCA student passionate about React.js, Node.js, Express.js, MongoDB, WordPress, SEO and modern web development."
+        />
+
+        <meta
+          name="keywords"
+          content="Yogesh Banger, About Yogesh Banger, MERN Stack Developer, React Developer, Node.js Developer, Full Stack Developer, BCA Student, MongoDB, Express.js, WordPress, SEO"
+        />
+
+        <meta name="robots" content="index, follow" />
+        <meta name="author" content="Yogesh Banger" />
+        <meta name="theme-color" content="#0f172a" />
+
+        {/* Canonical */}
+        <link
+          rel="canonical"
+          href="https://yogeshbanger.vercel.app/"
+        />
+
+        {/* Open Graph */}
+        <meta
+          property="og:title"
+          content="About Yogesh Banger | MERN Stack Developer"
+        />
+
+        <meta
+          property="og:description"
+          content="Know more about Yogesh Banger, a MERN Stack Developer skilled in React.js, Node.js, Express.js, MongoDB, WordPress and SEO."
+        />
+
+        <meta
+          property="og:image"
+          content="https://yogeshbanger.vercel.app/icon.png"
+        />
+
+        <meta
+          property="og:url"
+          content="https://yogeshbanger.vercel.app/"
+        />
+
+        <meta
+          property="og:site_name"
+          content="Yogesh Banger Portfolio"
+        />
+
+        <meta property="og:type" content="profile" />
+
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:title"
+          content="About Yogesh Banger | MERN Stack Developer"
+        />
+        <meta
+          name="twitter:description"
+          content="MERN Stack Developer, React.js Developer and BCA Student passionate about building modern web applications."
+        />
+        <meta
+          name="twitter:image"
+          content="https://yogeshbanger.vercel.app/icon.png"
+        />
+
+        {/* Structured Data */}
+        <script type="application/ld+json">
+          {`
+        {
+          "@context":"https://schema.org",
+          "@type":"Person",
+          "name":"Yogesh Banger",
+          "jobTitle":"MERN Stack Developer",
+          "url":"https://yogeshbanger.vercel.app",
+          "email":"mailto:yogeshbanger111@gmail.com",
+          "address":{
+            "@type":"PostalAddress",
+            "addressLocality":"Kaithal",
+            "addressRegion":"Haryana",
+            "addressCountry":"India"
+          },
+      "sameAs":[
+        "https://github.com/bangerjaat111-stack",
+        "https://www.linkedin.com/in/yogesh-banger-9a9695366"
+      ]
+    }
+    `}
+        </script>
+      </Helmet>
       <div className="mx-auto max-w-7xl">
         <motion.section
           initial={{ opacity: 0, y: 28 }}

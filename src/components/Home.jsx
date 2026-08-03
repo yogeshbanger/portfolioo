@@ -12,14 +12,14 @@ import {
 
 const EXPERTISE = [
   {
-    name: "Full Stack",
-    description: "MERN development",
+    name: "Full Stack MERN",
+    description: "React • Node • MongoDB",
     icon: RiCodeSSlashFill,
     gradient: "from-cyan-400 to-blue-500",
   },
   {
-    name: "Web Design",
-    description: "Modern responsive UI",
+    name: "React Development",
+    description: "Responsive React Websites",
     icon: RiWindowLine,
     gradient: "from-blue-400 to-indigo-500",
   },
@@ -30,8 +30,8 @@ const EXPERTISE = [
     gradient: "from-indigo-400 to-purple-500",
   },
   {
-    name: "BCA Student",
-    description: "Continuous learner",
+    name: "Computer Science",
+    description: "BCA Undergraduate",
     icon: RiBookOpenFill,
     gradient: "from-purple-400 to-pink-500",
   },
@@ -87,10 +87,10 @@ const Hero = ({
   const backgroundAnimation = shouldReduceMotion
     ? undefined
     : {
-        scale: [1, 1.12, 1],
-        x: [0, 28, 0],
-        opacity: [0.2, 0.34, 0.2],
-      };
+      scale: [1, 1.12, 1],
+      x: [0, 28, 0],
+      opacity: [0.2, 0.34, 0.2],
+    };
 
   return (
     <section
@@ -114,10 +114,10 @@ const Hero = ({
             shouldReduceMotion
               ? undefined
               : {
-                  scale: [1, 1.18, 1],
-                  y: [0, -30, 0],
-                  opacity: [0.18, 0.3, 0.18],
-                }
+                scale: [1, 1.18, 1],
+                y: [0, -30, 0],
+                opacity: [0.18, 0.3, 0.18],
+              }
           }
           transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
           className="absolute -bottom-32 right-8rem h-80 w-80 rounded-full bg-purple-600/20 blur-[100px] sm:h-520px sm:w-520px sm:blur-[140px]"
@@ -129,7 +129,7 @@ const Hero = ({
 
       <div className="mx-auto grid w-full max-w-7xl items-center gap-14 lg:grid-cols-[0.95fr_1.05fr] lg:gap-20">
         {/* Profile visual */}
-        <div className="order-2 flex justify-center lg:order-1">
+       <div className="order-2 flex justify-center lg:order-1 lg:-mt-57">
           <motion.div
             variants={IMAGE_VARIANTS}
             initial={shouldReduceMotion ? false : "hidden"}
@@ -144,12 +144,12 @@ const Hero = ({
           >
             <div className="absolute -inset-5 rounded-full bg-linear-to-tr from-cyan-500/70 via-blue-500/50 to-purple-600/70 opacity-40 blur-2xl transition-opacity duration-500 group-hover:opacity-70" />
 
-            <div className="absolute inset-1px rounded-full bg-linear-to-tr from-cyan-400 via-blue-500 to-purple-600 p-px shadow-[0_0_60px_rgba(34,211,238,0.18)]">
+            <div className="absolute m inset-1px rounded-full bg-linear-to-tr from-cyan-400 via-blue-500 to-purple-600  shadow-[0_0_60px_rgba(34,211,238,0.18)]">
               <div className="relative h-full w-full rounded-full border border-white/10 bg-slate-900/80 p-3 backdrop-blur-xl">
                 <div className="relative h-full w-full overflow-hidden rounded-full bg-slate-900 ring-1 ring-white/10">
                   <img
                     src={profileImage}
-                    alt="Yogesh Banger, MERN stack developer"
+                    alt="Yogesh Banger - MERN Stack Developer Portfolio"
                     width="430"
                     height="430"
                     loading="eager"
@@ -191,7 +191,7 @@ const Hero = ({
             className="inline-flex w-fit items-center gap-2 rounded-full border border-cyan-400/20 bg-cyan-400/[0.06] px-4 py-2 text-xs font-bold uppercase tracking-[0.2em] text-cyan-300"
           >
             <span className="h-1.5 w-1.5 rounded-full bg-cyan-300 shadow-[0_0_12px_rgba(103,232,249,0.9)]" />
-            Building useful digital experiences
+            MERN Stack Developer • React • Node.js • MongoDB
           </motion.div>
 
           <motion.div variants={ITEM_VARIANTS}>
@@ -200,27 +200,45 @@ const Hero = ({
             </p>
             <h1
               id="hero-title"
-              className="text-5xl font-black leading-[0.9] tracking-[-0.055em] text-white sm:text-7xl xl:text-[6.5rem]"
+              className="text-center lg:text-left"
             >
-              YOGESH
-              <span className="block bg-gradient-to-r from-cyan-300 via-blue-400 to-purple-500 bg-clip-text text-transparent">
-                BANGER
+              <span className="block text-5xl font-black text-white sm:text-6xl lg:text-7xl">
+                Yogesh
+              </span>
+
+              <span className="block bg-linear-to-r from-cyan-400 via-blue-500 to-purple-500 bg-clip-text text-5xl font-black text-transparent sm:text-6xl lg:text-7xl">
+                Banger
+              </span>
+
+              <span className="mt-4 block text-xl font-semibold tracking-wide text-slate-300 sm:text-2xl">
+                Full Stack MERN Developer
               </span>
             </h1>
           </motion.div>
 
-          <motion.p
+          <motion.div
             variants={ITEM_VARIANTS}
-            className="max-w-2xl text-base font-medium leading-8 text-slate-400 sm:text-lg"
+            className="max-w-2xl"
           >
-            I am a <strong className="font-semibold text-white">MERN stack developer</strong>{" "}
-            and BCA student at{" "}
-            <strong className="font-semibold text-cyan-300">RKSD College</strong>. I create fast,
-            responsive web experiences and continuously explore{" "}
-            <strong className="font-semibold text-purple-300">cyber security</strong> to build safer
-            products.
-          </motion.p>
 
+
+            <p className="text-base leading-8 text-slate-400">
+              I am a <strong>MERN Stack Developer</strong> and BCA student at
+              <strong> RKSD College.</strong>
+
+              I specialize in building fast, responsive and SEO-friendly web
+              applications using
+              <strong>
+                {" "}
+                React.js, Node.js, Express.js, MongoDB,
+                JavaScript and Tailwind CSS.
+              </strong>
+
+              I also have a growing interest in
+              <strong> Cyber Security</strong>,
+              focusing on secure coding practices and modern web technologies.
+            </p>
+          </motion.div>
           <motion.div
             variants={ITEM_VARIANTS}
             className="grid gap-3 sm:grid-cols-2"
@@ -234,10 +252,10 @@ const Hero = ({
               >
                 <div
                   aria-hidden="true"
-                  className={`absolute inset-0 bg-gradient-to-r ${gradient} opacity-0 transition-opacity duration-300 group-hover:opacity-[0.07]`}
+                  className={`absolute inset-0 bg-linear-to-r ${gradient} opacity-0 transition-opacity duration-300 group-hover:opacity-[0.07]`}
                 />
                 <div className="relative flex items-center gap-4">
-                  <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl border border-white/[0.06] bg-slate-800/80 text-cyan-300 transition duration-300 group-hover:scale-105 group-hover:border-cyan-400/20 group-hover:bg-cyan-400/10">
+                  <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl border border-white/0.06 bg-slate-800/80 text-cyan-300 transition duration-300 group-hover:scale-105 group-hover:border-cyan-400/20 group-hover:bg-cyan-400/10">
                     <Icon size={21} aria-hidden="true" />
                   </div>
                   <div>
@@ -257,6 +275,8 @@ const Hero = ({
           >
             <motion.a
               href={'https://mail.google.com/mail/?view=cm&fs=1&to=yogeshbanger111@gmail.com&su=Portfolio%20Contact'}
+              aria-label="Send email to Yogesh Banger"
+              target="_blank"
               whileHover={shouldReduceMotion ? undefined : { y: -2, scale: 1.015 }}
               whileTap={shouldReduceMotion ? undefined : { scale: 0.98 }}
               className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-600 px-6 py-3 text-sm font-extrabold text-white shadow-[0_14px_40px_-18px_rgba(59,130,246,0.9)] transition-shadow hover:shadow-[0_18px_50px_-18px_rgba(168,85,247,0.9)] focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
@@ -282,7 +302,19 @@ const Hero = ({
             </a>
           </motion.div>
         </motion.div>
+
       </div>
+      {/* Hidden SEO Content */}
+      <section className="sr-only">
+        <h2>About Yogesh Banger</h2>
+
+        <p>
+          Yogesh Banger is a Full Stack MERN Developer from India.
+          He develops React.js, Node.js, Express.js and MongoDB
+          applications, responsive websites, portfolio websites,
+          REST APIs and modern web solutions.
+        </p>
+      </section>
     </section>
   );
 };

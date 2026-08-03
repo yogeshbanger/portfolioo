@@ -11,18 +11,20 @@ export default function Footer() {
   return (
     <footer className="bg-gradient-to-b from-gray-900 to-black text-gray-300 py-16 px-6  border-t border-gray-800 font-sans">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
-        
+
         {/* Left Section: Portfolio Info */}
         <div className="flex flex-col gap-4">
           <div className="flex items-center gap-3">
             <FaLaptopCode className="text-blue-500 text-4xl" />
             <h2 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
-              Portfolio
+              Yogesh Banger
+              <p className="text-blue-400 font-semibold">
+                MERN Stack Developer
+              </p>
             </h2>
           </div>
           <p className="leading-relaxed text-gray-400 mt-2">
-            Full Stack Developer passionate about creating amazing web experiences 
-            and solving complex problems through code. Let's build something extraordinary together.
+            MERN Stack Developer specializing in React.js, Node.js, Express.js and MongoDB. I build fast, responsive, SEO-friendly websites, REST APIs and modern web applications.
           </p>
         </div>
 
@@ -40,7 +42,7 @@ export default function Footer() {
                 yogeshbanger111@gmail.com
               </span>
             </a>
-            
+
             <a href="tel:+919992540404" className="flex items-center gap-4 group cursor-pointer w-fit">
               <div className="p-2.5 bg-gray-800 rounded-lg group-hover:bg-blue-600 transition-colors duration-300">
                 <FaPhoneAlt className="text-blue-400 group-hover:text-white transition-colors duration-300 text-lg" />
@@ -54,9 +56,14 @@ export default function Footer() {
               <div className="p-2.5 bg-gray-800 rounded-lg">
                 <FaMapMarkerAlt className="text-blue-400 text-lg" />
               </div>
-              <span className="font-medium text-gray-300">
+              <a
+                href="https://maps.google.com/?q=Kaithal,Haryana"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="View Kaithal, Haryana on Google Maps"
+              >
                 Kaithal, Haryana
-              </span>
+              </a>
             </div>
           </div>
         </div>
@@ -69,19 +76,19 @@ export default function Footer() {
           <p className="mb-5 text-gray-400">
             Send me a direct message for project inquiries or just to say hi!
           </p>
-          
+
           <form onSubmit={handleEmailSubmit} className="flex flex-col gap-4">
             <div className="relative">
-              <textarea 
+              <textarea
                 name="message"
-                placeholder="Write your message here..." 
+                placeholder="Write your message here..."
                 required
                 rows="3"
                 className="w-full p-4 rounded-xl bg-gray-800 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none transition-all duration-300 shadow-inner"
               ></textarea>
             </div>
-            <button 
-              type="submit" 
+            <button
+              type="submit"
               className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold py-3 px-6 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 w-full shadow-lg hover:shadow-blue-500/25 transform hover:-translate-y-0.5"
             >
               <FaPaperPlane /> Send Message
@@ -90,7 +97,7 @@ export default function Footer() {
         </div>
 
       </div>
-      
+
       {/* Bottom Copyright Bar */}
       <div className="max-w-7xl mx-auto mt-16 pt-8 border-t border-gray-800 text-center text-sm text-gray-500 flex flex-col md:flex-row justify-between items-center">
         <p>&copy; {new Date().getFullYear()} Yogesh Banger. All rights reserved.</p>
@@ -99,6 +106,15 @@ export default function Footer() {
           <span className="hover:text-blue-400 cursor-pointer transition-colors">Terms of Service</span>
         </div>
       </div>
+      <section className="sr-only">
+        <h2>Yogesh Banger Portfolio</h2>
+
+        <p>
+          Yogesh Banger is a MERN Stack Developer from India specializing in
+          React.js, Node.js, Express.js, MongoDB, JavaScript, WordPress,
+          responsive web development, REST APIs and Search Engine Optimization.
+        </p>
+      </section>
     </footer>
   );
 }

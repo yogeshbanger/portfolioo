@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://yogeshbanger.vercel.app/sitemap.xml

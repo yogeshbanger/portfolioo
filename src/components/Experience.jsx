@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { FiBriefcase, FiMapPin } from "react-icons/fi";
-import SEO from "./SEO";
 
+import { Helmet } from "react-helmet-async";
 const TIMELINE = [
   {
     role: "Computer Instructor / IT Trainer",
@@ -21,11 +21,107 @@ const TIMELINE = [
 export default function Experience() {
   return (
     <main className="relative min-h-screen bg-[#F6F1E7] pt-28 pb-24">
-      <SEO
-        title="Experience | Yogesh Banger"
-        description="Work experience of Yogesh Banger as a Computer Instructor and IT Trainer at Hartron Skill Center, Kaithal, Haryana."
-        keywords="Yogesh Banger Experience, Hartron Skill Center, IT Trainer, Computer Instructor"
-      />
+      <Helmet>
+        {/* Basic SEO */}
+        <title>Work Experience | Yogesh Banger | MERN Stack Developer</title>
+        
+        <meta
+          name="description"
+          content="Explore the professional experience of Yogesh Banger as a Computer Instructor and IT Trainer at Hartron Skill Center. Skilled in MERN Stack, React.js, Node.js, MongoDB, WordPress and SEO."
+        />
+
+        <meta
+          name="keywords"
+          content="Yogesh Banger, Work Experience, MERN Stack Developer, React Developer, Node.js Developer, Computer Instructor, IT Trainer, Hartron Skill Center, Web Developer"
+        />
+
+        <meta name="robots" content="index, follow" />
+        <meta name="author" content="Yogesh Banger" />
+        <meta name="theme-color" content="#0f172a" />
+
+        {/* Canonical */}
+        <link
+          rel="canonical"
+          href="https://yogeshbanger.vercel.app/"
+        />
+
+        {/* Open Graph */}
+        <meta
+          property="og:title"
+          content="Work Experience | Yogesh Banger"
+        />
+
+        <meta
+          property="og:description"
+          content="Professional experience of Yogesh Banger as a Computer Instructor and MERN Stack Developer."
+        />
+
+        <meta
+          property="og:image"
+          content="https://yogeshbanger.vercel.app/icon.png"
+        />
+
+        <meta
+          property="og:url"
+          content="https://yogeshbanger.vercel.app/"
+        />
+
+        <meta
+          property="og:site_name"
+          content="Yogesh Banger Portfolio"
+        />
+
+        <meta property="og:type" content="website" />
+
+        {/* Twitter Card */}
+        <meta
+          name="twitter:card"
+          content="summary_large_image"
+        />
+
+        <meta
+          name="twitter:title"
+          content="Work Experience | Yogesh Banger"
+        />
+
+        <meta
+          name="twitter:description"
+          content="Professional work experience of Yogesh Banger, MERN Stack Developer and IT Trainer."
+        />
+
+        <meta
+          name="twitter:image"
+          content="https://yogeshbanger.vercel.app/icon.png"
+        />
+
+        {/* Structured Data */}
+        <script type="application/ld+json">
+          {`
+        {
+          "@context":"https://schema.org",
+          "@type":"Person",
+          "name":"Yogesh Banger",
+          "jobTitle":"Computer Instructor & MERN Stack Developer",
+          "url":"https://yogeshbanger.vercel.app",
+          "email":"mailto:yogeshbanger111@gmail.com",
+          "worksFor":{
+            "@type":"Organization",
+            "name":"Hartron Skill Center"
+          },
+          "address":{
+            "@type":"PostalAddress",
+            "addressLocality":"Kaithal",
+            "addressRegion":"Haryana",
+            "addressCountry":"India"
+          },
+          "sameAs":[
+            "https://github.com/bangerjaat111-stack",
+            "https://www.linkedin.com/in/yogesh-banger-9a9695366"
+          ]
+        }
+        `}
+            </script>
+      </Helmet>
 
       <div
         className="pointer-events-none absolute inset-0 opacity-60"

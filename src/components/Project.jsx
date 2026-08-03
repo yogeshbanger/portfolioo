@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   FaArrowUpRightFromSquare,
@@ -76,7 +77,7 @@ const projects = [
     gradient: "from-emerald-500/20 via-teal-400/10 to-transparent",
   },
   {
-    title: "Course Showcase Pages",
+    title: "WordPress Course Website",
     category: "WordPress",
     type: "Responsive course catalogue",
     description:
@@ -89,43 +90,10 @@ const projects = [
   },
 ];
 
-function usePageSEO() {
-  useEffect(() => {
-    const title = "Projects | Yogesh Banger - MERN and React Portfolio";
-    const description =
-      "View projects by Yogesh Banger including React applications, MERN authentication systems, WordPress websites and SEO-focused pages.";
 
-    document.title = title;
-
-    const setMeta = (selector, attributes) => {
-      let element = document.head.querySelector(selector);
-      if (!element) {
-        element = document.createElement("meta");
-        document.head.appendChild(element);
-      }
-      Object.entries(attributes).forEach(([key, value]) => element.setAttribute(key, value));
-    };
-
-    setMeta('meta[name="description"]', { name: "description", content: description });
-    setMeta('meta[name="robots"]', { name: "robots", content: "index, follow" });
-    setMeta('meta[property="og:title"]', { property: "og:title", content: title });
-    setMeta('meta[property="og:description"]', {
-      property: "og:description",
-      content: description,
-    });
-
-    let canonical = document.head.querySelector('link[rel="canonical"]');
-    if (!canonical) {
-      canonical = document.createElement("link");
-      canonical.rel = "canonical";
-      document.head.appendChild(canonical);
-    }
-    canonical.href = `${window.location.origin}/projects`;
-  }, []);
-}
 
 export default function Projects() {
-  usePageSEO();
+
   const [activeCategory, setActiveCategory] = useState("All");
 
   const filteredProjects = useMemo(
@@ -138,6 +106,64 @@ export default function Projects() {
 
   return (
     <main className="min-h-screen bg-slate-950 px-5 pb-24 pt-28 text-white sm:px-8 lg:px-12">
+      <Helmet>
+        <title>Projects | Yogesh Banger - MERN Stack Developer</title>
+
+        <meta
+          name="description"
+          content="Explore projects by Yogesh Banger including MERN Stack applications, React.js websites, WordPress development, SEO solutions, authentication systems and modern web applications."
+        />
+
+        <meta
+          name="keywords"
+          content="Yogesh Banger Projects, MERN Projects, React Portfolio, Node.js Projects, MongoDB, WordPress, SEO Portfolio, JavaScript Developer"
+        />
+
+        <meta name="robots" content="index, follow" />
+
+        <link
+          rel="canonical"
+          href="https://yogeshbanger.vercel.app/"
+        />
+
+        <meta
+          property="og:title"
+          content="Projects | Yogesh Banger - MERN Stack Developer"
+        />
+
+        <meta
+          property="og:description"
+          content="Discover MERN Stack, React.js, WordPress and SEO projects developed by Yogesh Banger."
+        />
+
+        <meta
+          property="og:image"
+          content="https://yogeshbanger.vercel.app/icon.png"
+        />
+
+        <meta
+          property="og:url"
+          content="https://yogeshbanger.vercel.app/"
+        />
+
+        <script type="application/ld+json">
+          {`
+          {
+            "@context":"https://schema.org",
+            "@type":"CollectionPage",
+            "name":"Projects",
+            "url":"https://yogeshbanger.vercel.app/",
+            "author":{
+              "@type":"Person",
+              "name":"Yogesh Banger"
+            },
+            "description":"Portfolio of MERN Stack, React.js, WordPress and SEO projects developed by Yogesh Banger."
+          }
+          `}
+        </script>
+
+        <meta property="og:type" content="website" />
+      </Helmet>
       <div className="mx-auto max-w-7xl">
         <motion.header
           initial={{ opacity: 0, y: 25 }}
@@ -149,9 +175,9 @@ export default function Projects() {
             My work
           </p>
           <h1 className="mt-4 text-4xl font-black leading-tight sm:text-6xl">
-            Projects where ideas become
-            <span className="block bg-gradient-to-r from-cyan-300 to-violet-400 bg-clip-text text-transparent">
-              useful digital products
+            MERN Stack & React
+            <span className="block bg-linear-to-r from-cyan-300 via-blue-400 to-purple-500 bg-clip-text text-transparent">
+              Development Projects
             </span>
           </h1>
           <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-400">
@@ -166,11 +192,10 @@ export default function Projects() {
               key={category}
               type="button"
               onClick={() => setActiveCategory(category)}
-              className={`rounded-full px-5 py-3 text-sm font-bold transition ${
-                activeCategory === category
-                  ? "bg-gradient-to-r from-cyan-400 to-blue-500 text-slate-950 shadow-lg shadow-cyan-500/15"
-                  : "border border-white/10 bg-white/5 text-slate-300 hover:border-cyan-300/30 hover:text-cyan-300"
-              }`}
+              className={`rounded-full px-5 py-3 text-sm font-bold transition ${activeCategory === category
+                ? "bg-linear-to-r from-cyan-400 to-blue-500 text-slate-950 shadow-lg shadow-cyan-500/15"
+                : "border border-white/10 bg-white/5 text-slate-300 hover:border-cyan-300/30 hover:text-cyan-300"
+                }`}
             >
               {category}
             </button>
@@ -225,9 +250,10 @@ export default function Projects() {
                     <div className="mt-7 flex flex-wrap gap-3 border-t border-white/10 pt-6">
                       {project.github && (
                         <a
+                            aria-label={`View ${project.title} source code on GitHub`}
                           href={project.github}
                           target="_blank"
-                          rel="noreferrer"
+                          rel="noopener noreferrer"
                           className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-bold transition hover:border-cyan-300/30 hover:text-cyan-300"
                         >
                           <FaGithub /> GitHub
@@ -238,6 +264,7 @@ export default function Projects() {
                           href={project.live}
                           target="_blank"
                           rel="noreferrer"
+                            aria-label={`Open live demo of ${project.title}`}
                           className="inline-flex items-center gap-2 rounded-xl bg-white px-4 py-3 text-sm font-black text-slate-950 transition hover:-translate-y-1"
                         >
                           Live project <FaArrowUpRightFromSquare />

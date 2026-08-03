@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { Helmet } from 'react-helmet-async'
 import {
   FaArrowRight,
   FaEnvelope,
@@ -101,6 +102,71 @@ export default function Contact() {
 
   return (
     <main className="min-h-screen bg-slate-950 px-5 pb-24 pt-28 text-white sm:px-8 lg:px-12">
+      <Helmet>
+        <title>Contact Yogesh Banger | MERN Stack Developer</title>
+
+        <meta
+          name="description"
+          content="Get in touch with Yogesh Banger for MERN Stack development, React.js projects, Node.js applications, internships, freelance work and collaborations."
+        />
+
+        <meta
+          name="keywords"
+          content="Contact Yogesh Banger, MERN Stack Developer, React Developer, Node.js Developer, Freelance Web Developer, Portfolio"
+        />
+
+        <meta name="robots" content="index, follow" />
+
+        <link
+          rel="canonical"
+          href="https://yogeshbanger.vercel.app/contact"
+        />
+
+        <meta
+          property="og:title"
+          content="Contact Yogesh Banger | MERN Stack Developer"
+        />
+
+        <meta
+          property="og:description"
+          content="Hire Yogesh Banger for React.js, Node.js, MERN Stack Development and Web Development."
+        />
+
+        <meta
+          property="og:image"
+          content="https://yogeshbanger.vercel.app/icon.png"
+        />
+
+        <meta
+          property="og:url"
+          content="https://yogeshbanger.vercel.app/contact"
+        />
+
+        <meta property="og:type" content="website" />
+         <script type="application/ld+json">
+          {`
+          {
+            "@context":"https://schema.org",
+            "@type":"Person",
+            "name":"Yogesh Banger",
+            "jobTitle":"MERN Stack Developer",
+            "url":"https://yogeshbanger.vercel.app",
+            "email":"mailto:yogeshbanger111@gmail.com",
+            "address":{
+              "@type":"PostalAddress",
+              "addressLocality":"Kaithal",
+              "addressRegion":"Haryana",
+              "addressCountry":"India"
+            },
+            "sameAs":[
+              "https://github.com/bangerjaat111-stack",
+              "https://www.linkedin.com/in/yogesh-banger-9a9695366"
+            ]
+          }
+          `}
+        </script>
+
+      </Helmet>
       <div className="mx-auto max-w-7xl">
         <motion.header
           initial={{ opacity: 0, y: 25 }}
@@ -112,14 +178,20 @@ export default function Contact() {
             Contact me
           </p>
           <h1 className="mt-4 text-4xl font-black leading-tight sm:text-6xl">
-            Let us create something
-            <span className="block bg-gradient-to-r from-cyan-300 to-violet-400 bg-clip-text text-transparent">
-              useful and memorable
+
+            <span className="block bg-gradient-to-r from-cyan-300 via-blue-400 to-purple-500 bg-clip-text text-transparent">
+              Yogesh Banger
             </span>
           </h1>
           <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-400">
-            I am open to internships, freelance opportunities, collaborations and
-            conversations about React, MERN stack development, WordPress and SEO.
+            Looking for a MERN Stack Developer?
+
+            I am available for internships, freelance projects,
+            React.js development, Node.js applications,
+            portfolio websites, business websites,
+            WordPress development and SEO optimization.
+
+            Let's build something amazing together.
           </p>
         </motion.header>
 
