@@ -1,5 +1,6 @@
 import React, { memo } from "react";
 import { motion, useReducedMotion } from "framer-motion";
+import {Helmet} from 'react-helmet-async'
 import {
   RiArrowRightUpLine,
   RiBookOpenFill,
