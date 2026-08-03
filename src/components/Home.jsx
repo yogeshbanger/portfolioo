@@ -105,7 +105,7 @@ const Hero = ({
       >
         <Helmet>
           <title>Yogesh Banger | Full Stack MERN Developer Portfolio</title>
-          <meta name="google-site-verification" content="b_w75oGvnRYWx0-SUmybiSkyb2c4iTGSYL57nw6-0Bs" />
+        <meta name="google-site-verification" content="b_w75oGvnRYWx0-SUmybiSkyb2c4iTGSYL57nw6-0Bs" />
           <meta
             name="description"
             content="Yogesh Banger is a Full Stack MERN Developer skilled in React.js, Node.js, Express.js, MongoDB, JavaScript, Tailwind CSS, SEO and modern web development."
