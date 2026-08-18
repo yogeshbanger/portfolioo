@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -11,7 +11,6 @@ import {
   FaWordpress,
 } from "react-icons/fa6";
 import { FaSearch } from "react-icons/fa";
-
 
 const categories = ["All", "MERN", "React", "WordPress", "SEO"];
 
@@ -90,10 +89,7 @@ const projects = [
   },
 ];
 
-
-
 export default function Projects() {
-
   const [activeCategory, setActiveCategory] = useState("All");
 
   const filteredProjects = useMemo(
@@ -104,66 +100,72 @@ export default function Projects() {
     [activeCategory],
   );
 
+  // Generate dynamic JSON-LD Schema for the projects list
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Projects | Yogesh Banger Portfolio",
+    "url": "https://yogeshbanger.vercel.app/projects",
+    "description": "Portfolio of MERN Stack, React.js, WordPress and SEO projects developed by Yogesh Banger.",
+    "author": {
+      "@type": "Person",
+      "name": "Yogesh Banger"
+    },
+    "mainEntity": {
+      "@type": "ItemList",
+      "itemListElement": projects.map((project, index) => ({
+        "@type": "ListItem",
+        "position": index + 1,
+        "item": {
+          "@type": "SoftwareApplication",
+          "name": project.title,
+          "applicationCategory": "WebApplication",
+          "operatingSystem": "Any",
+          "description": project.description,
+          "url": project.live || project.github || "https://yogeshbanger.vercel.app/projects"
+        }
+      }))
+    }
+  };
+
   return (
     <main className="min-h-screen bg-slate-950 px-5 pb-24 pt-28 text-white sm:px-8 lg:px-12">
       <Helmet>
-        <title>Projects | Yogesh Banger - MERN Stack Developer</title>
-
+        {/* Core SEO Meta Tags */}
+        <title>Projects & Case Studies | Yogesh Banger - MERN Stack Developer</title>
         <meta
           name="description"
-          content="Explore projects by Yogesh Banger including MERN Stack applications, React.js websites, WordPress development, SEO solutions, authentication systems and modern web applications."
+          content="Explore web development projects by Yogesh Banger. View case studies on MERN Stack applications, React.js web apps, WordPress sites, and Technical SEO architectures."
         />
-
         <meta
           name="keywords"
-          content="Yogesh Banger Projects, MERN Projects, React Portfolio, Node.js Projects, MongoDB, WordPress, SEO Portfolio, JavaScript Developer"
+          content="Yogesh Banger Projects, MERN Stack Portfolio, React Developer India, Node.js Case Studies, Full Stack Projects Kaithal, WordPress Development, SEO Solutions"
         />
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+        <link rel="canonical" href="https://yogeshbanger.vercel.app/projects" />
 
-        <meta name="robots" content="index, follow" />
-
-        <link
-          rel="canonical"
-          href="https://yogeshbanger.vercel.app/"
-        />
-
-        <meta
-          property="og:title"
-          content="Projects | Yogesh Banger - MERN Stack Developer"
-        />
-
+        {/* Open Graph (Social Media Optimization) */}
+        <meta property="og:title" content="Projects | Yogesh Banger - MERN Stack Developer" />
         <meta
           property="og:description"
-          content="Discover MERN Stack, React.js, WordPress and SEO projects developed by Yogesh Banger."
+          content="Discover high-performance MERN Stack, React.js, and SEO-driven projects developed by Yogesh Banger."
         />
-
-        <meta
-          property="og:image"
-          content="https://yogeshbanger.vercel.app/icon.png"
-        />
-
-        <meta
-          property="og:url"
-          content="https://yogeshbanger.vercel.app/"
-        />
-
-        <script type="application/ld+json">
-          {`
-          {
-            "@context":"https://schema.org",
-            "@type":"CollectionPage",
-            "name":"Projects",
-            "url":"https://yogeshbanger.vercel.app/",
-            "author":{
-              "@type":"Person",
-              "name":"Yogesh Banger"
-            },
-            "description":"Portfolio of MERN Stack, React.js, WordPress and SEO projects developed by Yogesh Banger."
-          }
-          `}
-        </script>
-
+        <meta property="og:image" content="https://yogeshbanger.vercel.app/icon.png" />
+        <meta property="og:url" content="https://yogeshbanger.vercel.app/projects" />
         <meta property="og:type" content="website" />
+
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="MERN Stack Projects | Yogesh Banger" />
+        <meta name="twitter:description" content="View my latest React.js, Node.js, and WordPress projects." />
+        <meta name="twitter:image" content="https://yogeshbanger.vercel.app/icon.png" />
+
+        {/* Dynamic JSON-LD Structured Data */}
+        <script type="application/ld+json">
+          {JSON.stringify(structuredData)}
+        </script>
       </Helmet>
+
       <div className="mx-auto max-w-7xl">
         <motion.header
           initial={{ opacity: 0, y: 25 }}
@@ -176,26 +178,29 @@ export default function Projects() {
           </p>
           <h1 className="mt-4 text-4xl font-black leading-tight sm:text-6xl">
             MERN Stack & React
-            <span className="block bg-linear-to-r from-cyan-300 via-blue-400 to-purple-500 bg-clip-text text-transparent">
+            <span className="block bg-gradient-to-r from-cyan-300 via-blue-400 to-purple-500 bg-clip-text text-transparent">
               Development Projects
             </span>
           </h1>
           <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-400">
-            These projects represent my learning across frontend development, backend
-            systems, WordPress, SEO and digital product design.
+            These projects represent my engineering journey across frontend user interfaces, secure backend
+            systems, WordPress development, Technical SEO, and digital product design.
           </p>
         </motion.header>
 
-        <div className="mt-10 flex flex-wrap gap-3" role="group" aria-label="Project filters">
+        {/* Accessible Filter Group */}
+        <div className="mt-10 flex flex-wrap gap-3" role="group" aria-label="Filter projects by technology">
           {categories.map((category) => (
             <button
               key={category}
               type="button"
               onClick={() => setActiveCategory(category)}
-              className={`rounded-full px-5 py-3 text-sm font-bold transition ${activeCategory === category
-                ? "bg-linear-to-r from-cyan-400 to-blue-500 text-slate-950 shadow-lg shadow-cyan-500/15"
-                : "border border-white/10 bg-white/5 text-slate-300 hover:border-cyan-300/30 hover:text-cyan-300"
-                }`}
+              aria-pressed={activeCategory === category}
+              className={`rounded-full px-5 py-3 text-sm font-bold transition focus:outline-none focus:ring-2 focus:ring-cyan-400 ${
+                activeCategory === category
+                  ? "bg-gradient-to-r from-cyan-400 to-blue-500 text-slate-950 shadow-lg shadow-cyan-500/15"
+                  : "border border-white/10 bg-white/5 text-slate-300 hover:border-cyan-300/30 hover:text-cyan-300"
+              }`}
             >
               {category}
             </button>
@@ -219,11 +224,12 @@ export default function Projects() {
                 >
                   <div
                     className={`absolute inset-x-0 top-0 h-44 bg-gradient-to-b ${project.gradient}`}
+                    aria-hidden="true"
                   />
                   <div className="relative">
                     <div className="flex items-start justify-between gap-5">
                       <div className="grid h-16 w-16 place-items-center rounded-2xl border border-white/10 bg-slate-950/70 text-3xl text-cyan-300 backdrop-blur">
-                        <Icon />
+                        <Icon aria-hidden="true" />
                       </div>
                       <span className="rounded-full border border-white/10 bg-slate-950/50 px-3 py-1 text-xs font-bold text-slate-300 backdrop-blur">
                         {project.category}
@@ -250,24 +256,24 @@ export default function Projects() {
                     <div className="mt-7 flex flex-wrap gap-3 border-t border-white/10 pt-6">
                       {project.github && (
                         <a
-                            aria-label={`View ${project.title} source code on GitHub`}
+                          aria-label={`View ${project.title} source code on GitHub`}
                           href={project.github}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-bold transition hover:border-cyan-300/30 hover:text-cyan-300"
+                          className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-bold transition hover:border-cyan-300/30 hover:text-cyan-300 focus:outline-none focus:ring-2 focus:ring-cyan-400"
                         >
-                          <FaGithub /> GitHub
+                          <FaGithub aria-hidden="true" /> GitHub
                         </a>
                       )}
                       {project.live && (
                         <a
+                          aria-label={`Open live demo of ${project.title}`}
                           href={project.live}
                           target="_blank"
-                          rel="noreferrer"
-                            aria-label={`Open live demo of ${project.title}`}
-                          className="inline-flex items-center gap-2 rounded-xl bg-white px-4 py-3 text-sm font-black text-slate-950 transition hover:-translate-y-1"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 rounded-xl bg-white px-4 py-3 text-sm font-black text-slate-950 transition hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-cyan-400"
                         >
-                          Live project <FaArrowUpRightFromSquare />
+                          Live project <FaArrowUpRightFromSquare aria-hidden="true" />
                         </a>
                       )}
                       {!project.github && !project.live && (
@@ -283,6 +289,23 @@ export default function Projects() {
           </AnimatePresence>
         </motion.div>
       </div>
+
+      {/* --- HIDDEN SEO SECTION FOR CRAWLERS & SCREEN READERS --- */}
+      <section className="sr-only" aria-hidden="false">
+        <h2>Professional Web Development Portfolio & Case Studies</h2>
+        <p>
+          Dive into the comprehensive project portfolio of Yogesh Banger, showcasing deep expertise 
+          in modern web technologies. Based in Kaithal, Haryana, Yogesh engineers full-scale 
+          MERN Stack applications integrating React.js frontends, secure Node.js and Express backend APIs, 
+          and scalable MongoDB databases.
+        </p>
+        <p>
+          Highlights include the AutoSyntax automotive platform, highly secure JWT authentication systems, 
+          and optimized WordPress platforms for the Hartron Skill Centre. Beyond coding, each project 
+          is built with a core focus on Technical SEO, responsive UI/UX design via Tailwind CSS, and 
+          accessible user experiences. Available for freelance hiring, internships, and corporate collaborations.
+        </p>
+      </section>
     </main>
   );
 }

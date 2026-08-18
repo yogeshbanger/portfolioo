@@ -1,5 +1,5 @@
-import { useEffect } from "react";
 import { motion } from "framer-motion";
+import { Helmet } from "react-helmet-async";
 import {
   FaDownload,
   FaGraduationCap,
@@ -11,85 +11,115 @@ import {
 const education = [
   {
     title: "Bachelor of Computer Applications",
-    subtitle: "BCA Student",
+    subtitle: "RKSD College",
     period: "Currently pursuing",
     description:
-      "Studying programming, databases, software engineering, web development, computer networks and core computer application subjects.",
+      "Studying advanced programming, Data Structures, software engineering, modern web development, computer networks, and core computer application subjects.",
   },
 ];
 
 const experience = [
   {
     title: "MERN Stack Developer",
-    subtitle: "Project-based learning",
+    subtitle: "Project-based learning & Freelance",
     period: "Current focus",
     description:
-      "Building full stack applications with React, Node.js, Express and MongoDB, including authentication, email OTP, APIs and responsive dashboards.",
+      "Architecting full-stack applications with React.js, Node.js, Express, and MongoDB. Implementing secure JWT authentication, email OTP, RESTful APIs, and responsive UI dashboards.",
   },
   {
-    title: "WordPress and SEO Projects",
+    title: "WordPress & Technical SEO",
     subtitle: "Independent practice",
     period: "Ongoing",
     description:
-      "Designing education and business pages, improving metadata, page hierarchy, responsive layouts and search-friendly content structure.",
+      "Designing conversion-focused education and business platforms. Improving metadata, keyword clustering, core web vitals, and search-friendly content architectures.",
   },
 ];
 
 const skillColumns = [
   {
-    title: "Development",
-    items: ["HTML5", "CSS3", "JavaScript", "React", "Tailwind CSS", "Framer Motion"],
+    title: "Frontend Development",
+    items: ["HTML5", "CSS3", "JavaScript (ES6+)", "React.js", "Tailwind CSS", "Framer Motion"],
   },
   {
-    title: "Backend",
-    items: ["Node.js", "Express.js", "MongoDB", "REST APIs", "JWT", "Nodemailer"],
+    title: "Backend & Database",
+    items: ["Node.js", "Express.js", "MongoDB", "RESTful APIs", "JWT Auth", "Nodemailer"],
   },
   {
-    title: "Other",
-    items: ["Git", "GitHub", "Postman", "WordPress", "SEO", "Digital Marketing"],
+    title: "Tools & Optimization",
+    items: ["Git / GitHub", "Postman", "WordPress", "Technical SEO", "Digital Marketing", "SMO"],
   },
 ];
 
-function usePageSEO() {
-  useEffect(() => {
-    const title = "Resume | Yogesh Banger - BCA and MERN Developer";
-    const description =
-      "View the resume of Yogesh Banger, a BCA student with skills in React, MERN stack development, WordPress, SEO and digital marketing.";
-
-    document.title = title;
-
-    const setMeta = (selector, attributes) => {
-      let element = document.head.querySelector(selector);
-      if (!element) {
-        element = document.createElement("meta");
-        document.head.appendChild(element);
-      }
-      Object.entries(attributes).forEach(([key, value]) => element.setAttribute(key, value));
-    };
-
-    setMeta('meta[name="description"]', { name: "description", content: description });
-    setMeta('meta[name="robots"]', { name: "robots", content: "index, follow" });
-    setMeta('meta[property="og:title"]', { property: "og:title", content: title });
-    setMeta('meta[property="og:description"]', {
-      property: "og:description",
-      content: description,
-    });
-
-    let canonical = document.head.querySelector('link[rel="canonical"]');
-    if (!canonical) {
-      canonical = document.createElement("link");
-      canonical.rel = "canonical";
-      document.head.appendChild(canonical);
-    }
-    canonical.href = `${window.location.origin}/resume`;
-  }, []);
-}
-
 export default function Resume() {
-  usePageSEO();
+  // Generate JSON-LD Schema for the Resume page
+  const resumeSchema = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Yogesh Banger",
+    "jobTitle": "MERN Stack Developer",
+    "url": "https://yogeshbanger.vercel.app/resume",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Kaithal",
+      "addressRegion": "Haryana",
+      "addressCountry": "IN"
+    },
+    "alumniOf": [
+      {
+        "@type": "CollegeOrUniversity",
+        "name": "RKSD College"
+      }
+    ],
+    "knowsAbout": [
+      "MERN Stack",
+      "React.js",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "Tailwind CSS",
+      "Technical SEO",
+      "WordPress Development"
+    ]
+  };
 
   return (
     <main className="min-h-screen bg-slate-950 px-5 pb-24 pt-28 text-white sm:px-8 lg:px-12">
+      <Helmet>
+        {/* Core SEO Meta Tags */}
+        <title>Resume & Skills | Yogesh Banger - MERN Stack Developer</title>
+        <meta
+          name="description"
+          content="View the professional resume of Yogesh Banger, a MERN Stack Developer and BCA student based in Kaithal. Highly skilled in React.js, Node.js, MongoDB, WordPress, and SEO."
+        />
+        <meta
+          name="keywords"
+          content="Yogesh Banger Resume, Hire MERN Stack Developer, React Developer Resume, Node.js Developer Kaithal, BCA Student Resume, Freelance Web Developer CV"
+        />
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+        <link rel="canonical" href="https://yogeshbanger.vercel.app/resume" />
+
+        {/* Open Graph / SMO */}
+        <meta property="og:title" content="Resume | Yogesh Banger - MERN Stack Developer" />
+        <meta
+          property="og:description"
+          content="Explore the technical skills, education, and development experience of Yogesh Banger."
+        />
+        <meta property="og:image" content="https://yogeshbanger.vercel.app/icon.png" />
+        <meta property="og:url" content="https://yogeshbanger.vercel.app/resume" />
+        <meta property="og:type" content="profile" />
+
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Resume | Yogesh Banger" />
+        <meta name="twitter:description" content="MERN Stack Developer Resume & Technical Skills." />
+        <meta name="twitter:image" content="https://yogeshbanger.vercel.app/icon.png" />
+
+        {/* Dynamic JSON-LD Structured Data */}
+        <script type="application/ld+json">
+          {JSON.stringify(resumeSchema)}
+        </script>
+      </Helmet>
+
       <div className="mx-auto max-w-6xl">
         <motion.header
           initial={{ opacity: 0, y: 25 }}
@@ -110,10 +140,11 @@ export default function Resume() {
 
           <a
             href="/Yogesh-Banger-Resume.pdf"
-            download
-            className="inline-flex w-fit items-center gap-3 rounded-2xl bg-gradient-to-r from-cyan-400 to-blue-500 px-6 py-4 font-black text-slate-950 shadow-lg shadow-cyan-500/15 transition hover:-translate-y-1"
+            download="Yogesh_Banger_Resume.pdf"
+            aria-label="Download Yogesh Banger's Resume as PDF"
+            className="inline-flex w-fit items-center gap-3 rounded-2xl bg-gradient-to-r from-cyan-400 to-blue-500 px-6 py-4 font-black text-slate-950 shadow-lg shadow-cyan-500/15 transition hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-cyan-300"
           >
-            <FaDownload /> Download resume
+            <FaDownload aria-hidden="true" /> Download resume
           </a>
         </motion.header>
 
@@ -123,18 +154,18 @@ export default function Resume() {
           transition={{ duration: 0.55, delay: 0.1 }}
           className="mt-12 grid gap-px overflow-hidden rounded-[2rem] border border-white/10 bg-white/10 sm:grid-cols-3"
         >
-          <div className="bg-slate-900 p-6">
-            <FaUser className="text-2xl text-cyan-300" />
+          <div className="bg-slate-900 p-6 transition hover:bg-slate-800/80">
+            <FaUser aria-hidden="true" className="text-2xl text-cyan-300" />
             <p className="mt-4 text-sm text-slate-500">Name</p>
             <p className="mt-1 text-lg font-black">Yogesh Banger</p>
           </div>
-          <div className="bg-slate-900 p-6">
-            <FaLaptopCode className="text-2xl text-cyan-300" />
+          <div className="bg-slate-900 p-6 transition hover:bg-slate-800/80">
+            <FaLaptopCode aria-hidden="true" className="text-2xl text-cyan-300" />
             <p className="mt-4 text-sm text-slate-500">Professional focus</p>
             <p className="mt-1 text-lg font-black">MERN Stack Development</p>
           </div>
-          <div className="bg-slate-900 p-6">
-            <FaLocationDot className="text-2xl text-cyan-300" />
+          <div className="bg-slate-900 p-6 transition hover:bg-slate-800/80">
+            <FaLocationDot aria-hidden="true" className="text-2xl text-cyan-300" />
             <p className="mt-4 text-sm text-slate-500">Location</p>
             <p className="mt-1 text-lg font-black">Kaithal, Haryana, India</p>
           </div>
@@ -142,10 +173,11 @@ export default function Resume() {
 
         <div className="mt-12 grid gap-8 lg:grid-cols-[1.15fr_0.85fr]">
           <div className="space-y-8">
+            {/* Education Section */}
             <section className="rounded-[2rem] border border-white/10 bg-slate-900/60 p-6 sm:p-8">
               <div className="flex items-center gap-4">
                 <div className="grid h-14 w-14 place-items-center rounded-2xl bg-cyan-400/10 text-2xl text-cyan-300">
-                  <FaGraduationCap />
+                  <FaGraduationCap aria-hidden="true" />
                 </div>
                 <div>
                   <p className="text-sm font-bold uppercase tracking-[0.22em] text-cyan-300">
@@ -173,10 +205,11 @@ export default function Resume() {
               </div>
             </section>
 
+            {/* Experience Section */}
             <section className="rounded-[2rem] border border-white/10 bg-slate-900/60 p-6 sm:p-8">
               <div className="flex items-center gap-4">
                 <div className="grid h-14 w-14 place-items-center rounded-2xl bg-violet-400/10 text-2xl text-violet-300">
-                  <FaLaptopCode />
+                  <FaLaptopCode aria-hidden="true" />
                 </div>
                 <div>
                   <p className="text-sm font-bold uppercase tracking-[0.22em] text-violet-300">
@@ -206,6 +239,7 @@ export default function Resume() {
           </div>
 
           <aside className="space-y-8">
+            {/* Skills Section */}
             <section className="rounded-[2rem] border border-white/10 bg-gradient-to-b from-slate-900 to-slate-950 p-6 sm:p-8">
               <p className="text-sm font-bold uppercase tracking-[0.22em] text-cyan-300">
                 Technical skills
@@ -216,34 +250,53 @@ export default function Resume() {
                 {skillColumns.map((column) => (
                   <div key={column.title}>
                     <h3 className="font-black text-white">{column.title}</h3>
-                    <div className="mt-3 flex flex-wrap gap-2">
+                    {/* Converted to semantic unordered list for SEO & Screen Readers */}
+                    <ul className="mt-3 flex flex-wrap gap-2 m-0 p-0 list-none">
                       {column.items.map((skill) => (
-                        <span
+                        <li
                           key={skill}
-                          className="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-xs font-semibold text-slate-300"
+                          className="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-xs font-semibold text-slate-300 transition hover:border-cyan-300/30 hover:text-cyan-300 cursor-default"
                         >
                           {skill}
-                        </span>
+                        </li>
                       ))}
-                    </div>
+                    </ul>
                   </div>
                 ))}
               </div>
             </section>
 
+            {/* Objective Section */}
             <section className="rounded-[2rem] border border-cyan-300/20 bg-gradient-to-br from-cyan-400/10 to-violet-500/10 p-6 sm:p-8">
               <p className="text-sm font-bold uppercase tracking-[0.22em] text-violet-300">
                 Career objective
               </p>
               <p className="mt-4 leading-8 text-slate-300">
-                To begin my career in a growth-focused development team where I can use my
-                MERN stack knowledge, improve through real projects and contribute to
-                reliable, user-friendly products.
+                To begin my career in a growth-focused engineering team where I can leverage my
+                MERN stack expertise, scale my knowledge through complex real-world architectures, 
+                and contribute to reliable, high-performance web products.
               </p>
             </section>
           </aside>
         </div>
       </div>
+
+      {/* --- HIDDEN SEO SECTION FOR CRAWLERS & SCREEN READERS --- */}
+      <section className="sr-only" aria-hidden="false">
+        <h2>Hire Yogesh Banger - Expert MERN Stack Developer in India</h2>
+        <p>
+          Are you looking to hire a dedicated frontend or backend developer? Yogesh Banger is an ambitious 
+          MERN Stack Developer (MongoDB, Express.js, React.js, Node.js) currently pursuing his Bachelor of 
+          Computer Applications (BCA) at RKSD College in Kaithal, Haryana.
+        </p>
+        <p>
+          Yogesh possesses a modern technical toolkit, excelling in creating responsive web applications with 
+          Tailwind CSS and Framer Motion, designing secure REST APIs, implementing JWT authentication, and 
+          optimizing websites for Google Search (Technical SEO). Download his CV to learn more about his 
+          freelance projects, WordPress expertise, and readiness for tech internships and full-time Junior 
+          Developer roles worldwide.
+        </p>
+      </section>
     </main>
   );
 }

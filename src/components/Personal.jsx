@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { Helmet } from 'react-helmet-async'
+import { Helmet } from 'react-helmet-async';
 import {
   FaArrowRight,
   FaEnvelope,
@@ -23,7 +23,7 @@ const contactCards = [
     icon: FaLocationDot,
     label: "Location",
     value: "Kaithal, Haryana, India",
-    href: "",
+    href: "https://maps.google.com/?q=Kaithal,Haryana",
   },
   {
     icon: FaGithub,
@@ -47,52 +47,16 @@ const socials = [
   {
     name: "LinkedIn",
     icon: FaLinkedinIn,
-    href: "https://in.linkedin.com/in/yogesh-banger-9a9695366?trk=people-guest_people_search-card",
+    href: "https://in.linkedin.com/in/yogesh-banger-9a9695366?skipRedirect=true",
   },
   {
     name: "X / Twitter",
     icon: SiX,
-    href: "https://www.instagram.com/yogesh_banger_111/",
+    href: "https://twitter.com/", // Replace with actual X link if you have one
   },
 ];
 
-function usePageSEO() {
-  useEffect(() => {
-    const title = "Contact Yogesh Banger | MERN Stack Developer";
-    const description =
-      "Contact Yogesh Banger for internships, freelance web development, React projects, MERN applications and collaborations.";
-
-    document.title = title;
-
-    const setMeta = (selector, attributes) => {
-      let element = document.head.querySelector(selector);
-      if (!element) {
-        element = document.createElement("meta");
-        document.head.appendChild(element);
-      }
-      Object.entries(attributes).forEach(([key, value]) => element.setAttribute(key, value));
-    };
-
-    setMeta('meta[name="description"]', { name: "description", content: description });
-    setMeta('meta[name="robots"]', { name: "robots", content: "index, follow" });
-    setMeta('meta[property="og:title"]', { property: "og:title", content: title });
-    setMeta('meta[property="og:description"]', {
-      property: "og:description",
-      content: description,
-    });
-
-    let canonical = document.head.querySelector('link[rel="canonical"]');
-    if (!canonical) {
-      canonical = document.createElement("link");
-      canonical.rel = "canonical";
-      document.head.appendChild(canonical);
-    }
-    canonical.href = `${window.location.origin}/contact`;
-  }, []);
-}
-
 export default function Contact() {
-  usePageSEO();
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = (event) => {
@@ -103,70 +67,66 @@ export default function Contact() {
   return (
     <main className="min-h-screen bg-slate-950 px-5 pb-24 pt-28 text-white sm:px-8 lg:px-12">
       <Helmet>
-        <title>Contact Yogesh Banger | MERN Stack Developer</title>
-
+        {/* Core SEO */}
+        <title>Contact Yogesh Banger | MERN Stack Developer in Kaithal</title>
         <meta
           name="description"
-          content="Get in touch with Yogesh Banger for MERN Stack development, React.js projects, Node.js applications, internships, freelance work and collaborations."
+          content="Get in touch with Yogesh Banger for freelance web development, React.js projects, Node.js APIs, and full MERN Stack applications. Based in Kaithal, Haryana."
         />
-
         <meta
           name="keywords"
-          content="Contact Yogesh Banger, MERN Stack Developer, React Developer, Node.js Developer, Freelance Web Developer, Portfolio"
+          content="Contact Yogesh Banger, Hire MERN Stack Developer, React Developer India, Node.js Freelancer, Web Developer Kaithal, Freelance Web Developer"
         />
+        <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+        <link rel="canonical" href="https://yogeshbanger.vercel.app/contact" />
 
-        <meta name="robots" content="index, follow" />
-
-        <link
-          rel="canonical"
-          href="https://yogeshbanger.vercel.app/contact"
-        />
-
-        <meta
-          property="og:title"
-          content="Contact Yogesh Banger | MERN Stack Developer"
-        />
-
+        {/* Open Graph (SMO) */}
+        <meta property="og:title" content="Contact Yogesh Banger | Hire a MERN Stack Developer" />
         <meta
           property="og:description"
-          content="Hire Yogesh Banger for React.js, Node.js, MERN Stack Development and Web Development."
+          content="Available for freelance projects, internships, and MERN stack development collaborations."
         />
-
-        <meta
-          property="og:image"
-          content="https://yogeshbanger.vercel.app/icon.png"
-        />
-
-        <meta
-          property="og:url"
-          content="https://yogeshbanger.vercel.app/contact"
-        />
-
+        <meta property="og:image" content="https://yogeshbanger.vercel.app/icon.png" />
+        <meta property="og:url" content="https://yogeshbanger.vercel.app/contact" />
         <meta property="og:type" content="website" />
-         <script type="application/ld+json">
-          {`
-          {
-            "@context":"https://schema.org",
-            "@type":"Person",
-            "name":"Yogesh Banger",
-            "jobTitle":"MERN Stack Developer",
-            "url":"https://yogeshbanger.vercel.app",
-            "email":"mailto:yogeshbanger111@gmail.com",
-            "address":{
-              "@type":"PostalAddress",
-              "addressLocality":"Kaithal",
-              "addressRegion":"Haryana",
-              "addressCountry":"India"
-            },
-            "sameAs":[
-              "https://github.com/bangerjaat111-stack",
-              "https://www.linkedin.com/in/yogesh-banger-9a9695366"
-            ]
-          }
-          `}
-        </script>
 
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Contact Yogesh Banger" />
+        <meta name="twitter:description" content="Hire Yogesh Banger for modern web architectures." />
+        <meta name="twitter:image" content="https://yogeshbanger.vercel.app/icon.png" />
+
+        {/* JSON-LD Local Business & Contact Schema */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": "Yogesh Banger",
+            "jobTitle": "MERN Stack Developer",
+            "url": "https://yogeshbanger.vercel.app",
+            "email": "mailto:yogeshbanger111@gmail.com",
+            "telephone": "+91-9992540404",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Kaithal",
+              "addressRegion": "Haryana",
+              "addressCountry": "IN"
+            },
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "contactType": "Freelance Inquiries",
+              "email": "yogeshbanger111@gmail.com",
+              "availableLanguage": ["English", "Hindi"]
+            },
+            "sameAs": [
+              "https://github.com/bangerjaat111-stack",
+              "https://www.linkedin.com/in/yogesh-banger-9a9695366",
+              "https://www.instagram.com/yogesh_banger_111/"
+            ]
+          })}
+        </script>
       </Helmet>
+
       <div className="mx-auto max-w-7xl">
         <motion.header
           initial={{ opacity: 0, y: 25 }}
@@ -178,19 +138,13 @@ export default function Contact() {
             Contact me
           </p>
           <h1 className="mt-4 text-4xl font-black leading-tight sm:text-6xl">
-
             <span className="block bg-gradient-to-r from-cyan-300 via-blue-400 to-purple-500 bg-clip-text text-transparent">
               Yogesh Banger
             </span>
           </h1>
           <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-400">
-            Looking for a MERN Stack Developer?
-
-            I am available for internships, freelance projects,
-            React.js development, Node.js applications,
-            portfolio websites, business websites,
-            WordPress development and SEO optimization.
-
+            Looking for a MERN Stack Developer? I am available for internships, freelance projects,
+            React.js development, Node.js backend architectures, portfolio websites, and SEO optimization.
             Let's build something amazing together.
           </p>
         </motion.header>
@@ -202,49 +156,60 @@ export default function Contact() {
             transition={{ duration: 0.55, delay: 0.1 }}
             className="space-y-5"
           >
-            {contactCards.map(({ icon: Icon, label, value, href }) => {
-              const content = (
-                <div className="group flex items-center gap-4 rounded-3xl border border-white/10 bg-slate-900/60 p-5 transition hover:-translate-y-1 hover:border-cyan-300/25">
-                  <div className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-cyan-400/10 text-xl text-cyan-300">
-                    <Icon />
+            {/* Contact Cards */}
+            <address className="space-y-5 not-italic">
+              {contactCards.map(({ icon: Icon, label, value, href }) => {
+                const content = (
+                  <div className="group flex items-center gap-4 rounded-3xl border border-white/10 bg-slate-900/60 p-5 transition hover:-translate-y-1 hover:border-cyan-300/25">
+                    <div className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-cyan-400/10 text-xl text-cyan-300">
+                      <Icon aria-hidden="true" />
+                    </div>
+                    <div className="min-w-0">
+                      <p className="text-sm font-semibold text-slate-500">{label}</p>
+                      <p className="mt-1 truncate font-bold text-slate-200">{value}</p>
+                    </div>
+                    {href && (
+                      <FaArrowRight aria-hidden="true" className="ml-auto shrink-0 text-slate-600 transition group-hover:translate-x-1 group-hover:text-cyan-300" />
+                    )}
                   </div>
-                  <div className="min-w-0">
-                    <p className="text-sm font-semibold text-slate-500">{label}</p>
-                    <p className="mt-1 truncate font-bold text-slate-200">{value}</p>
-                  </div>
-                  {href && (
-                    <FaArrowRight className="ml-auto shrink-0 text-slate-600 transition group-hover:translate-x-1 group-hover:text-cyan-300" />
-                  )}
-                </div>
-              );
+                );
 
-              return href ? (
-                <a key={label} href={href} target={href.startsWith("http") ? "_blank" : undefined} rel="noreferrer">
-                  {content}
-                </a>
-              ) : (
-                <div key={label}>{content}</div>
-              );
-            })}
+                return href ? (
+                  <a 
+                    key={label} 
+                    href={href} 
+                    target={href.startsWith("http") ? "_blank" : undefined} 
+                    rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+                    aria-label={`${label}: ${value}`}
+                    className="block focus:outline-none focus:ring-2 focus:ring-cyan-400 rounded-3xl"
+                  >
+                    {content}
+                  </a>
+                ) : (
+                  <div key={label}>{content}</div>
+                );
+              })}
+            </address>
 
             <div className="rounded-3xl border border-white/10 bg-gradient-to-br from-violet-500/10 to-cyan-500/10 p-6">
               <p className="text-sm font-bold uppercase tracking-[0.24em] text-violet-300">
                 Find me online
               </p>
-              <div className="mt-5 flex gap-3">
+              <ul className="mt-5 flex gap-3 m-0 p-0 list-none">
                 {socials.map(({ name, icon: Icon, href }) => (
-                  <a
-                    key={name}
-                    href={href}
-                    target="_blank"
-                    rel="noreferrer"
-                    aria-label={name}
-                    className="grid h-12 w-12 place-items-center rounded-2xl border border-white/10 bg-slate-950/40 text-xl text-slate-300 transition hover:-translate-y-1 hover:border-violet-300/30 hover:text-violet-300"
-                  >
-                    <Icon />
-                  </a>
+                  <li key={name}>
+                    <a
+                      href={href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`Visit Yogesh Banger on ${name}`}
+                      className="grid h-12 w-12 place-items-center rounded-2xl border border-white/10 bg-slate-950/40 text-xl text-slate-300 transition hover:-translate-y-1 hover:border-violet-300/30 hover:text-violet-300 focus:outline-none focus:ring-2 focus:ring-violet-400"
+                    >
+                      <Icon aria-hidden="true" />
+                    </a>
+                  </li>
                 ))}
-              </div>
+              </ul>
             </div>
           </motion.aside>
 
@@ -310,9 +275,10 @@ export default function Contact() {
 
               <button
                 type="submit"
-                className="inline-flex w-full items-center justify-center gap-3 rounded-2xl bg-gradient-to-r from-cyan-400 to-blue-500 px-6 py-4 font-black text-slate-950 shadow-lg shadow-cyan-500/15 transition hover:-translate-y-1 sm:w-auto"
+                aria-label="Send direct message"
+                className="inline-flex w-full items-center justify-center gap-3 rounded-2xl bg-gradient-to-r from-cyan-400 to-blue-500 px-6 py-4 font-black text-slate-950 shadow-lg shadow-cyan-500/15 transition hover:-translate-y-1 sm:w-auto focus:outline-none focus:ring-2 focus:ring-cyan-300"
               >
-                Send message <FaPaperPlane />
+                Send message <FaPaperPlane aria-hidden="true" />
               </button>
 
               {submitted && (
@@ -329,6 +295,21 @@ export default function Contact() {
           </motion.section>
         </div>
       </div>
+
+      {/* --- HIDDEN SEO SECTION FOR CRAWLERS & SCREEN READERS --- */}
+      <section className="sr-only" aria-hidden="false">
+        <h2>Contact Information for Yogesh Banger</h2>
+        <p>
+          Need a reliable web developer in Kaithal or for remote work? Contact Yogesh Banger to discuss 
+          freelance MERN Stack development, React.js frontend design, secure Node.js APIs, or Technical 
+          SEO consulting. 
+        </p>
+        <p>
+          You can reach Yogesh directly via email at yogeshbanger111@gmail.com, or connect professionally 
+          on LinkedIn and GitHub. Available for corporate internships, contract work, and full-time 
+          engineering roles in India and globally.
+        </p>
+      </section>
     </main>
   );
 }

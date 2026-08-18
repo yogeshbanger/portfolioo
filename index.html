@@ -1,42 +1,94 @@
 <!doctype html>
-<html lang="en">
-
+<html lang="en-IN">
 <head>
-  <!-- Character Encoding -->
+  <!-- Character Encoding & Viewport -->
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+
+  <!-- DNS Preconnect for Performance (Speeds up Google Analytics loading for better Core Web Vitals) -->
+  <link rel="preconnect" href="https://www.googletagmanager.com" />
+  <link rel="preconnect" href="https://www.google-analytics.com" />
+
+  <!-- Google Search Console Verification -->
   <meta name="google-site-verification" content="b_w75oGvnRYWx0-SUmybiSkyb2c4iTGSYL57nw6-0Bs" />
-  <!-- Responsive -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Favicon -->
+  <!-- Favicon & Apple Touch Icon (Required for iOS home screen bookmarks) -->
   <link rel="icon" type="image/png" href="/icon.png" />
+  <link rel="apple-touch-icon" href="/icon.png" />
 
-  <!-- Default Title (Helmet will override it) -->
+  <!-- 
+    =======================================================================
+    FALLBACK SEO META TAGS
+    React Helmet will overwrite these, but these are required for crawlers 
+    (like WhatsApp, Discord, iMessage) that DO NOT execute JavaScript.
+    =======================================================================
+  -->
   <title>Yogesh Banger | MERN Stack Developer</title>
-
-  <!-- Theme Color -->
-  <meta name="theme-color" content="#0f172a" />
-
-  <!-- Author -->
+  <meta name="description" content="Portfolio of Yogesh Banger, a top MERN Stack Developer and Digital Marketer based in Kaithal, Haryana. Specializing in React.js, Node.js, Express.js, MongoDB, and Technical SEO." />
+  <meta name="keywords" content="Yogesh Banger, MERN Stack Developer, React Developer Kaithal, Node.js Developer, Web Developer Haryana, Freelance Full Stack Developer" />
+  
   <meta name="author" content="Yogesh Banger" />
+  <meta name="theme-color" content="#0f172a" />
+  
+  <!-- Maximize snippet and image sizes in Google Discover feeds -->
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
 
-  <!-- Default Robots -->
-  <meta name="robots" content="index, follow" />
-  <!-- Google tag (gtag.js) -->
+  <!-- Fallback Open Graph (For LinkedIn, Facebook, WhatsApp) -->
+  <meta property="og:title" content="Yogesh Banger | MERN Stack Developer" />
+  <meta property="og:description" content="Hire Yogesh Banger for scalable MERN Stack web applications, React frontends, and Technical SEO." />
+  <meta property="og:image" content="https://yogeshbanger.vercel.app/icon.png" />
+  <meta property="og:url" content="https://yogeshbanger.vercel.app/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Yogesh Banger Portfolio" />
+
+  <!-- Fallback Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Yogesh Banger | MERN Stack Developer" />
+  <meta name="twitter:description" content="Hire Yogesh Banger for scalable MERN Stack web applications, React frontends, and Technical SEO." />
+  <meta name="twitter:image" content="https://yogeshbanger.vercel.app/icon.png" />
+
+  <!-- Google Analytics (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-RY4K62ETKR"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
-
     gtag('config', 'G-RY4K62ETKR');
   </script>
 </head>
 
 <body>
+  <!-- 
+    =======================================================================
+    HIDDEN SEO / NOSCRIPT FALLBACK
+    This section is only visible to bots or users with JavaScript disabled.
+    It feeds raw keyword-rich HTML directly to search engine algorithms.
+    =======================================================================
+  -->
+  <noscript>
+    <div style="padding: 20px; font-family: sans-serif; background-color: #0f172a; color: white;">
+      <h1>Yogesh Banger - MERN Stack Developer in Kaithal</h1>
+      <p>
+        You need to enable JavaScript to view this application correctly. 
+      </p>
+      <p>
+        <strong>Yogesh Banger</strong> is an elite Full Stack Web Developer and IT Trainer based in Kaithal, Haryana. 
+        He specializes in building high-performance architectures using the MERN Stack (MongoDB, Express.js, React.js, Node.js), 
+        Tailwind CSS, and WordPress. In addition to coding, Yogesh excels in Technical Search Engine Optimization (SEO) 
+        and Digital Marketing (SMO).
+      </p>
+      <ul>
+        <li><a href="https://github.com/bangerjaat111-stack">Visit Yogesh Banger on GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/yogesh-banger-9a9695366">Connect with Yogesh on LinkedIn</a></li>
+        <li><a href="mailto:yogeshbanger111@gmail.com">Contact via Email</a></li>
+      </ul>
+    </div>
+  </noscript>
+
+  <!-- React Root App -->
   <div id="root"></div>
 
+  <!-- Vite App Entry Point -->
   <script type="module" src="/src/main.jsx"></script>
 </body>
-
 </html>

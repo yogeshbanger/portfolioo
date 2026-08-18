@@ -1,219 +1,276 @@
-import { useEffect } from "react";
-import { motion } from "framer-motion";
+import React from "react";
+import { Helmet } from "react-helmet-async";
 import {
-  FaBootstrap,
-  FaCss3Alt,
-  FaFigma,
-  FaGitAlt,
-  FaGithub,
   FaHtml5,
+  FaCss3Alt,
   FaJs,
-  FaNodeJs,
   FaReact,
+  FaNodeJs,
+  FaGithub,
+  FaGitAlt,
   FaWordpress,
 } from "react-icons/fa";
 import {
-  
-  SiCloudinary,
+  SiTailwindcss,
   SiExpress,
-  SiFramer,
-  SiJsonwebtokens,
   SiMongodb,
   SiPostman,
-  SiReactrouter,
-  SiTailwindcss,
+  SiFramer,
   SiVite,
 } from "react-icons/si";
-import { MdOutlineAnalytics, MdOutlineSearch } from "react-icons/md";
+import { motion } from "framer-motion";
 
-const skillGroups = [
-  {
-    title: "Frontend Development",
-    description: "Building responsive, accessible and interactive interfaces.",
-    skills: [
-      { name: "HTML5", icon: FaHtml5, level: 90 },
-      { name: "CSS3", icon: FaCss3Alt, level: 86 },
-      { name: "JavaScript", icon: FaJs, level: 82 },
-      { name: "React", icon: FaReact, level: 84 },
-      { name: "Tailwind CSS", icon: SiTailwindcss, level: 88 },
-      { name: "React Router", icon: SiReactrouter, level: 82 },
-      { name: "Framer Motion", icon: SiFramer, level: 78 },
-      { name: "Bootstrap", icon: FaBootstrap, level: 74 },
-      { name: "Vite", icon: SiVite, level: 82 },
-    ],
-  },
-  {
-    title: "Backend and Database",
-    description: "Developing APIs, authentication flows and database-powered features.",
-    skills: [
-      { name: "Node.js", icon: FaNodeJs, level: 80 },
-      { name: "Express.js", icon: SiExpress, level: 80 },
-      { name: "MongoDB", icon: SiMongodb, level: 78 },
-      { name: "REST API", icon: SiPostman, level: 82 },
-      { name: "JWT Auth", icon: SiJsonwebtokens, level: 76 },
-      { name: "Cloudinary", icon: SiCloudinary, level: 70 },
-    ],
-  },
-  {
-    title: "Tools and Workflow",
-    description: "Using practical tools to design, test, version and ship projects.",
-    skills: [
-      { name: "Git", icon: FaGitAlt, level: 78 },
-      { name: "GitHub", icon: FaGithub, level: 82 },
-      { name: "Postman", icon: SiPostman, level: 80 },
-      { name: "Figma", icon: FaFigma, level: 68 },
-    
-      { name: "WordPress", icon: FaWordpress, level: 82 },
-    ],
-  },
-  {
-    title: "SEO and Marketing",
-    description: "Improving visibility, search structure and user-focused content.",
-    skills: [
-      { name: "On-page SEO", icon: MdOutlineSearch, level: 80 },
-      { name: "Technical SEO", icon: MdOutlineSearch, level: 74 },
-      { name: "Keyword Research", icon: MdOutlineAnalytics, level: 78 },
-      { name: "Digital Marketing", icon: MdOutlineAnalytics, level: 75 },
-    ],
-  },
+const skills = [
+  { name: "HTML5", icon: FaHtml5, color: "#E34F26" },
+  { name: "CSS3", icon: FaCss3Alt, color: "#1572B6" },
+  { name: "JavaScript", icon: FaJs, color: "#F7DF1E" },
+  { name: "React", icon: FaReact, color: "#61DAFB" },
+  { name: "Tailwind CSS", icon: SiTailwindcss, color: "#06B6D4" },
+  { name: "Node.js", icon: FaNodeJs, color: "#339933" },
+  { name: "Express.js", icon: SiExpress, color: "#FFFFFF" },
+  { name: "MongoDB", icon: SiMongodb, color: "#47A248" },
+  { name: "Git", icon: FaGitAlt, color: "#F05032" },
+  { name: "GitHub", icon: FaGithub, color: "#FFFFFF" },
+  { name: "Postman", icon: SiPostman, color: "#FF6C37" },
+  { name: "Framer Motion", icon: SiFramer, color: "#0055FF" },
+  { name: "Vite", icon: SiVite, color: "#646CFF" },
+  { name: "WordPress", icon: FaWordpress, color: "#21759B" },
 ];
 
-function usePageSEO() {
-  useEffect(() => {
-    const title = "Skills | Yogesh Banger - React and MERN Developer";
-    const description =
-      "Explore Yogesh Banger's frontend, backend, database, WordPress, SEO, design and development skills.";
+// Animation variants
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.08,
+    },
+  },
+};
 
-    document.title = title;
-
-    const setMeta = (selector, attributes) => {
-      let element = document.head.querySelector(selector);
-      if (!element) {
-        element = document.createElement("meta");
-        document.head.appendChild(element);
-      }
-      Object.entries(attributes).forEach(([key, value]) => element.setAttribute(key, value));
-    };
-
-    setMeta('meta[name="description"]', { name: "description", content: description });
-    setMeta('meta[name="robots"]', { name: "robots", content: "index, follow" });
-    setMeta('meta[property="og:title"]', { property: "og:title", content: title });
-    setMeta('meta[property="og:description"]', {
-      property: "og:description",
-      content: description,
-    });
-
-    let canonical = document.head.querySelector('link[rel="canonical"]');
-    if (!canonical) {
-      canonical = document.createElement("link");
-      canonical.rel = "canonical";
-      document.head.appendChild(canonical);
-    }
-    canonical.href = `${window.location.origin}/skills`;
-  }, []);
-}
+const cardVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      type: "spring",
+      stiffness: 300,
+      damping: 20,
+    },
+  },
+};
 
 export default function Skills() {
-  usePageSEO();
+  // Generate JSON-LD Schema identifying you as an entity with specific skills
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Yogesh Banger",
+    "jobTitle": "MERN Stack Developer",
+    "url": "https://yogeshbanger.vercel.app/skills",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Kaithal",
+      "addressRegion": "Haryana",
+      "addressCountry": "IN"
+    },
+    "knowsAbout": skills.map(skill => skill.name)
+  };
 
   return (
-    <main className="min-h-screen bg-slate-950 px-5 pb-24 pt-28 text-white sm:px-8 lg:px-12">
-      <div className="mx-auto max-w-7xl">
-        <motion.header
-          initial={{ opacity: 0, y: 25 }}
+    <section className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 px-5 py-24 text-white overflow-hidden relative">
+      <Helmet>
+        {/* Core SEO Meta Tags */}
+        <title>Technical Skills | Yogesh Banger - MERN Stack Developer</title>
+        <meta
+          name="description"
+          content="Explore the technical arsenal of Yogesh Banger. Highly proficient in MERN Stack (MongoDB, Express, React, Node.js), JavaScript, Tailwind CSS, and WordPress."
+        />
+        <meta
+          name="keywords"
+          content="Yogesh Banger Skills, MERN Stack Developer, React Developer Kaithal, Node.js Backend, MongoDB Database, JavaScript Developer, Frontend Engineer Haryana"
+        />
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+        <link rel="canonical" href="https://yogeshbanger.vercel.app/skills" />
+
+        {/* Open Graph (Social Media Optimization) */}
+        <meta property="og:title" content="Technical Skills | Yogesh Banger - Full Stack Developer" />
+        <meta
+          property="og:description"
+          content="A comprehensive look at the tools and technologies I use to build modern, scalable web applications."
+        />
+        <meta property="og:image" content="https://yogeshbanger.vercel.app/icon.png" />
+        <meta property="og:url" content="https://yogeshbanger.vercel.app/skills" />
+        <meta property="og:type" content="profile" />
+
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Technical Skills | Yogesh Banger" />
+        <meta name="twitter:description" content="Discover my tech stack: React, Node.js, Express, MongoDB, and more." />
+        <meta name="twitter:image" content="https://yogeshbanger.vercel.app/icon.png" />
+
+        {/* Dynamic JSON-LD Structured Data */}
+        <script type="application/ld+json">
+          {JSON.stringify(structuredData)}
+        </script>
+      </Helmet>
+
+      {/* Animated background orbs - Fixed Arbitrary Values for Tailwind */}
+      <div className="absolute top-[200px] right-[200px] w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-3xl pointer-events-none animate-pulse" aria-hidden="true" />
+      <div className="absolute bottom-[200px] left-[200px] w-[500px] h-[500px] bg-blue-500/10 rounded-full blur-3xl pointer-events-none animate-pulse delay-1000" aria-hidden="true" />
+
+      <div className="relative z-10 mx-auto max-w-7xl">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="mx-auto max-w-4xl text-center"
+          className="mb-16 text-center"
         >
-          <p className="text-sm font-bold uppercase tracking-[0.3em] text-cyan-300">
-            My capabilities
-          </p>
-          <h1 className="mt-4 text-4xl font-black sm:text-6xl">
-            Skills that help me build
-            <span className="block bg-gradient-to-r from-cyan-300 to-violet-400 bg-clip-text text-transparent">
-              complete web experiences
+          <motion.div
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
+            className="inline-block mb-4 px-6 py-2 rounded-full border border-cyan-400/30 bg-cyan-400/10 backdrop-blur-sm"
+          >
+            <span className="text-cyan-300 text-xs font-semibold uppercase tracking-widest">
+              ⚡ My Arsenal
             </span>
-          </h1>
-          <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-slate-400">
-            I combine development, design and SEO knowledge to create websites that are
-            responsive, functional, maintainable and ready to grow.
-          </p>
-        </motion.header>
+          </motion.div>
 
-        <div className="mt-16 space-y-8">
-          {skillGroups.map((group, groupIndex) => (
-            <motion.section
-              key={group.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.15 }}
-              transition={{ duration: 0.55, delay: groupIndex * 0.05 }}
-              className="overflow-hidden rounded-[2rem] border border-white/10 bg-slate-900/60"
-            >
-              <div className="border-b border-white/10 px-6 py-7 sm:px-8">
-                <div className="flex flex-col justify-between gap-3 md:flex-row md:items-end">
-                  <div>
-                    <p className="text-xs font-bold uppercase tracking-[0.25em] text-violet-300">
-                      Category {String(groupIndex + 1).padStart(2, "0")}
-                    </p>
-                    <h2 className="mt-2 text-2xl font-black sm:text-3xl">{group.title}</h2>
-                  </div>
-                  <p className="max-w-xl leading-7 text-slate-400">{group.description}</p>
-                </div>
-              </div>
+          <motion.h1
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3 }}
+            className="text-4xl md:text-6xl font-extrabold tracking-tight"
+          >
+            <span className="bg-gradient-to-r from-cyan-300 via-cyan-200 to-blue-300 bg-clip-text text-transparent">
+              Technologies I
+            </span>
+            <br className="sm:hidden" />
+            <span className="bg-gradient-to-r from-blue-300 via-cyan-200 to-cyan-300 bg-clip-text text-transparent ml-2 sm:ml-0">
+              Work With
+            </span>
+          </motion.h1>
 
-              <div className="grid gap-px bg-white/10 sm:grid-cols-2 lg:grid-cols-3">
-                {group.skills.map(({ name, icon: Icon, level }, index) => (
-                  <motion.article
-                    key={name}
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: index * 0.04 }}
-                    className="group bg-slate-950/90 p-6 transition hover:bg-slate-900"
-                  >
-                    <div className="flex items-center justify-between gap-4">
-                      <div className="flex items-center gap-4">
-                        <div className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-cyan-400/10 text-2xl text-cyan-300 transition group-hover:scale-110">
-                          <Icon />
-                        </div>
-                        <div>
-                          <h3 className="font-bold text-white">{name}</h3>
-                          <p className="mt-1 text-xs text-slate-500">Practical knowledge</p>
-                        </div>
-                      </div>
-                      <span className="text-sm font-black text-slate-400">{level}%</span>
-                    </div>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.4 }}
+            className="mx-auto mt-5 max-w-2xl text-slate-300 text-base md:text-lg font-light leading-relaxed"
+          >
+            Modern tools for building responsive, high-performance web
+            applications that users love.
+          </motion.p>
 
-                    <div className="mt-5 h-2 overflow-hidden rounded-full bg-white/5">
-                      <motion.div
-                        initial={{ width: 0 }}
-                        whileInView={{ width: `${level}%` }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.9, delay: 0.1 }}
-                        className="h-full rounded-full bg-gradient-to-r from-cyan-400 to-violet-500"
-                      />
-                    </div>
-                  </motion.article>
-                ))}
-              </div>
-            </motion.section>
-          ))}
-        </div>
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
+            className="mt-6 flex flex-wrap justify-center gap-3"
+          >
+            <span className="flex items-center gap-2 bg-slate-800/60 px-4 py-2 rounded-full border border-white/5 text-xs text-slate-400 cursor-default">
+              <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" aria-hidden="true" />
+              {skills.length} Technologies
+            </span>
+            <span className="flex items-center gap-2 bg-slate-800/60 px-4 py-2 rounded-full border border-white/5 text-xs text-slate-400 cursor-default">
+              <span className="w-2 h-2 rounded-full bg-cyan-400" aria-hidden="true" />
+              Always Learning
+            </span>
+          </motion.div>
+        </motion.div>
 
-        <motion.section
-          initial={{ opacity: 0, y: 25 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mt-16 rounded-[2rem] border border-cyan-300/20 bg-gradient-to-r from-cyan-400/10 to-violet-500/10 px-6 py-10 text-center sm:px-10"
+        {/* Skills Grid - Converted to semantic unordered list */}
+        <motion.ul
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5 md:gap-6 m-0 p-0 list-none"
         >
-          <h2 className="text-3xl font-black">Currently improving every day</h2>
-          <p className="mx-auto mt-4 max-w-3xl leading-8 text-slate-400">
-            These percentages represent my current confidence, not a finish line. I keep
-            strengthening each skill through new projects, debugging and regular practice.
+          {skills.map(({ name, icon: Icon, color }) => (
+            <motion.li
+              key={name}
+              variants={cardVariants}
+              whileHover={{
+                y: -10,
+                scale: 1.03,
+                transition: { type: "spring", stiffness: 400, damping: 15 },
+              }}
+              className="group relative flex flex-col items-center justify-center rounded-2xl bg-slate-900/70 backdrop-blur-sm p-6 border border-white/5 hover:border-cyan-400/50 transition-all duration-300 shadow-lg hover:shadow-cyan-500/10 cursor-default"
+            >
+              {/* Glow effect on hover */}
+              <div 
+                className="absolute inset-0 rounded-2xl bg-gradient-to-br from-cyan-500/0 to-cyan-500/0 group-hover:from-cyan-500/5 group-hover:to-blue-500/5 transition-all duration-500" 
+                aria-hidden="true"
+              />
+
+              <div className="relative z-10 flex flex-col items-center">
+                <motion.div
+                  whileHover={{ rotate: [0, -5, 5, -5, 0], scale: 1.1 }}
+                  transition={{ duration: 0.5 }}
+                  className="mb-4 text-5xl"
+                  style={{ color }}
+                >
+                  {/* Accessibility hidden on decorative icons */}
+                  <Icon className="drop-shadow-lg" aria-hidden="true" />
+                </motion.div>
+
+                <h3 className="text-sm font-semibold text-slate-200 group-hover:text-white transition-colors">
+                  {name}
+                </h3>
+
+                {/* Decorative line */}
+                <div 
+                  className="mt-2 w-8 h-0.5 rounded-full bg-gradient-to-r from-cyan-400/0 via-cyan-400/50 to-cyan-400/0 group-hover:via-cyan-400/80 transition-all duration-500" 
+                  aria-hidden="true" 
+                />
+              </div>
+            </motion.li>
+          ))}
+        </motion.ul>
+
+        {/* Footer note */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.8 }}
+          className="mt-16 text-center"
+        >
+          <p className="text-sm text-slate-500">
+            <span className="inline-block mr-2 animate-pulse" aria-hidden="true">✦</span>
+            Hover over any skill to see the magic
           </p>
-        </motion.section>
+        </motion.div>
       </div>
-    </main>
+
+      {/* --- HIDDEN SEO SECTION FOR CRAWLERS & SCREEN READERS --- */}
+      <section className="sr-only" aria-hidden="false">
+        <h2>Expert MERN Stack and Frontend Technologies</h2>
+        <p>
+          Yogesh Banger is a highly skilled MERN Stack Developer based in Kaithal, Haryana. 
+          His core technical expertise encompasses the entire JavaScript ecosystem, allowing him 
+          to engineer robust, scalable web architectures from front to back.
+        </p>
+        <p>
+          <strong>Frontend Development:</strong> Mastery in HTML5, CSS3, JavaScript (ES6+), and React.js. 
+          Specialized in crafting pixel-perfect, responsive user interfaces utilizing Tailwind CSS and 
+          animating complex interactions with Framer Motion. Uses Vite for lightning-fast build tooling.
+        </p>
+        <p>
+          <strong>Backend Engineering & Databases:</strong> Architecting secure RESTful APIs using Node.js 
+          and Express.js. Managing NoSQL data models, schemas, and aggregations with MongoDB.
+        </p>
+        <p>
+          <strong>Version Control & Tools:</strong> Streamlining deployment and collaboration pipelines 
+          using Git and GitHub. Testing and validating secure API endpoints using Postman.
+        </p>
+        <p>
+          <strong>CMS & Marketing:</strong> In addition to full-stack development, Yogesh possesses 
+          deep experience in WordPress development, digital marketing funnels, and Technical Search Engine 
+          Optimization (SEO), bridging the gap between raw code and organic business growth.
+        </p>
+      </section>
+    </section>
   );
 }

@@ -1,6 +1,6 @@
 import React, { memo } from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import {Helmet} from 'react-helmet-async'
+import { Helmet } from 'react-helmet-async';
 import {
   RiArrowRightUpLine,
   RiBookOpenFill,
@@ -13,20 +13,20 @@ import {
 
 const EXPERTISE = [
   {
-    name: "Full Stack MERN",
+    name: "MERN Stack Developer",
     description: "React • Node • MongoDB",
     icon: RiCodeSSlashFill,
     gradient: "from-cyan-400 to-blue-500",
   },
   {
     name: "React Development",
-    description: "Responsive React Websites",
+    description: "Responsive UI & APIs",
     icon: RiWindowLine,
     gradient: "from-blue-400 to-indigo-500",
   },
   {
     name: "Cyber Security",
-    description: "Secure web practices",
+    description: "Secure coding practices",
     icon: RiShieldFlashLine,
     gradient: "from-indigo-400 to-purple-500",
   },
@@ -42,10 +42,7 @@ const CONTAINER_VARIANTS = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: {
-      delayChildren: 0.15,
-      staggerChildren: 0.1,
-    },
+    transition: { delayChildren: 0.15, staggerChildren: 0.1 },
   },
 };
 
@@ -54,12 +51,7 @@ const ITEM_VARIANTS = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: {
-      type: "spring",
-      stiffness: 220,
-      damping: 24,
-      mass: 0.8,
-    },
+    transition: { type: "spring", stiffness: 220, damping: 24, mass: 0.8 },
   },
 };
 
@@ -69,29 +61,23 @@ const IMAGE_VARIANTS = {
     opacity: 1,
     scale: 1,
     rotateY: 0,
-    transition: {
-      type: "spring",
-      stiffness: 120,
-      damping: 18,
-      duration: 0.8,
-    },
+    transition: { type: "spring", stiffness: 120, damping: 18, duration: 0.8 },
   },
 };
 
 const Hero = ({
   profileImage = "/images/yogesh-profile.webp",
   phoneNumber = "+919992540404",
-  contactHref = "#contact",
 }) => {
   const shouldReduceMotion = useReducedMotion();
 
   const backgroundAnimation = shouldReduceMotion
     ? undefined
     : {
-      scale: [1, 1.12, 1],
-      x: [0, 28, 0],
-      opacity: [0.2, 0.34, 0.2],
-    };
+        scale: [1, 1.12, 1],
+        x: [0, 28, 0],
+        opacity: [0.2, 0.34, 0.2],
+      };
 
   return (
     <section
@@ -99,142 +85,123 @@ const Hero = ({
       aria-labelledby="hero-title"
       className="relative isolate flex min-h-screen items-center overflow-hidden bg-slate-950 px-4 pb-16 pt-28 text-slate-300 sm:px-6 lg:px-8"
     >
-      {/* Lightweight decorative background */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-20 overflow-hidden"
-      >
-        <Helmet>
-          <title>Yogesh Banger | Full Stack MERN Developer Portfolio</title>
+      <Helmet>
+        <title>Yogesh Banger | Top MERN Stack & React Developer in Kaithal</title>
         <meta name="google-site-verification" content="b_w75oGvnRYWx0-SUmybiSkyb2c4iTGSYL57nw6-0Bs" />
-          <meta
-            name="description"
-            content="Yogesh Banger is a Full Stack MERN Developer skilled in React.js, Node.js, Express.js, MongoDB, JavaScript, Tailwind CSS, SEO and modern web development."
-          />
+        <meta
+          name="description"
+          content="Hire Yogesh Banger, a versatile MERN Stack Developer, Digital Marketer, and Cyber Security enthusiast based in Kaithal. Specializing in React, Tailwind CSS, and secure Node.js APIs."
+        />
+        <meta name="author" content="Yogesh Banger" />
+        <meta name="robots" content="index, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 
-          <meta
-            name="keywords"
-            content="Yogesh Banger, MERN Developer, React Developer, Node.js Developer, MongoDB, Express.js, JavaScript, Full Stack Developer, Portfolio, SEO"
-          />
+        {/* Open Graph / Social Media Optimization (SMO) */}
+        <meta property="og:title" content="Yogesh Banger | MERN Stack Developer" />
+        <meta property="og:description" content="Explore the portfolio of Yogesh Banger. Building high-performance, responsive web applications with modern technologies." />
+        <meta property="og:image" content="https://yogeshbanger.vercel.app/images/yogesh-profile.webp" />
+        <meta property="og:url" content="https://yogeshbanger.vercel.app/" />
+        <meta property="og:type" content="profile" />
+        <meta property="profile:first_name" content="Yogesh" />
+        <meta property="profile:last_name" content="Banger" />
 
-          <meta name="author" content="Yogesh Banger" />
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Yogesh Banger | MERN Stack Developer" />
+        <meta name="twitter:description" content="Freelance Web Developer & Cyber Security enthusiast specializing in React.js and Node.js." />
+        <meta name="twitter:image" content="https://yogeshbanger.vercel.app/images/yogesh-profile.webp" />
 
-          <meta name="robots" content="index,follow" />
+        {/* Canonical URL */}
+        <link rel="canonical" href="https://yogeshbanger.vercel.app/" />
 
-          {/* Open Graph */}
-          <meta
-            property="og:title"
-            content="Yogesh Banger | Full Stack MERN Developer"
-          />
+        {/* Advanced JSON-LD Structured Data */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": "Yogesh Banger",
+            "jobTitle": "MERN Stack Developer",
+            "url": "https://yogeshbanger.vercel.app/",
+            "image": "https://yogeshbanger.vercel.app/images/yogesh-profile.webp",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Kaithal",
+              "addressRegion": "Haryana",
+              "addressCountry": "IN"
+            },
+            "alumniOf": [
+              {
+                "@type": "CollegeOrUniversity",
+                "name": "RKSD College"
+              },
+              {
+                "@type": "EducationalOrganization",
+                "name": "Hartron"
+              }
+            ],
+            "knowsAbout": [
+              "MERN Stack",
+              "React.js",
+              "Node.js",
+              "MongoDB",
+              "Tailwind CSS",
+              "Axios",
+              "Cyber Security",
+              "Search Engine Optimization (SEO)",
+              "Digital Marketing",
+              "Social Media Optimization (SMO)"
+            ],
+            "sameAs": [
+              "https://github.com/bangerjaat111-stack",
+              "https://www.linkedin.com/in/yogesh-banger/",
+              "https://www.instagram.com/yogesh_banger_111/"
+            ]
+          })}
+        </script>
+      </Helmet>
 
-          <meta
-            property="og:description"
-            content="Portfolio of Yogesh Banger showcasing MERN Stack projects, React development, SEO and modern web applications."
-          />
-
-          <meta
-            property="og:image"
-            content="https://yogeshbanger.vercel.app/images/yogesh-profile.webp"
-          />
-
-          <meta
-            property="og:url"
-            content="https://yogeshbanger.vercel.app/"
-          />
-
-          <meta property="og:type" content="website" />
-
-          {/* Twitter */}
-          <meta
-            name="twitter:card"
-            content="summary_large_image"
-          />
-
-          <meta
-            name="twitter:title"
-            content="Yogesh Banger | MERN Stack Developer"
-          />
-
-          <meta
-            name="twitter:description"
-            content="Full Stack MERN Developer Portfolio of Yogesh Banger."
-          />
-          <script type="application/ld+json">
-            {`
-            {
-              "@context":"https://schema.org",
-              "@type":"Person",
-              "name":"Yogesh Banger",
-              "url":"https://yogeshbanger.vercel.app/",
-              "image":"https://yogeshbanger.vercel.app/images/yogesh-profile.webp",
-              "jobTitle":"Full Stack MERN Developer",
-              "sameAs":[
-                "https://github.com/YOUR_GITHUB",
-                "https://linkedin.com/in/YOUR_LINKEDIN",
-                "https://instagram.com/YOUR_INSTAGRAM"
-              ]
-            }
-            `}
-          </script>
-
-          <meta
-            name="twitter:image"
-            content="https://yogeshbanger.vercel.app/images/yogesh-profile.webp"
-          />
-
-          {/* Canonical URL */}
-          <link
-            rel="canonical"
-            href="https://yogeshbanger.vercel.app/"
-          />
-        </Helmet>
+      {/* Lightweight decorative background */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-20 overflow-hidden">
         <motion.div
           animate={backgroundAnimation}
           transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
           className="absolute -left-28 top-16 h-72 w-72 rounded-full bg-cyan-500/20 blur-[90px] sm:h-115 sm:w-115 sm:blur-[130px]"
         />
-
         <motion.div
           animate={
             shouldReduceMotion
               ? undefined
               : {
-                scale: [1, 1.18, 1],
-                y: [0, -30, 0],
-                opacity: [0.18, 0.3, 0.18],
-              }
+                  scale: [1, 1.18, 1],
+                  y: [0, -30, 0],
+                  opacity: [0.18, 0.3, 0.18],
+                }
           }
           transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
           className="absolute -bottom-32 right-8rem h-80 w-80 rounded-full bg-purple-600/20 blur-[100px] sm:h-520px sm:w-520px sm:blur-[140px]"
         />
-
         <div className="absolute inset-0 bg-[linear-gradient(rgba(148,163,184,0.035)_1px,transparent_1px),linear-gradient(90deg,rgba(148,163,184,0.035)_1px,transparent_1px)] bg-[size:42px_42px] [mask-image:linear-gradient(to_bottom,black,transparent_88%)]" />
-        <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-cyan-400/70 to-transparent" />
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-400/70 to-transparent" />
       </div>
 
       <div className="mx-auto grid w-full max-w-7xl items-center gap-14 lg:grid-cols-[0.95fr_1.05fr] lg:gap-20">
+        
         {/* Profile visual */}
         <div className="order-2 flex justify-center lg:order-1 lg:-mt-57">
           <motion.div
             variants={IMAGE_VARIANTS}
             initial={shouldReduceMotion ? false : "hidden"}
             animate="visible"
-            whileHover={
-              shouldReduceMotion
-                ? undefined
-                : { rotateX: 4, rotateY: -4, scale: 1.015 }
-            }
+            whileHover={shouldReduceMotion ? undefined : { rotateX: 4, rotateY: -4, scale: 1.015 }}
             style={{ perspective: 1400, transformStyle: "preserve-3d" }}
             className="group relative aspect-square w-full max-w-85 will-change-transform sm:max-w-107"
           >
-            <div className="absolute -inset-5 rounded-full bg-linear-to-tr from-cyan-500/70 via-blue-500/50 to-purple-600/70 opacity-40 blur-2xl transition-opacity duration-500 group-hover:opacity-70" />
-
-            <div className="absolute m inset-1px rounded-full bg-linear-to-tr from-cyan-400 via-blue-500 to-purple-600  shadow-[0_0_60px_rgba(34,211,238,0.18)]">
+            <div className="absolute -inset-5 rounded-full bg-gradient-to-tr from-cyan-500/70 via-blue-500/50 to-purple-600/70 opacity-40 blur-2xl transition-opacity duration-500 group-hover:opacity-70" />
+            <div className="absolute inset-1px rounded-full bg-gradient-to-tr from-cyan-400 via-blue-500 to-purple-600 shadow-[0_0_60px_rgba(34,211,238,0.18)]">
               <div className="relative h-full w-full rounded-full border border-white/10 bg-slate-900/80 p-3 backdrop-blur-xl">
                 <div className="relative h-full w-full overflow-hidden rounded-full bg-slate-900 ring-1 ring-white/10">
                   <img
                     src={profileImage}
-                    alt="Yogesh Banger - MERN Stack Developer Portfolio"
+                    alt="Yogesh Banger - MERN Stack Developer in Kaithal"
                     width="430"
                     height="430"
                     loading="eager"
@@ -242,8 +209,7 @@ const Hero = ({
                     fetchPriority="high"
                     className="h-full w-full object-cover object-center grayscale transition duration-700 ease-out group-hover:scale-[1.035] group-hover:grayscale-0"
                   />
-
-                  <div className="absolute inset-0 bg-linear-to-t from-slate-950/60 via-transparent to-cyan-400/10" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-cyan-400/10" />
                   <div className="absolute inset-x-8 bottom-7 flex items-center justify-between rounded-2xl border border-white/10 bg-slate-950/65 px-4 py-3 backdrop-blur-md">
                     <div>
                       <p className="text-[10px] font-bold uppercase tracking-[0.24em] text-cyan-300">
@@ -276,58 +242,40 @@ const Hero = ({
             className="inline-flex w-fit items-center gap-2 rounded-full border border-cyan-400/20 bg-cyan-400/[0.06] px-4 py-2 text-xs font-bold uppercase tracking-[0.2em] text-cyan-300"
           >
             <span className="h-1.5 w-1.5 rounded-full bg-cyan-300 shadow-[0_0_12px_rgba(103,232,249,0.9)]" />
-            MERN Stack Developer • React • Node.js • MongoDB
+            MERN Developer • React • Node.js
           </motion.div>
 
           <motion.div variants={ITEM_VARIANTS}>
             <p className="mb-3 text-sm font-bold uppercase tracking-[0.28em] text-slate-500">
               Hello, I am
             </p>
-            <h1
-              id="hero-title"
-              className="text-center lg:text-left"
-            >
+            <h1 id="hero-title" className="text-center lg:text-left">
               <span className="block text-5xl font-black text-white sm:text-6xl lg:text-7xl">
                 Yogesh
               </span>
-
-              <span className="block bg-linear-to-r from-cyan-400 via-blue-500 to-purple-500 bg-clip-text text-5xl font-black text-transparent sm:text-6xl lg:text-7xl">
+              <span className="block bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 bg-clip-text text-5xl font-black text-transparent sm:text-6xl lg:text-7xl">
                 Banger
               </span>
-
               <span className="mt-4 block text-xl font-semibold tracking-wide text-slate-300 sm:text-2xl">
-                Full Stack MERN Developer
+                MERN Stack Developer
               </span>
             </h1>
           </motion.div>
 
-          <motion.div
-            variants={ITEM_VARIANTS}
-            className="max-w-2xl"
-          >
-
-
+          <motion.div variants={ITEM_VARIANTS} className="max-w-2xl">
             <p className="text-base leading-8 text-slate-400">
               I am a <strong>MERN Stack Developer</strong> and BCA student at
-              <strong> RKSD College.</strong>
-
-              I specialize in building fast, responsive and SEO-friendly web
+              <strong> RKSD College. </strong>
+              I specialize in building fast, highly optimized web
               applications using
-              <strong>
-                {" "}
-                React.js, Node.js, Express.js, MongoDB,
-                JavaScript and Tailwind CSS.
-              </strong>
-
-              I also have a growing interest in
-              <strong> Cyber Security</strong>,
-              focusing on secure coding practices and modern web technologies.
+              <strong> React.js, Tailwind CSS, Node.js, and MongoDB. </strong>
+              Beyond writing clean code, I focus heavily on 
+              <strong> Digital Marketing, SEO, </strong> and 
+              <strong> Cyber Security </strong> to ensure projects are not just functional, but scalable, discoverable, and secure.
             </p>
           </motion.div>
-          <motion.div
-            variants={ITEM_VARIANTS}
-            className="grid gap-3 sm:grid-cols-2"
-          >
+
+          <motion.div variants={ITEM_VARIANTS} className="grid gap-3 sm:grid-cols-2">
             {EXPERTISE.map(({ name, description, icon: Icon, gradient }) => (
               <motion.article
                 key={name}
@@ -337,7 +285,7 @@ const Hero = ({
               >
                 <div
                   aria-hidden="true"
-                  className={`absolute inset-0 bg-linear-to-r ${gradient} opacity-0 transition-opacity duration-300 group-hover:opacity-[0.07]`}
+                  className={`absolute inset-0 bg-gradient-to-r ${gradient} opacity-0 transition-opacity duration-300 group-hover:opacity-[0.07]`}
                 />
                 <div className="relative flex items-center gap-4">
                   <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl border border-white/0.06 bg-slate-800/80 text-cyan-300 transition duration-300 group-hover:scale-105 group-hover:border-cyan-400/20 group-hover:bg-cyan-400/10">
@@ -362,6 +310,7 @@ const Hero = ({
               href={'https://mail.google.com/mail/?view=cm&fs=1&to=yogeshbanger111@gmail.com&su=Portfolio%20Contact'}
               aria-label="Send email to Yogesh Banger"
               target="_blank"
+              rel="noopener noreferrer"
               whileHover={shouldReduceMotion ? undefined : { y: -2, scale: 1.015 }}
               whileTap={shouldReduceMotion ? undefined : { scale: 0.98 }}
               className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-600 px-6 py-3 text-sm font-extrabold text-white shadow-[0_14px_40px_-18px_rgba(59,130,246,0.9)] transition-shadow hover:shadow-[0_18px_50px_-18px_rgba(168,85,247,0.9)] focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
@@ -387,17 +336,17 @@ const Hero = ({
             </a>
           </motion.div>
         </motion.div>
-
       </div>
-      {/* Hidden SEO Content */}
-      <section className="sr-only">
-        <h2>About Yogesh Banger</h2>
 
+      {/* Hidden SEO Content (Crawled by Google Bots & Screen Readers) */}
+      <section className="sr-only">
+        <h2>About Yogesh Banger - Best MERN Stack Developer in Kaithal</h2>
         <p>
-          Yogesh Banger is a Full Stack MERN Developer from India.
-          He develops React.js, Node.js, Express.js and MongoDB
-          applications, responsive websites, portfolio websites,
-          REST APIs and modern web solutions.
+          Yogesh Banger is a top MERN Stack Developer and Digital Marketer based in Kaithal, India.
+          Currently pursuing BCA at RKSD College, he engineers high-performance web solutions using React.js, 
+          Tailwind CSS, Node.js, Express.js, and MongoDB. He possesses strong foundations in Cyber Security 
+          and Social Media Optimization (SMO), offering end-to-end web architectures, RESTful APIs, and 
+          responsive portfolio websites.
         </p>
       </section>
     </section>

@@ -13,25 +13,25 @@ const timeline = [
   {
     year: "Present",
     title: "Bachelor of Computer Applications",
-    subtitle: "BCA Student",
+    subtitle: "RKSD College",
     description:
-      "Building a strong foundation in programming, databases, computer networks, software development and web technologies.",
+      "Building a robust foundation in Data Structures, Computer Graphics, networking, and core software engineering principles to architect scalable applications.",
     icon: FaUserGraduate,
   },
   {
     year: "Learning",
-    title: "MERN Stack Development",
-    subtitle: "React, Node.js, Express and MongoDB",
+    title: "MERN Stack & Cyber Security",
+    subtitle: "React, Node.js, Express, MongoDB & Security",
     description:
-      "Creating complete web applications with responsive interfaces, REST APIs, authentication, validation and database integration.",
+      "Creating highly optimized web applications with secure REST APIs, authentication, and database integrations while implementing secure coding practices learned through specialized training.",
     icon: FaCode,
   },
   {
     year: "Growing",
-    title: "SEO and Digital Marketing",
-    subtitle: "Search-focused web development",
+    title: "SEO & Digital Marketing",
+    subtitle: "Search-Focused Web Architectures",
     description:
-      "Learning technical SEO, content structure, metadata, performance, search intent and digital marketing fundamentals.",
+      "Mastering technical SEO, keyword clustering, search intent, and Social Media Optimization (SMO) to ensure the applications I build dominate search rankings.",
     icon: FaRocket,
   },
 ];
@@ -40,117 +40,115 @@ const values = [
   {
     icon: FaLightbulb,
     title: "Curiosity",
-    text: "I enjoy understanding how systems work and continuously experiment with better ways to solve problems.",
+    text: "I enjoy dissecting how complex systems work, continuously experimenting with new architectures to solve problems efficiently.",
   },
   {
     icon: FaCode,
-    title: "Clean execution",
-    text: "I focus on responsive layouts, readable code, reusable logic and thoughtful user experiences.",
+    title: "Clean Execution",
+    text: "I focus on responsive layouts, readable code, reusable logic, and flawless user experiences that convert.",
   },
   {
     icon: FaBookOpen,
-    title: "Continuous learning",
-    text: "Technology changes quickly, so I keep improving through projects, documentation and hands-on practice.",
+    title: "Continuous Learning",
+    text: "Technology evolves rapidly. I stay ahead by diving into documentation, building real-world projects, and embracing cross-disciplinary skills.",
   },
 ];
 
-
 export default function About() {
-
-
   return (
     <main className="min-h-screen bg-slate-950 px-5 pb-24 pt-28 text-white sm:px-8 lg:px-12">
       <Helmet>
         {/* Basic SEO */}
-        <title>About Yogesh Banger | MERN Stack Developer</title>
+        <title>About Yogesh Banger | MERN Stack Developer & SEO Expert in Kaithal</title>
 
         <meta
           name="description"
-          content="Learn about Yogesh Banger, a MERN Stack Developer and BCA student passionate about React.js, Node.js, Express.js, MongoDB, WordPress, SEO and modern web development."
+          content="Learn about Yogesh Banger, a MERN Stack Developer, Digital Marketer, and BCA student from Kaithal passionate about React.js, Node.js, Cyber Security, and Technical SEO."
         />
 
         <meta
           name="keywords"
-          content="Yogesh Banger, About Yogesh Banger, MERN Stack Developer, React Developer, Node.js Developer, Full Stack Developer, BCA Student, MongoDB, Express.js, WordPress, SEO"
+          content="Yogesh Banger, About Yogesh Banger, MERN Stack Developer, React Developer, Node.js Developer, Digital Marketer, Cyber Security, BCA Student, Kaithal Haryana, Best Developer in Kaithal"
         />
 
-        <meta name="robots" content="index, follow" />
+        <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
         <meta name="author" content="Yogesh Banger" />
         <meta name="theme-color" content="#0f172a" />
 
         {/* Canonical */}
-        <link
-          rel="canonical"
-          href="https://yogeshbanger.vercel.app/"
-        />
+        <link rel="canonical" href="https://yogeshbanger.vercel.app/about" />
 
         {/* Open Graph */}
-        <meta
-          property="og:title"
-          content="About Yogesh Banger | MERN Stack Developer"
-        />
-
+        <meta property="og:title" content="About Yogesh Banger | MERN Stack Developer" />
         <meta
           property="og:description"
-          content="Know more about Yogesh Banger, a MERN Stack Developer skilled in React.js, Node.js, Express.js, MongoDB, WordPress and SEO."
+          content="Discover the journey of Yogesh Banger: Blending MERN Stack Development, Digital Marketing, and Cyber Security to build exceptional digital experiences."
         />
-
-        <meta
-          property="og:image"
-          content="https://yogeshbanger.vercel.app/icon.png"
-        />
-
-        <meta
-          property="og:url"
-          content="https://yogeshbanger.vercel.app/"
-        />
-
-        <meta
-          property="og:site_name"
-          content="Yogesh Banger Portfolio"
-        />
-
+        <meta property="og:image" content="https://yogeshbanger.vercel.app/icon.png" />
+        <meta property="og:url" content="https://yogeshbanger.vercel.app/about" />
+        <meta property="og:site_name" content="Yogesh Banger Portfolio" />
         <meta property="og:type" content="profile" />
+        <meta property="profile:first_name" content="Yogesh" />
+        <meta property="profile:last_name" content="Banger" />
 
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta
-          name="twitter:title"
-          content="About Yogesh Banger | MERN Stack Developer"
-        />
+        <meta name="twitter:title" content="About Yogesh Banger | MERN Stack Developer" />
         <meta
           name="twitter:description"
-          content="MERN Stack Developer, React.js Developer and BCA Student passionate about building modern web applications."
+          content="MERN Stack Developer, Digital Marketer, and BCA Student building modern, secure, and SEO-optimized web applications."
         />
-        <meta
-          name="twitter:image"
-          content="https://yogeshbanger.vercel.app/icon.png"
-        />
+        <meta name="twitter:image" content="https://yogeshbanger.vercel.app/icon.png" />
 
-        {/* Structured Data */}
+        {/* Advanced Structured Data (Knowledge Graph Optimization) */}
         <script type="application/ld+json">
-          {`
-        {
-          "@context":"https://schema.org",
-          "@type":"Person",
-          "name":"Yogesh Banger",
-          "jobTitle":"MERN Stack Developer",
-          "url":"https://yogeshbanger.vercel.app",
-          "email":"mailto:yogeshbanger111@gmail.com",
-          "address":{
-            "@type":"PostalAddress",
-            "addressLocality":"Kaithal",
-            "addressRegion":"Haryana",
-            "addressCountry":"India"
-          },
-      "sameAs":[
-        "https://github.com/bangerjaat111-stack",
-        "https://www.linkedin.com/in/yogesh-banger-9a9695366"
-      ]
-    }
-    `}
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": "Yogesh Banger",
+            "jobTitle": "MERN Stack Developer & Digital Marketer",
+            "url": "https://yogeshbanger.vercel.app",
+            "email": "mailto:yogeshbanger111@gmail.com",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Kaithal",
+              "addressRegion": "Haryana",
+              "addressCountry": "India"
+            },
+            "alumniOf": [
+              {
+                "@type": "CollegeOrUniversity",
+                "name": "RKSD College"
+              },
+              {
+                "@type": "EducationalOrganization",
+                "name": "Hartron"
+              },
+              {
+                "@type": "CollegeOrUniversity",
+                "name": "Indira Gandhi National Open University"
+              }
+            ],
+            "knowsAbout": [
+              "MERN Stack",
+              "React.js",
+              "Node.js",
+              "Express.js",
+              "MongoDB",
+              "Technical SEO",
+              "Digital Marketing",
+              "Cyber Security",
+              "Social Media Optimization"
+            ],
+            "sameAs": [
+              "https://github.com/bangerjaat111-stack",
+              "https://www.linkedin.com/in/yogesh-banger-9a9695366",
+              "https://www.instagram.com/yogesh_banger_111/"
+            ]
+          })}
         </script>
       </Helmet>
+
       <div className="mx-auto max-w-7xl">
         <motion.section
           initial={{ opacity: 0, y: 28 }}
@@ -176,20 +174,19 @@ export default function About() {
 
             <div className="space-y-5 text-base leading-8 text-slate-400 sm:text-lg">
               <p>
-                I am <strong className="text-white">Yogesh Banger</strong>, a Bachelor of
-                Computer Applications student with a strong interest in full stack web
-                development. My main focus is the MERN stack: MongoDB, Express, React and
-                Node.js.
+                I am <strong className="text-white">Yogesh Banger</strong>, a passionate web developer 
+                with a unique blend of technical expertise and marketing acumen. My core engineering 
+                focus lies in the MERN stack: MongoDB, Express.js, React, and Node.js.
               </p>
               <p>
-                I enjoy designing modern interfaces, building backend APIs, connecting
-                databases and creating complete user flows. I also study SEO and digital
-                marketing so the websites I build are not only attractive, but also
-                discoverable and useful.
+                Beyond writing clean code and designing modern interfaces, I deeply value the entire product 
+                lifecycle. By integrating my background in <strong>Cyber Security</strong> and 
+                <strong> Digital Marketing</strong>, I ensure the applications I architect are not just visually 
+                appealing, but aggressively optimized for search engines and fortified against vulnerabilities.
               </p>
               <p>
-                My goal is to begin my professional career as a developer, contribute to
-                meaningful products and keep growing through real-world challenges.
+                My goal is to deliver end-to-end digital solutions that drive real-world value, 
+                blending flawless technical execution with strategic organic growth.
               </p>
             </div>
           </div>
@@ -216,7 +213,7 @@ export default function About() {
                 className="relative grid grid-cols-[3.5rem_1fr] gap-5 sm:grid-cols-[4.5rem_1fr]"
               >
                 <div className="relative z-10 grid h-14 w-14 place-items-center rounded-2xl border border-cyan-300/20 bg-slate-900 text-xl text-cyan-300 shadow-xl shadow-cyan-500/5 sm:h-16 sm:w-16">
-                  <Icon />
+                  <Icon aria-hidden="true" />
                 </div>
                 <div className="rounded-3xl border border-white/10 bg-white/[0.025] p-6 transition hover:border-cyan-300/20 sm:p-8">
                   <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
@@ -254,13 +251,31 @@ export default function About() {
                 className="rounded-3xl border border-white/10 bg-gradient-to-b from-slate-900/80 to-slate-950 p-7"
               >
                 <div className="grid h-14 w-14 place-items-center rounded-2xl bg-violet-400/10 text-2xl text-violet-300">
-                  <Icon />
+                  <Icon aria-hidden="true" />
                 </div>
                 <h3 className="mt-6 text-2xl font-black">{title}</h3>
                 <p className="mt-4 leading-7 text-slate-400">{text}</p>
               </motion.article>
             ))}
           </div>
+        </section>
+
+        {/* --- HIDDEN SEO SECTION FOR SCREEN READERS & CRAWLERS --- */}
+        <section className="sr-only" aria-hidden="false">
+          <h2>Detailed Professional Background of Yogesh Banger</h2>
+          <p>
+            Yogesh Banger is highly regarded as one of the best MERN Stack Developers and Digital Marketing 
+            strategists in Kaithal, Haryana, India. Currently pursuing his BCA at RKSD College, Yogesh holds 
+            a multidisciplinary academic background, including specialized Cyber Security training from Hartron 
+            and an Arts degree from Indira Gandhi National Open University (IGNOU).
+          </p>
+          <p>
+            Operating at the intersection of robust software engineering and digital brand growth, he excels in 
+            building scalable React.js and Node.js architectures, securing web infrastructure, and deploying 
+            advanced Technical SEO and Social Media Optimization (SMO) funnels. Whether architecting database 
+            schemas in MongoDB or clustering high-ranking keywords for digital campaigns, Yogesh transforms 
+            complex technical challenges into streamlined user experiences.
+          </p>
         </section>
       </div>
     </main>
