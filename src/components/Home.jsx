@@ -65,6 +65,145 @@ const IMAGE_VARIANTS = {
   },
 };
 
+// JSON-LD Schemas
+const PERSON_SCHEMA = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Yogesh Banger",
+  "additionalName": "Yogesh",
+  "jobTitle": "MERN Stack Developer",
+  "description": "Top MERN Stack Developer and BCA student specializing in React.js, Node.js, MongoDB, and SEO.",
+  "url": "https://yogeshbanger.vercel.app/",
+  "image": "https://yogeshbanger.vercel.app/images/yogesh-profile.webp",
+  "email": "yogeshbanger111@gmail.com",
+  "telephone": "+919992540404",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Kaithal",
+    "addressRegion": "Haryana",
+    "addressCountry": "IN",
+    "postalCode": "136027"
+  },
+  "alumniOf": [
+    {
+      "@type": "CollegeOrUniversity",
+      "name": "RKSD College",
+      "url": "https://rksdcollege.ac.in/"
+    },
+    {
+      "@type": "EducationalOrganization",
+      "name": "Hartron Skill Centre",
+      "url": "https://hartron.org.in/"
+    }
+  ],
+  "hasCredential": {
+    "@type": "EducationalOccupationalCredential",
+    "credentialCategory": "BCA"
+  },
+  "knowsAbout": [
+    "MERN Stack",
+    "React.js",
+    "Node.js",
+    "Express.js",
+    "MongoDB",
+    "Tailwind CSS",
+    "JavaScript",
+    "HTML5",
+    "CSS3",
+    "REST APIs",
+    "JWT Authentication",
+    "Cyber Security",
+    "Technical SEO",
+    "Digital Marketing",
+    "Social Media Optimization"
+  ],
+  "sameAs": [
+    "https://github.com/bangerjaat111-stack",
+    "https://www.linkedin.com/in/yogesh-banger/",
+    "https://www.instagram.com/yogesh_banger_111/"
+  ],
+  "worksFor": {
+    "@type": "Organization",
+    "name": "Freelance",
+    "description": "Freelance MERN Stack Developer"
+  },
+  "potentialAction": [
+    {
+      "@type": "ViewAction",
+      "target": "https://yogeshbanger.vercel.app/"
+    },
+    {
+      "@type": "HireAction",
+      "target": "https://yogeshbanger.vercel.app/#contact"
+    }
+  ],
+  "makesOffer": {
+    "@type": "Offer",
+    "itemOffered": {
+      "@type": "Service",
+      "name": "MERN Stack Development Services",
+      "description": "Full-stack web development using React.js, Node.js, Express.js, and MongoDB.",
+      "provider": {
+        "@type": "Person",
+        "name": "Yogesh Banger"
+      },
+      "areaServed": ["India", "Worldwide"],
+      "serviceType": ["Web Development", "React Development", "Node.js Development"]
+    }
+  }
+};
+
+const ORGANIZATION_SCHEMA = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Yogesh Banger - MERN Stack Developer",
+  "url": "https://yogeshbanger.vercel.app/",
+  "logo": "https://yogeshbanger.vercel.app/images/logo.webp",
+  "description": "Professional MERN Stack Developer offering web development services in Kaithal, India.",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Kaithal",
+    "addressRegion": "Haryana",
+    "addressCountry": "IN"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+919992540404",
+    "email": "yogeshbanger111@gmail.com",
+    "contactType": "Sales",
+    "availableLanguage": ["English", "Hindi"]
+  },
+  "sameAs": [
+    "https://github.com/bangerjaat111-stack",
+    "https://www.linkedin.com/in/yogesh-banger/"
+  ]
+};
+
+const BREADCRUMB_SCHEMA = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://yogeshbanger.vercel.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Portfolio",
+      "item": "https://yogeshbanger.vercel.app/#work"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Contact",
+      "item": "https://yogeshbanger.vercel.app/#contact"
+    }
+  ]
+};
+
 const Hero = ({
   profileImage = "/images/yogesh-profile.webp",
   phoneNumber = "+919992540404",
@@ -86,80 +225,106 @@ const Hero = ({
       className="relative isolate flex min-h-screen items-center overflow-hidden bg-slate-950 px-4 pb-16 pt-28 text-slate-300 sm:px-6 lg:px-8"
     >
       <Helmet>
-        <title>Yogesh Banger | Top MERN Stack & React Developer in Kaithal</title>
+        {/* ===== PRIMARY META TAGS ===== */}
+        <title>Yogesh Banger | MERN Stack Developer in Kaithal - Hire Now</title>
         <meta name="google-site-verification" content="b_w75oGvnRYWx0-SUmybiSkyb2c4iTGSYL57nw6-0Bs" />
         <meta
           name="description"
-          content="Hire Yogesh Banger, a versatile MERN Stack Developer, Digital Marketer, and Cyber Security enthusiast based in Kaithal. Specializing in React, Tailwind CSS, and secure Node.js APIs."
+          content="Hire Yogesh Banger, a top MERN Stack Developer in Kaithal, India. Expert in React.js, Node.js, MongoDB, and SEO. Available for freelance, internships, and full-time roles."
         />
         <meta name="author" content="Yogesh Banger" />
-        <meta name="robots" content="index, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+        <link rel="canonical" href="https://yogeshbanger.vercel.app/" />
 
-        {/* Open Graph / Social Media Optimization (SMO) */}
-        <meta property="og:title" content="Yogesh Banger | MERN Stack Developer" />
-        <meta property="og:description" content="Explore the portfolio of Yogesh Banger. Building high-performance, responsive web applications with modern technologies." />
-        <meta property="og:image" content="https://yogeshbanger.vercel.app/images/yogesh-profile.webp" />
-        <meta property="og:url" content="https://yogeshbanger.vercel.app/" />
+        {/* ===== KEYWORDS (Optional but helpful) ===== */}
+        <meta name="keywords" content="MERN Stack Developer, React Developer, Node.js Developer, MongoDB, Web Developer Kaithal, SEO Expert, Freelance Web Developer, BCA Student" />
+
+        {/* ===== THEME & MOBILE ===== */}
+        <meta name="theme-color" content="#0f172a" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-title" content="Yogesh Banger Portfolio" />
+
+        {/* ===== OPEN GRAPH / SOCIAL MEDIA ===== */}
         <meta property="og:type" content="profile" />
+        <meta property="og:url" content="https://yogeshbanger.vercel.app/" />
+        <meta property="og:title" content="Yogesh Banger | MERN Stack Developer & SEO Expert" />
+        <meta property="og:description" content="Hire a skilled MERN Stack Developer for your next project. Specializing in React, Node.js, MongoDB, and SEO." />
+        <meta property="og:image" content="https://yogeshbanger.vercel.app/images/og-image.webp" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="Yogesh Banger - MERN Stack Developer Portfolio" />
+        <meta property="og:updated_time" content="2026-08-18T00:00:00+05:30" />
+        <meta property="article:modified_time" content="2026-08-18T00:00:00+05:30" />
         <meta property="profile:first_name" content="Yogesh" />
         <meta property="profile:last_name" content="Banger" />
+        <meta property="profile:username" content="yogeshbanger" />
 
-        {/* Twitter Card */}
+        {/* ===== TWITTER CARD ===== */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Yogesh Banger | MERN Stack Developer" />
         <meta name="twitter:description" content="Freelance Web Developer & Cyber Security enthusiast specializing in React.js and Node.js." />
-        <meta name="twitter:image" content="https://yogeshbanger.vercel.app/images/yogesh-profile.webp" />
+        <meta name="twitter:image" content="https://yogeshbanger.vercel.app/images/og-image.webp" />
+        <meta name="twitter:image:alt" content="Yogesh Banger - MERN Stack Developer Portfolio" />
+        <meta name="twitter:site" content="@yogeshbanger" />
+        <meta name="twitter:creator" content="@yogeshbanger" />
 
-        {/* Canonical URL */}
-        <link rel="canonical" href="https://yogeshbanger.vercel.app/" />
+        {/* ===== HREFLANG TAGS ===== */}
+        <link rel="alternate" href="https://yogeshbanger.vercel.app/" hreflang="en" />
+        <link rel="alternate" href="https://yogeshbanger.vercel.app/" hreflang="x-default" />
 
-        {/* Advanced JSON-LD Structured Data */}
+        {/* ===== PRECONNECT FOR PERFORMANCE ===== */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+
+        {/* ===== JSON-LD STRUCTURED DATA ===== */}
+        {/* Person Schema */}
+        <script type="application/ld+json">
+          {JSON.stringify(PERSON_SCHEMA)}
+        </script>
+
+        {/* Organization Schema */}
+        <script type="application/ld+json">
+          {JSON.stringify(ORGANIZATION_SCHEMA)}
+        </script>
+
+        {/* Breadcrumb Schema */}
+        <script type="application/ld+json">
+          {JSON.stringify(BREADCRUMB_SCHEMA)}
+        </script>
+
+        {/* WebSite Schema */}
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
-            "@type": "Person",
-            "name": "Yogesh Banger",
-            "jobTitle": "MERN Stack Developer",
+            "@type": "WebSite",
+            "name": "Yogesh Banger Portfolio",
             "url": "https://yogeshbanger.vercel.app/",
-            "image": "https://yogeshbanger.vercel.app/images/yogesh-profile.webp",
-            "address": {
-              "@type": "PostalAddress",
-              "addressLocality": "Kaithal",
-              "addressRegion": "Haryana",
-              "addressCountry": "IN"
+            "description": "Portfolio of Yogesh Banger - MERN Stack Developer",
+            "potentialAction": {
+              "@type": "SearchAction",
+              "target": "https://yogeshbanger.vercel.app/search?q={search_term_string}",
+              "query-input": "required name=search_term_string"
+            }
+          })}
+        </script>
+
+        {/* Profile Page Schema */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "ProfilePage",
+            "about": {
+              "@type": "Person",
+              "name": "Yogesh Banger"
             },
-            "alumniOf": [
-              {
-                "@type": "CollegeOrUniversity",
-                "name": "RKSD College"
-              },
-              {
-                "@type": "EducationalOrganization",
-                "name": "Hartron"
-              }
-            ],
-            "knowsAbout": [
-              "MERN Stack",
-              "React.js",
-              "Node.js",
-              "MongoDB",
-              "Tailwind CSS",
-              "Axios",
-              "Cyber Security",
-              "Search Engine Optimization (SEO)",
-              "Digital Marketing",
-              "Social Media Optimization (SMO)"
-            ],
-            "sameAs": [
-              "https://github.com/bangerjaat111-stack",
-              "https://www.linkedin.com/in/yogesh-banger/",
-              "https://www.instagram.com/yogesh_banger_111/"
-            ]
+            "dateModified": "2026-08-18"
           })}
         </script>
       </Helmet>
 
-      {/* Lightweight decorative background */}
+      {/* ===== DECORATIVE BACKGROUND ===== */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-20 overflow-hidden">
         <motion.div
           animate={backgroundAnimation}
@@ -185,7 +350,7 @@ const Hero = ({
 
       <div className="mx-auto grid w-full max-w-7xl items-center gap-14 lg:grid-cols-[0.95fr_1.05fr] lg:gap-20">
         
-        {/* Profile visual */}
+        {/* ===== PROFILE VISUAL ===== */}
         <div className="order-2 flex justify-center lg:order-1 lg:-mt-57">
           <motion.div
             variants={IMAGE_VARIANTS}
@@ -201,7 +366,8 @@ const Hero = ({
                 <div className="relative h-full w-full overflow-hidden rounded-full bg-slate-900 ring-1 ring-white/10">
                   <img
                     src={profileImage}
-                    alt="Yogesh Banger - MERN Stack Developer in Kaithal"
+                    srcSet={`${profileImage} 1x, ${profileImage.replace('.webp', '@2x.webp')} 2x`}
+                    alt="Yogesh Banger - MERN Stack Developer in Kaithal, India"
                     width="430"
                     height="430"
                     loading="eager"
@@ -230,7 +396,7 @@ const Hero = ({
           </motion.div>
         </div>
 
-        {/* Main content */}
+        {/* ===== MAIN CONTENT ===== */}
         <motion.div
           variants={CONTAINER_VARIANTS}
           initial={shouldReduceMotion ? false : "hidden"}
@@ -338,15 +504,53 @@ const Hero = ({
         </motion.div>
       </div>
 
-      {/* Hidden SEO Content (Crawled by Google Bots & Screen Readers) */}
-      <section className="sr-only">
+      {/* ===== HIDDEN SEO CONTENT ===== */}
+      <section className="sr-only" aria-hidden="true">
         <h2>About Yogesh Banger - Best MERN Stack Developer in Kaithal</h2>
         <p>
-          Yogesh Banger is a top MERN Stack Developer and Digital Marketer based in Kaithal, India.
-          Currently pursuing BCA at RKSD College, he engineers high-performance web solutions using React.js, 
-          Tailwind CSS, Node.js, Express.js, and MongoDB. He possesses strong foundations in Cyber Security 
-          and Social Media Optimization (SMO), offering end-to-end web architectures, RESTful APIs, and 
-          responsive portfolio websites.
+          Yogesh Banger is a top MERN Stack Developer and Digital Marketer based in Kaithal, Haryana, India.
+          Currently pursuing Bachelor of Computer Applications (BCA) at RKSD College, he engineers high-performance 
+          web solutions using React.js, Tailwind CSS, Node.js, Express.js, and MongoDB. 
+        </p>
+        
+        <h3>Technical Expertise & Services</h3>
+        <ul>
+          <li>MERN Stack Development: MongoDB, Express.js, React.js, Node.js</li>
+          <li>Frontend Development: React.js, Tailwind CSS, Framer Motion, Vite</li>
+          <li>Backend Development: Node.js, Express.js, REST APIs, JWT Authentication</li>
+          <li>Database Management: MongoDB, Mongoose, Data Modeling</li>
+          <li>Cybersecurity: Secure coding practices, OTP verification, Data protection</li>
+          <li>SEO & Digital Marketing: Technical SEO, On-page SEO, Social Media Optimization</li>
+        </ul>
+
+        <h3>Education & Certifications</h3>
+        <ul>
+          <li>Bachelor of Computer Applications (BCA) - RKSD College, Kaithal</li>
+          <li>Cybersecurity Training - Hartron Skill Centre</li>
+          <li>Web Development Certification - Various Online Platforms</li>
+        </ul>
+
+        <h3>Why Hire Yogesh Banger?</h3>
+        <p>
+          Yogesh combines robust software engineering with digital marketing expertise, ensuring projects 
+          are not only functional but also optimized for search engines and secure against vulnerabilities. 
+          He delivers end-to-end digital solutions that drive real-world value.
+        </p>
+
+        <h3>Project Experience</h3>
+        <ul>
+          <li>AutoSyntax - Automotive web application with React, Tailwind CSS, Node.js, MongoDB</li>
+          <li>MERN Authentication System - Secure JWT authentication with email OTP verification</li>
+          <li>Hartron Skill Centre - Professional education website with WordPress</li>
+          <li>Developer Portfolio - Personal brand website with React and Framer Motion</li>
+          <li>SEO Landing Page System - Search-friendly page structure with technical SEO</li>
+        </ul>
+
+        <h3>Contact Information</h3>
+        <p>
+          Email: yogeshbanger111@gmail.com<br />
+          Phone: +919992540404<br />
+          Location: Kaithal, Haryana, India
         </p>
       </section>
     </section>
