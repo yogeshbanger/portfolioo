@@ -68,7 +68,7 @@ export default function Contact() {
     <main className="min-h-screen bg-slate-950 px-5 pb-24 pt-28 text-white sm:px-8 lg:px-12">
       <Helmet>
         {/* Core SEO */}
-        <title>Contact Yogesh Banger | MERN Stack Developer in Kaithal</title>
+        <title>Yogesh Banger | MERN Stack Developer in Kaithal</title>
         <meta
           name="description"
           content="Get in touch with Yogesh Banger for freelance web development, React.js projects, Node.js APIs, and full MERN Stack applications. Based in Kaithal, Haryana."
