@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { saveLead } from "../utils/leadStore";
 import { motion } from "framer-motion";
 import { Helmet } from 'react-helmet-async';
 import {
@@ -57,11 +58,20 @@ const socials = [
 ];
 
 export default function Contact() {
+  const [formData, setFormData] = useState({ name: "", email: "", subject: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    if (!formData.name || !formData.email || !formData.message) return;
+    saveLead(formData);
     setSubmitted(true);
+    setFormData({ name: "", email: "", subject: "", message: "" });
+    setTimeout(() => setSubmitted(false), 8000);
   };
 
   return (
@@ -235,6 +245,8 @@ export default function Contact() {
                     required
                     type="text"
                     name="name"
+                    value={formData.name}
+                    onChange={handleChange}
                     placeholder="Enter your name"
                     className="w-full rounded-2xl border border-white/10 bg-slate-950/70 px-4 py-4 text-white outline-none transition placeholder:text-slate-600 focus:border-cyan-300/50 focus:ring-4 focus:ring-cyan-400/5"
                   />
@@ -245,6 +257,8 @@ export default function Contact() {
                     required
                     type="email"
                     name="email"
+                    value={formData.email}
+                    onChange={handleChange}
                     placeholder="you@example.com"
                     className="w-full rounded-2xl border border-white/10 bg-slate-950/70 px-4 py-4 text-white outline-none transition placeholder:text-slate-600 focus:border-cyan-300/50 focus:ring-4 focus:ring-cyan-400/5"
                   />
@@ -257,6 +271,8 @@ export default function Contact() {
                   required
                   type="text"
                   name="subject"
+                  value={formData.subject}
+                  onChange={handleChange}
                   placeholder="Internship, freelance project or collaboration"
                   className="w-full rounded-2xl border border-white/10 bg-slate-950/70 px-4 py-4 text-white outline-none transition placeholder:text-slate-600 focus:border-cyan-300/50 focus:ring-4 focus:ring-cyan-400/5"
                 />
@@ -268,6 +284,8 @@ export default function Contact() {
                   required
                   name="message"
                   rows="6"
+                  value={formData.message}
+                  onChange={handleChange}
                   placeholder="Tell me about your idea..."
                   className="w-full resize-none rounded-2xl border border-white/10 bg-slate-950/70 px-4 py-4 text-white outline-none transition placeholder:text-slate-600 focus:border-cyan-300/50 focus:ring-4 focus:ring-cyan-400/5"
                 />
@@ -285,10 +303,9 @@ export default function Contact() {
                 <motion.p
                   initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="rounded-2xl border border-amber-300/20 bg-amber-300/5 px-4 py-3 text-sm font-semibold text-amber-200"
+                  className="rounded-2xl border border-emerald-500/30 bg-emerald-500/10 px-5 py-4 text-sm font-bold text-emerald-300 shadow-lg shadow-emerald-500/10 flex items-center justify-between"
                 >
-                  The page design is working. Connect this form to your backend, Formspree
-                  or EmailJS to send real messages.
+                  <span>✓ Thank you! Your message has been sent successfully. Yogesh will get back to you shortly.</span>
                 </motion.p>
               )}
             </form>

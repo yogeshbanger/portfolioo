@@ -166,7 +166,7 @@ export default function About() {
               </p>
               <h1 className="mt-4 text-4xl font-black leading-tight sm:text-6xl">
                 I turn learning into
-                <span className="block bg-gradient-to-r from-cyan-300 to-violet-400 bg-clip-text text-transparent">
+                <span className="block bg-lineaar-to-r from-cyan-300 to-violet-400 bg-clip-text text-transparent">
                   real projects.
                 </span>
               </h1>
