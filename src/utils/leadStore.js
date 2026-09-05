@@ -4,12 +4,14 @@ const LEADS_STORAGE_KEY = 'yogesh_portfolio_leads';
 const ADMIN_PASSCODE_KEY = 'yogesh_portfolio_admin_passcode';
 const DEFAULT_PASSCODE = 'admin123';
 
+
 // Sample seed leads for initial view if store is empty
 const INITIAL_SEED_LEADS = [
   {
     id: 'lead-1710000001',
     name: 'Rahul Sharma',
-    email: 'rahul.sharma@example.com',
+    email: 'Rahul.Sharma@example.com',
+    phone: '+91 9876543210',
     subject: 'MERN Stack Web App Project Inquiry',
     message: 'Hi Yogesh, I saw your portfolio and loved your work. We are looking to build an e-commerce dashboard using React and Node.js. Are you available for freelance work next month?',
     status: 'new',
@@ -19,7 +21,8 @@ const INITIAL_SEED_LEADS = [
   {
     id: 'lead-1710000002',
     name: 'Priya Verma',
-    email: 'priya.verma@techsolutions.com',
+    email: 'Priya.Verma@techsolutions.com',
+    phone: '+91 9123456789',
     subject: 'Frontend Developer Role / Internship',
     message: 'Hello Yogesh, we have an opening for a React / MERN Developer at our startup. Would you be interested in an interview call?',
     status: 'read',
@@ -29,7 +32,8 @@ const INITIAL_SEED_LEADS = [
   {
     id: 'lead-1710000003',
     name: 'Amit Kumar',
-    email: 'amit.k@digitalagency.in',
+    email: 'Amit.K@digitalagency.in',
+    phone: '+91 9988776655',
     subject: 'SEO & Web Optimization Consulting',
     message: 'Hey Yogesh! We need technical SEO optimization for our client website. Saw your expertise in SEO & React. Let us connect!',
     status: 'contacted',
@@ -76,7 +80,8 @@ export const saveLead = (leadData) => {
   const newLead = {
     id: 'lead-' + Date.now() + '-' + Math.floor(Math.random() * 1000),
     name: leadData.name.trim(),
-    email: leadData.email.trim(),
+    email: leadData.email.trim(), // preserves exact case entered by client
+    phone: (leadData.phone || '').replace(/[^0-9+\s-()]/g, '').trim(),
     subject: (leadData.subject || 'Portfolio Inquiry').trim(),
     message: leadData.message.trim(),
     status: 'new',
@@ -149,12 +154,13 @@ export const setAdminPasscode = (newPasscode) => {
 // Export to CSV
 export const exportLeadsToCSV = (leads) => {
   if (!leads || !leads.length) return;
-  const headers = ['ID', 'Date', 'Name', 'Email', 'Subject', 'Status', 'Starred', 'Message'];
+  const headers = ['ID', 'Date', 'Name', 'Email', 'Phone', 'Subject', 'Status', 'Starred', 'Message'];
   const rows = leads.map((l) => [
     `"${l.id}"`,
     `"${new Date(l.createdAt).toLocaleString()}"`,
     `"${l.name.replace(/"/g, '""')}"`,
     `"${l.email.replace(/"/g, '""')}"`,
+    `"${(l.phone || '').replace(/"/g, '""')}"`,
     `"${l.subject.replace(/"/g, '""')}"`,
     `"${l.status}"`,
     `"${l.starred ? 'Yes' : 'No'}"`,

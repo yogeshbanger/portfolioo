@@ -19,7 +19,7 @@ import {
   FaArrowRightFromBracket,
   FaMagnifyingGlass,
   FaStar,
-  FaRegStar,
+  FaRegStar, 
   FaTrash,
   FaEnvelope,
   FaDownload,
@@ -32,7 +32,9 @@ import {
   FaCircleInfo,
   FaUser,
   FaClock,
-  FaTag
+  FaTag,
+  FaPhone,
+  FaPaperPlane
 } from 'react-icons/fa6';
 
 export default function AdminPanel() {
@@ -48,6 +50,7 @@ export default function AdminPanel() {
   const [activeTab, setActiveTab] = useState('all'); // all, new, read, starred, contacted, archived
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedLead, setSelectedLead] = useState(null);
+  const [replyText, setReplyText] = useState('');
 
   // Modals & Settings State
   const [showPasswordModal, setShowPasswordModal] = useState(false);
@@ -80,7 +83,7 @@ export default function AdminPanel() {
       sessionStorage.setItem('yogesh_admin_authed', 'true');
       setAuthError('');
     } else {
-      setAuthError('Invalid passcode. Default passcode is admin123');
+      setAuthError('Invalid passcode');
     }
   };
 
@@ -88,6 +91,17 @@ export default function AdminPanel() {
   const handleLogout = () => {
     setIsAuthenticated(false);
     sessionStorage.removeItem('yogesh_admin_authed');
+  };
+
+  // Add demo lead
+  const handleAddDemoLead = () => {
+    saveLead({
+      name: 'Vikas Mehta',
+      email: 'Vikas.Mehta@TechCompany.com',
+      phone: '+91 9812345670',
+      subject: 'Custom Web Application Inquiry',
+      message: 'Hello Yogesh, we need a custom React dashboard built. Please contact me when you get a chance!'
+    });
   };
 
   // Filtered Leads
@@ -105,9 +119,10 @@ export default function AdminPanel() {
         const query = searchQuery.toLowerCase();
         const matchName = lead.name?.toLowerCase().includes(query);
         const matchEmail = lead.email?.toLowerCase().includes(query);
+        const matchPhone = lead.phone?.toLowerCase().includes(query);
         const matchSubject = lead.subject?.toLowerCase().includes(query);
         const matchMessage = lead.message?.toLowerCase().includes(query);
-        return matchName || matchEmail || matchSubject || matchMessage;
+        return matchName || matchEmail || matchPhone || matchSubject || matchMessage;
       }
 
       return true;
@@ -152,26 +167,13 @@ export default function AdminPanel() {
     }
   };
 
-  // Add Demo Lead
-  const handleAddDemoLead = () => {
-    const demoNames = ['Siddharth Mehta', 'Neha Kapur', 'Vikramaditya Roy', 'Ananya Deshmukh'];
-    const demoSubjects = ['Full Stack SaaS Development', 'React Consultant Required', 'E-commerce API Integration', 'Cyber Security Audit'];
-    const randomName = demoNames[Math.floor(Math.random() * demoNames.length)];
-    const randomSubject = demoSubjects[Math.floor(Math.random() * demoSubjects.length)];
-
-    saveLead({
-      name: randomName,
-      email: `${randomName.toLowerCase().replace(/\s+/g, '.')}@example.com`,
-      subject: randomSubject,
-      message: `Hi Yogesh, this is a test lead generated automatically to test the admin panel features. We would love to discuss a project with you!`
-    });
-  };
+ 
 
   // Change Passcode
   const handleChangePasscode = (e) => {
     e.preventDefault();
     if (newPasscode !== confirmPasscode) {
-      setPasscodeStatusMsg({ type: 'error', msg: 'Passcodes do not match.' });
+      setPasscodeStatusMsg({ type: 'error', msg: 'Password  do not match.' });
       return;
     }
     const res = setAdminPasscode(newPasscode);
@@ -207,12 +209,12 @@ export default function AdminPanel() {
           className="w-full max-w-md bg-slate-900/90 border border-slate-800 backdrop-blur-2xl rounded-3xl p-8 shadow-2xl shadow-cyan-950/40 relative z-10"
         >
           <div className="text-center mb-8">
-            <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-tr from-cyan-500 to-purple-600 p-0.5 shadow-lg shadow-cyan-500/20">
+            <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-linear-to-tr from-cyan-500 to-purple-600 p-0.5 shadow-lg shadow-cyan-500/20">
               <div className="w-full h-full bg-slate-950 rounded-[14px] flex items-center justify-center text-cyan-300 text-2xl">
                 <FaShieldHalved />
               </div>
             </div>
-            <h1 className="text-2xl font-black tracking-tight bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+            <h1 className="text-2xl font-black tracking-tight bg-linear-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
               Admin Portal
             </h1>
             <p className="text-slate-400 text-sm mt-1">
@@ -393,7 +395,7 @@ export default function AdminPanel() {
                 onClick={() => setActiveTab(tab.id)}
                 className={`px-3.5 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 cursor-pointer ${
                   activeTab === tab.id
-                    ? 'bg-gradient-to-r from-cyan-500/20 to-purple-500/20 border border-cyan-400/50 text-white shadow-sm'
+                    ? 'bg-linear-to-r from-cyan-500/20 to-purple-500/20 border border-cyan-400/50 text-white shadow-sm'
                     : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/60'
                 }`}
               >
@@ -487,9 +489,19 @@ export default function AdminPanel() {
                             <h4 className={`font-bold text-sm truncate ${lead.status === 'new' ? 'text-white font-extrabold' : 'text-slate-200'}`}>
                               {lead.name}
                             </h4>
-                            <span className="text-xs text-slate-500 font-mono">
+                            <span className="text-xs text-slate-400 font-mono">
                               &lt;{lead.email}&gt;
                             </span>
+                            {lead.phone && (
+                              <a
+                                href={`tel:${lead.phone}`}
+                                onClick={(e) => e.stopPropagation()}
+                                title={`Call ${lead.phone}`}
+                                className="text-xs text-cyan-300 font-mono flex items-center gap-1 hover:underline bg-cyan-950/60 border border-cyan-500/30 px-2 py-0.5 rounded-md"
+                              >
+                                <FaPhone className="text-[10px]" /> {lead.phone}
+                              </a>
+                            )}
                             
                             {/* Status badge */}
                             <span
@@ -586,14 +598,30 @@ export default function AdminPanel() {
 
                   <div>
                     <div className="text-xs text-slate-500 font-bold uppercase tracking-wider flex items-center gap-1.5">
-                      <FaEnvelope className="text-cyan-400" /> Email
+                      <FaEnvelope className="text-cyan-400" /> Email (Exact Casing)
                     </div>
                     <a
                       href={`mailto:${selectedLead.email}`}
-                      className="text-sm font-semibold text-cyan-300 hover:underline mt-0.5 block"
+                      className="text-sm font-semibold text-cyan-300 hover:underline mt-0.5 block font-mono"
                     >
                       {selectedLead.email}
                     </a>
+                  </div>
+
+                  <div>
+                    <div className="text-xs text-slate-500 font-bold uppercase tracking-wider flex items-center gap-1.5">
+                      <FaPhone className="text-cyan-400" /> Phone Number
+                    </div>
+                    {selectedLead.phone ? (
+                      <a
+                        href={`tel:${selectedLead.phone}`}
+                        className="text-sm font-semibold text-cyan-300 hover:underline mt-0.5 block font-mono"
+                      >
+                        {selectedLead.phone}
+                      </a>
+                    ) : (
+                      <div className="text-xs text-slate-500 italic mt-0.5">Not provided</div>
+                    )}
                   </div>
 
                   <div>
@@ -616,7 +644,7 @@ export default function AdminPanel() {
                     <div className="text-xs text-slate-500 font-bold uppercase tracking-wider mb-1">
                       Full Message Content
                     </div>
-                    <div className="bg-slate-950 border border-slate-800 rounded-xl p-4 text-xs leading-relaxed text-slate-300 whitespace-pre-wrap max-h-60 overflow-y-auto">
+                    <div className="bg-slate-950 border border-slate-800 rounded-xl p-4 text-xs leading-relaxed text-slate-300 whitespace-pre-wrap max-h-52 overflow-y-auto">
                       {selectedLead.message}
                     </div>
                   </div>
@@ -646,12 +674,43 @@ export default function AdminPanel() {
                     ))}
                   </div>
 
-                  <a
-                    href={`mailto:${selectedLead.email}?subject=Re: ${encodeURIComponent(selectedLead.subject)}`}
-                    className="w-full py-3 bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-400 hover:to-purple-500 text-slate-950 font-black rounded-xl transition flex items-center justify-center gap-2 text-xs shadow-lg shadow-cyan-500/20"
-                  >
-                    <FaEnvelope /> Reply via Email Client
-                  </a>
+                  {/* Direct Reply Section */}
+                  <div className="pt-3 border-t border-slate-800/80 space-y-2">
+                    <div className="text-xs font-bold flex items-center justify-between">
+                      <span className="flex items-center gap-1.5 text-cyan-400">
+                        <FaPaperPlane /> Direct Reply to Client
+                      </span>
+                      <span className="text-[10px] text-slate-400 font-mono">from: yogeshbanger111@gmail.com</span>
+                    </div>
+
+                    <textarea
+                      rows="3"
+                      value={replyText}
+                      onChange={(e) => setReplyText(e.target.value)}
+                      placeholder={`Hi ${selectedLead.name.split(' ')[0]},\n\nThank you for reaching out!...`}
+                      className="w-full bg-slate-950 border border-slate-800 focus:border-cyan-400 text-white rounded-xl p-3 text-xs outline-none transition resize-none placeholder:text-slate-600"
+                    />
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                      <a
+                        href={`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(selectedLead.email)}&su=${encodeURIComponent('Re: ' + selectedLead.subject)}&body=${encodeURIComponent(replyText || `Hi ${selectedLead.name.split(' ')[0]},\n\nThank you for reaching out! I received your inquiry about "${selectedLead.subject}".`)}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={() => handleStatusChange(selectedLead.id, 'contacted')}
+                        className="py-2.5 px-3 bg-gradient-to-r from-red-500 to-pink-600 hover:from-red-400 hover:to-pink-500 text-white font-bold rounded-xl transition flex items-center justify-center gap-2 text-xs shadow-md shadow-red-500/20 cursor-pointer"
+                      >
+                        <FaEnvelope /> Reply via Gmail
+                      </a>
+
+                      <a
+                        href={`mailto:${selectedLead.email}?subject=${encodeURIComponent('Re: ' + selectedLead.subject)}&body=${encodeURIComponent(replyText || `Hi ${selectedLead.name.split(' ')[0]},\n\nThank you for reaching out! I received your inquiry about "${selectedLead.subject}".`)}`}
+                        onClick={() => handleStatusChange(selectedLead.id, 'contacted')}
+                        className="py-2.5 px-3 bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-400 hover:to-purple-500 text-slate-950 font-extrabold rounded-xl transition flex items-center justify-center gap-2 text-xs shadow-md shadow-cyan-500/20 cursor-pointer"
+                      >
+                        <FaPaperPlane /> Reply via Mail App
+                      </a>
+                    </div>
+                  </div>
                 </div>
               </motion.div>
             )}

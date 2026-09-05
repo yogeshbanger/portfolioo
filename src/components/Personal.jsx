@@ -58,11 +58,18 @@ const socials = [
 ];
 
 export default function Contact() {
-  const [formData, setFormData] = useState({ name: "", email: "", subject: "", message: "" });
+  const [formData, setFormData] = useState({ name: "", email: "", phone: "", subject: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    if (name === "phone") {
+      // Remove alphabets and non-phone characters (keep numbers, +, -, spaces, parentheses)
+      const cleanedValue = value.replace(/[^0-9+\s-()]/g, "");
+      setFormData({ ...formData, phone: cleanedValue });
+    } else {
+      setFormData({ ...formData, [name]: value });
+    }
   };
 
   const handleSubmit = (event) => {
@@ -70,7 +77,7 @@ export default function Contact() {
     if (!formData.name || !formData.email || !formData.message) return;
     saveLead(formData);
     setSubmitted(true);
-    setFormData({ name: "", email: "", subject: "", message: "" });
+    setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
     setTimeout(() => setSubmitted(false), 8000);
   };
 
@@ -265,18 +272,34 @@ export default function Contact() {
                 </label>
               </div>
 
-              <label className="block">
-                <span className="mb-2 block text-sm font-bold text-slate-300">Subject</span>
-                <input
-                  required
-                  type="text"
-                  name="subject"
-                  value={formData.subject}
-                  onChange={handleChange}
-                  placeholder="Internship, freelance project or collaboration"
-                  className="w-full rounded-2xl border border-white/10 bg-slate-950/70 px-4 py-4 text-white outline-none transition placeholder:text-slate-600 focus:border-cyan-300/50 focus:ring-4 focus:ring-cyan-400/5"
-                />
-              </label>
+              <div className="grid gap-5 sm:grid-cols-2">
+                <label className="block">
+                  <span className="mb-2 block text-sm font-bold text-slate-300">Phone number</span>
+                  <input
+                    type="tel"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    inputMode="tel"
+                    pattern="[0-9+\s-()]*"
+                    placeholder="+91 9992540404"
+                    className="w-full rounded-2xl border border-white/10 bg-slate-950/70 px-4 py-4 text-white outline-none transition placeholder:text-slate-600 focus:border-cyan-300/50 focus:ring-4 focus:ring-cyan-400/5"
+                  />
+                </label>
+
+                <label className="block">
+                  <span className="mb-2 block text-sm font-bold text-slate-300">Subject</span>
+                  <input
+                    required
+                    type="text"
+                    name="subject"
+                    value={formData.subject}
+                    onChange={handleChange}
+                    placeholder="Internship, freelance project or collaboration"
+                    className="w-full rounded-2xl border border-white/10 bg-slate-950/70 px-4 py-4 text-white outline-none transition placeholder:text-slate-600 focus:border-cyan-300/50 focus:ring-4 focus:ring-cyan-400/5"
+                  />
+                </label>
+              </div>
 
               <label className="block">
                 <span className="mb-2 block text-sm font-bold text-slate-300">Message</span>
