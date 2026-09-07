@@ -93,16 +93,6 @@ export default function AdminPanel() {
     sessionStorage.removeItem('yogesh_admin_authed');
   };
 
-  // Add demo lead
-  const handleAddDemoLead = () => {
-    saveLead({
-      name: 'Vikas Mehta',
-      email: 'Vikas.Mehta@TechCompany.com',
-      phone: '+91 9812345670',
-      subject: 'Custom Web Application Inquiry',
-      message: 'Hello Yogesh, we need a custom React dashboard built. Please contact me when you get a chance!'
-    });
-  };
 
   // Filtered Leads
   const filteredLeads = useMemo(() => {
@@ -118,7 +108,7 @@ export default function AdminPanel() {
       if (searchQuery.trim()) {
         const query = searchQuery.toLowerCase();
         const matchName = lead.name?.toLowerCase().includes(query);
-        const matchEmail = lead.email?.toLowerCase().includes(query);
+        const matchEmail = lead.email.includes(query);
         const matchPhone = lead.phone?.toLowerCase().includes(query);
         const matchSubject = lead.subject?.toLowerCase().includes(query);
         const matchMessage = lead.message?.toLowerCase().includes(query);
@@ -232,7 +222,7 @@ export default function AdminPanel() {
                   type="password"
                   value={passcode}
                   onChange={(e) => setPasscode(e.target.value)}
-                  placeholder="Enter passcode (default: admin123)"
+                  placeholder="Enter passcode"
                   className="w-full bg-slate-950 border border-slate-700 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/20 text-white rounded-xl py-3.5 pl-11 pr-4 text-sm outline-none transition"
                   required
                 />
@@ -252,7 +242,7 @@ export default function AdminPanel() {
 
             <button
               type="submit"
-              className="w-full py-3.5 bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-400 hover:to-purple-500 text-slate-950 font-black rounded-xl transition-all shadow-lg shadow-cyan-500/20 active:scale-[0.98] cursor-pointer flex items-center justify-center gap-2 text-sm"
+              className="w-full py-3.5 bg-linear-to-r from-cyan-500 to-purple-600 hover:from-cyan-400 hover:to-purple-500 text-slate-950 font-black rounded-xl transition-all shadow-lg shadow-cyan-500/20 active:scale-[0.98] cursor-pointer flex items-center justify-center gap-2 text-sm"
             >
               Access Dashboard <FaArrowRightFromBracket />
             </button>
