@@ -140,15 +140,20 @@ export const getAdminPasscode = () => {
 
 export const verifyAdminPasscode = (passcode) => {
   const currentPasscode = getAdminPasscode();
-  return passcode === currentPasscode;
+  return Boolean(passcode && passcode.trim() === currentPasscode.trim());
 };
 
 export const setAdminPasscode = (newPasscode) => {
-  if (!newPasscode || newPasscode.length < 4) {
+  if (!newPasscode || newPasscode.trim().length < 4) {
     return { success: false, error: 'Passcode must be at least 4 characters.' };
   }
-  localStorage.setItem(ADMIN_PASSCODE_KEY, newPasscode);
+  localStorage.setItem(ADMIN_PASSCODE_KEY, newPasscode.trim());
   return { success: true };
+};
+
+export const resetAdminPasscode = () => {
+  localStorage.setItem(ADMIN_PASSCODE_KEY, DEFAULT_PASSCODE);
+  return DEFAULT_PASSCODE;
 };
 
 // Export to CSV

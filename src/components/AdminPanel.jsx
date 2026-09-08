@@ -9,6 +9,7 @@ import {
   clearAllLeads,
   verifyAdminPasscode,
   setAdminPasscode,
+  resetAdminPasscode,
   exportLeadsToCSV,
   exportLeadsToJSON,
   saveLead
@@ -159,11 +160,39 @@ export default function AdminPanel() {
 
  
 
+  // Add demo test lead
+  const handleAddDemoLead = () => {
+    const demoLead = {
+      name: 'Sample Client',
+      email: 'client@example.com',
+      phone: '+91 9876543210',
+      subject: 'MERN Stack Web App Project Inquiry',
+      message: 'Hi Yogesh, I saw your portfolio and loved your work! We need a custom web application built with React and Node.js.',
+    };
+    saveLead(demoLead);
+    refreshLeads();
+  };
+
+  // Reset passcode to default (admin123) from login screen
+  const handleResetPasscode = () => {
+    resetAdminPasscode();
+    setPasscode('admin123');
+    setAuthError('Passcode has been reset to default: admin123');
+  };
+
+  // Clear all leads
+  const handleClearAll = () => {
+    if (window.confirm('Are you sure you want to clear all leads? This action cannot be undone.')) {
+      clearAllLeads();
+      setSelectedLead(null);
+    }
+  };
+
   // Change Passcode
   const handleChangePasscode = (e) => {
     e.preventDefault();
     if (newPasscode !== confirmPasscode) {
-      setPasscodeStatusMsg({ type: 'error', msg: 'Password  do not match.' });
+      setPasscodeStatusMsg({ type: 'error', msg: 'Passwords do not match.' });
       return;
     }
     const res = setAdminPasscode(newPasscode);
@@ -178,6 +207,17 @@ export default function AdminPanel() {
     } else {
       setPasscodeStatusMsg({ type: 'error', msg: res.error });
     }
+  };
+
+  const handleModalResetPasscode = () => {
+    resetAdminPasscode();
+    setPasscodeStatusMsg({ type: 'success', msg: 'Passcode reset back to default: admin123' });
+    setTimeout(() => {
+      setShowPasswordModal(false);
+      setNewPasscode('');
+      setConfirmPasscode('');
+      setPasscodeStatusMsg({ type: '', msg: '' });
+    }, 1500);
   };
 
   // If Not Authenticated, show Admin Login Screen
@@ -248,16 +288,27 @@ export default function AdminPanel() {
             </button>
           </form>
 
-          <div className="mt-8 pt-6 border-t border-slate-800 text-center">
+          <div className="mt-8 pt-6 border-t border-slate-800 text-center space-y-3">
             <p className="text-xs text-slate-500 flex items-center justify-center gap-1.5">
               <FaCircleInfo className="text-cyan-400" /> Default passcode is <strong className="text-slate-300 font-mono bg-slate-800 px-1.5 py-0.5 rounded">admin123</strong>
             </p>
-            <a
-              href="/"
-              className="mt-4 inline-block text-xs font-semibold text-slate-400 hover:text-cyan-300 transition"
-            >
-              ← Back to Main Portfolio
-            </a>
+            <div>
+              <button
+                type="button"
+                onClick={handleResetPasscode}
+                className="text-xs text-cyan-400 hover:underline font-semibold bg-transparent border-0 cursor-pointer"
+              >
+                Forgot passcode? Reset to default (admin123)
+              </button>
+            </div>
+            <div>
+              <a
+                href="/"
+                className="inline-block text-xs font-semibold text-slate-400 hover:text-cyan-300 transition"
+              >
+                ← Back to Main Portfolio
+              </a>
+            </div>
           </div>
         </motion.div>
       </main>
@@ -315,6 +366,14 @@ export default function AdminPanel() {
               className="px-3.5 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-xs font-bold text-purple-300 flex items-center gap-2 transition cursor-pointer"
             >
               Export JSON <FaDownload />
+            </button>
+
+            <button
+              onClick={handleClearAll}
+              title="Clear all leads from store"
+              className="px-3.5 py-2 rounded-xl bg-slate-900 hover:bg-red-950/40 border border-slate-700 hover:border-red-500/50 text-xs font-bold text-red-400 flex items-center gap-2 transition cursor-pointer"
+            >
+              Clear All <FaTrash />
             </button>
 
             <button
@@ -773,12 +832,22 @@ export default function AdminPanel() {
                   </div>
                 )}
 
-                <button
-                  type="submit"
-                  className="w-full py-3 bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-400 hover:to-purple-500 text-slate-950 font-black rounded-xl transition cursor-pointer text-xs uppercase tracking-wider"
-                >
-                  Update Passcode
-                </button>
+                <div className="flex flex-col gap-2 pt-2">
+                  <button
+                    type="submit"
+                    className="w-full py-3 bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-400 hover:to-purple-500 text-slate-950 font-black rounded-xl transition cursor-pointer text-xs uppercase tracking-wider"
+                  >
+                    Update Passcode
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={handleModalResetPasscode}
+                    className="w-full py-2.5 bg-slate-950 hover:bg-slate-800 border border-slate-800 text-cyan-400 font-semibold rounded-xl transition cursor-pointer text-xs"
+                  >
+                    Reset Passcode to Default (admin123)
+                  </button>
+                </div>
               </form>
             </motion.div>
           </div>
