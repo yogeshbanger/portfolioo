@@ -9,7 +9,6 @@ import {
   clearAllLeads,
   verifyAdminPasscode,
   setAdminPasscode,
-  resetAdminPasscode,
   exportLeadsToCSV,
   exportLeadsToJSON,
   saveLead
@@ -172,12 +171,6 @@ export default function AdminPanel() {
     saveLead(demoLead);
     refreshLeads();
   };
-  // Reset passcode to default (admin123) from login screen
-  const handleResetPasscode = () => {
-    resetAdminPasscode();
-    setPasscode('bangerjaat1130');
-
-  };
 
   // Clear all leads
   const handleClearAll = () => {
@@ -206,17 +199,6 @@ export default function AdminPanel() {
     } else {
       setPasscodeStatusMsg({ type: 'error', msg: res.error });
     }
-  };
-
-  const handleModalResetPasscode = () => {
-    resetAdminPasscode();
-    setPasscodeStatusMsg({ type: 'success', msg: 'enter your password' });
-    setTimeout(() => {
-      setShowPasswordModal(false);
-      setNewPasscode('');
-      setConfirmPasscode('');
-      setPasscodeStatusMsg({ type: '', msg: '' });
-    }, 1500);
   };
 
   // If Not Authenticated, show Admin Login Screen

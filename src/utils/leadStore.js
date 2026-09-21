@@ -2,8 +2,7 @@
 // LocalStorage key constants
 const LEADS_STORAGE_KEY = 'yogesh_portfolio_leads';
 const ADMIN_PASSCODE_KEY = 'yogesh_portfolio_admin_passcode';
-const DEFAULT_PASSCODE = 'admin123';
-
+const DEFAULT_PASSCODE = (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.VITE_ADMIN_PASSCODE) || 'admin123';
 
 // Sample seed leads for initial view if store is empty
 const INITIAL_SEED_LEADS = [
@@ -54,10 +53,16 @@ export const initializeLeadsStore = () => {
   }
 };
 
-// Dispatch real-time update event
+// Dispatch real-time update events
 const notifyLeadsUpdated = () => {
   if (typeof window !== 'undefined') {
     window.dispatchEvent(new Event('portfolio_leads_updated'));
+  }
+};
+
+const notifyPasscodeUpdated = () => {
+  if (typeof window !== 'undefined') {
+    window.dispatchEvent(new Event('portfolio_passcode_updated'));
   }
 };
 
@@ -148,11 +153,13 @@ export const setAdminPasscode = (newPasscode) => {
     return { success: false, error: 'Passcode must be at least 4 characters.' };
   }
   localStorage.setItem(ADMIN_PASSCODE_KEY, newPasscode.trim());
+  notifyPasscodeUpdated();
   return { success: true };
 };
 
 export const resetAdminPasscode = () => {
   localStorage.setItem(ADMIN_PASSCODE_KEY, DEFAULT_PASSCODE);
+  notifyPasscodeUpdated();
   return DEFAULT_PASSCODE;
 };
 
