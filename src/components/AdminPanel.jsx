@@ -176,8 +176,8 @@ export default function AdminPanel() {
   // Reset passcode to default (admin123) from login screen
   const handleResetPasscode = () => {
     resetAdminPasscode();
-    setPasscode('admin123');
-    setAuthError('Passcode has been reset to default: admin123');
+    setPasscode('bangerjaat1130');
+
   };
 
   // Clear all leads
