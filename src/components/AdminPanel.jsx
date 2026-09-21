@@ -172,7 +172,6 @@ export default function AdminPanel() {
     saveLead(demoLead);
     refreshLeads();
   };
-
   // Reset passcode to default (admin123) from login screen
   const handleResetPasscode = () => {
     resetAdminPasscode();
@@ -211,7 +210,7 @@ export default function AdminPanel() {
 
   const handleModalResetPasscode = () => {
     resetAdminPasscode();
-    setPasscodeStatusMsg({ type: 'success', msg: 'Passcode reset back to default: admin123' });
+    setPasscodeStatusMsg({ type: 'success', msg: 'enter your password' });
     setTimeout(() => {
       setShowPasswordModal(false);
       setNewPasscode('');
@@ -289,18 +288,8 @@ export default function AdminPanel() {
           </form>
 
           <div className="mt-8 pt-6 border-t border-slate-800 text-center space-y-3">
-            <p className="text-xs text-slate-500 flex items-center justify-center gap-1.5">
-              <FaCircleInfo className="text-cyan-400" /> Default passcode is <strong className="text-slate-300 font-mono bg-slate-800 px-1.5 py-0.5 rounded">admin123</strong>
-            </p>
-            <div>
-              <button
-                type="button"
-                onClick={handleResetPasscode}
-                className="text-xs text-cyan-400 hover:underline font-semibold bg-transparent border-0 cursor-pointer"
-              >
-                Forgot passcode? Reset to default (admin123)
-              </button>
-            </div>
+            
+           
             <div>
               <a
                 href="/"
@@ -840,13 +829,7 @@ export default function AdminPanel() {
                     Update Passcode
                   </button>
 
-                  <button
-                    type="button"
-                    onClick={handleModalResetPasscode}
-                    className="w-full py-2.5 bg-slate-950 hover:bg-slate-800 border border-slate-800 text-cyan-400 font-semibold rounded-xl transition cursor-pointer text-xs"
-                  >
-                    Reset Passcode to Default (admin123)
-                  </button>
+                
                 </div>
               </form>
             </motion.div>
