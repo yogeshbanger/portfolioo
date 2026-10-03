@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { FaEnvelope, FaPhoneAlt, FaMapMarkerAlt, FaPaperPlane, FaLaptopCode } from 'react-icons/fa';
 
@@ -139,7 +140,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto mt-16 pt-8 border-t border-gray-800 text-center text-sm text-gray-500 flex flex-col md:flex-row justify-between items-center">
         <p>&copy; {new Date().getFullYear()} Yogesh Banger. All rights reserved.</p>
         <div className="mt-4 md:mt-0 flex gap-4 items-center">
-          <a href="/admin" className="hover:text-cyan-400 cursor-pointer transition-colors focus:outline-none focus:underline font-bold text-slate-400">Admin Portal</a>
+          <Link to="/admin" className="hover:text-cyan-400 cursor-pointer transition-colors focus:outline-none focus:underline font-bold text-slate-400">Admin Portal</Link>
           <a href="#" className="hover:text-blue-400 cursor-pointer transition-colors focus:outline-none focus:underline">Privacy Policy</a>
           <a href="#" className="hover:text-blue-400 cursor-pointer transition-colors focus:outline-none focus:underline">Terms of Service</a>
         </div>
